@@ -9,941 +9,227 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ── RESET & ROOT ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --gt-blue:          #041E42;
-  --gt-blue-mid:      #072860;
-  --gt-blue-light:    #0d3a80;
-  --gold:             #C9A84C;
-  --gold-light:       #E2C47A;
-  --gold-dim:         rgba(201,168,76,0.14);
-  --gold-glow:        rgba(201,168,76,0.28);
-  --glass-white:      rgba(255,255,255,0.05);
-  --glass-white-h:    rgba(255,255,255,0.09);
-  --glass-border:     rgba(255,255,255,0.09);
-  --glass-border-b:   rgba(255,255,255,0.18);
-  --glass-gold:       rgba(201,168,76,0.10);
-  --glass-gold-b:     rgba(201,168,76,0.28);
-  --text:             #EEF2FF;
-  --text-mid:         rgba(238,242,255,0.65);
-  --text-muted:       rgba(238,242,255,0.40);
-  --text-dim:         rgba(238,242,255,0.20);
-  --serif:            'Cormorant Garamond', Georgia, serif;
-  --sans:             'DM Sans', sans-serif;
-  --shadow-float:     0 20px 56px rgba(4,30,66,0.50), 0 6px 18px rgba(4,30,66,0.30);
-  --shadow-float-g:   0 20px 56px rgba(201,168,76,0.16), 0 6px 18px rgba(4,30,66,0.35);
-  --shadow-deep:      0 36px 90px rgba(2,10,30,0.65), 0 10px 28px rgba(2,10,30,0.40);
+  --gt-blue:#041E42;--gt-blue-mid:#072860;--gt-blue-light:#0d3a80;
+  --gold:#C9A84C;--gold-light:#E2C47A;--gold-dim:rgba(201,168,76,0.14);--gold-glow:rgba(201,168,76,0.28);
+  --glass-white:rgba(255,255,255,0.05);--glass-white-h:rgba(255,255,255,0.09);
+  --glass-border:rgba(255,255,255,0.09);--glass-border-b:rgba(255,255,255,0.18);
+  --glass-gold:rgba(201,168,76,0.10);--glass-gold-b:rgba(201,168,76,0.28);
+  --text:#EEF2FF;--text-mid:rgba(238,242,255,0.65);--text-muted:rgba(238,242,255,0.40);--text-dim:rgba(238,242,255,0.20);
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',sans-serif;
+  --shadow-float:0 20px 56px rgba(4,30,66,0.50),0 6px 18px rgba(4,30,66,0.30);
+  --shadow-float-g:0 20px 56px rgba(201,168,76,0.16),0 6px 18px rgba(4,30,66,0.35);
+  --shadow-deep:0 36px 90px rgba(2,10,30,0.65),0 10px 28px rgba(2,10,30,0.40);
 }
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--gt-blue);
-  color: var(--text);
-  font-family: var(--sans);
-  font-weight: 300;
-  overflow-x: hidden;
-  line-height: 1.7;
-}
-
-/* ── ANIMATED BG ── */
-.bg {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
-}
-.orb {
-  position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none;
-}
-.o1 { width:800px;height:800px; background:radial-gradient(circle,rgba(7,40,96,.85) 0%,transparent 70%); top:-280px;left:-180px; animation:d1 26s ease-in-out infinite alternate; }
-.o2 { width:600px;height:600px; background:radial-gradient(circle,rgba(13,58,128,.55) 0%,transparent 70%); bottom:-120px;right:-140px; animation:d2 22s ease-in-out infinite alternate; }
-.o3 { width:420px;height:420px; background:radial-gradient(circle,rgba(201,168,76,.065) 0%,transparent 70%); top:42%;left:52%; transform:translate(-50%,-50%); animation:d3 30s ease-in-out infinite alternate; }
-.o4 { width:320px;height:320px; background:radial-gradient(circle,rgba(7,40,96,.45) 0%,transparent 70%); top:28%;left:22%; animation:d1 19s ease-in-out infinite alternate; }
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--gt-blue);color:var(--text);font-family:var(--sans);font-weight:300;overflow-x:hidden;line-height:1.7}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none}
+.o1{width:800px;height:800px;background:radial-gradient(circle,rgba(7,40,96,.85) 0%,transparent 70%);top:-280px;left:-180px;animation:d1 26s ease-in-out infinite alternate}
+.o2{width:600px;height:600px;background:radial-gradient(circle,rgba(13,58,128,.55) 0%,transparent 70%);bottom:-120px;right:-140px;animation:d2 22s ease-in-out infinite alternate}
+.o3{width:420px;height:420px;background:radial-gradient(circle,rgba(201,168,76,.065) 0%,transparent 70%);top:42%;left:52%;transform:translate(-50%,-50%);animation:d3 30s ease-in-out infinite alternate}
+.o4{width:320px;height:320px;background:radial-gradient(circle,rgba(7,40,96,.45) 0%,transparent 70%);top:28%;left:22%;animation:d1 19s ease-in-out infinite alternate}
 @keyframes d1{0%{transform:translate(0,0)}100%{transform:translate(55px,-38px)}}
 @keyframes d2{0%{transform:translate(0,0)}100%{transform:translate(-48px,28px)}}
 @keyframes d3{0%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(1.28)}}
-
-.stars {
-  position:absolute;inset:0;
-  background-image:
-    radial-gradient(1px 1px at 8% 10%,rgba(255,255,255,.55) 0%,transparent 100%),
-    radial-gradient(1.5px 1.5px at 22% 4%,rgba(255,255,255,.40) 0%,transparent 100%),
-    radial-gradient(1px 1px at 55% 8%,rgba(255,255,255,.60) 0%,transparent 100%),
-    radial-gradient(1px 1px at 79% 3%,rgba(255,255,255,.35) 0%,transparent 100%),
-    radial-gradient(1.5px 1.5px at 92% 16%,rgba(255,255,255,.50) 0%,transparent 100%),
-    radial-gradient(1px 1px at 35% 26%,rgba(255,255,255,.25) 0%,transparent 100%),
-    radial-gradient(1px 1px at 65% 33%,rgba(255,255,255,.30) 0%,transparent 100%),
-    radial-gradient(2px 2px at 14% 54%,rgba(201,168,76,.55) 0%,transparent 100%),
-    radial-gradient(1px 1px at 88% 60%,rgba(255,255,255,.40) 0%,transparent 100%),
-    radial-gradient(1.5px 1.5px at 43% 72%,rgba(201,168,76,.40) 0%,transparent 100%),
-    radial-gradient(1px 1px at 70% 80%,rgba(255,255,255,.30) 0%,transparent 100%),
-    radial-gradient(2px 2px at 95% 90%,rgba(201,168,76,.45) 0%,transparent 100%);
-}
-
-/* ── PAGE WRAPPER ── */
-.page { position:relative; z-index:1; }
-
-/* ── NAV ── */
-nav {
-  position:fixed; top:0;left:0;right:0;z-index:200;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:18px 52px;
-  background:rgba(4,30,66,.55);
-  backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
-  border-bottom:.5px solid var(--glass-border);
-}
-.nav-logo { display:flex; align-items:center; gap:14px; text-decoration:none; color:inherit; }
-.logo-icon {
-  width:36px; height:36px; background:var(--gold-dim);
-  border:1px solid var(--glass-gold-b); border-radius:10px;
-  display:flex; align-items:center; justify-content:center;
-  font-size:18px; transition:background .3s;
-}
-.nav-logo:hover .logo-icon { background:rgba(201,168,76,.22); }
-.logo-name { font-weight:400; font-size:13px; letter-spacing:3px; text-transform:uppercase; }
-.logo-sub  { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); }
-.nav-links { display:flex; gap:32px; list-style:none; }
-.nav-links a { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); text-decoration:none; transition:color .3s; }
-.nav-links a:hover { color:var(--gold); }
-.nav-cta {
-  background:var(--gold-dim); border:1px solid var(--glass-gold-b); color:var(--gold);
-  padding:10px 26px; font-size:10px; letter-spacing:3px; text-transform:uppercase;
-  border-radius:6px; cursor:pointer; font-family:var(--sans); font-weight:400;
-  text-decoration:none; display:inline-block; transition:background .3s;
-}
-.nav-cta:hover { background:rgba(201,168,76,.22); }
-.nav-mobile { display:none; }
-
-/* ── BUTTONS ── */
-.btn-primary {
-  background:linear-gradient(135deg,#C9A84C,#b8922e);
-  color:var(--gt-blue); border:none; border-radius:8px;
-  padding:16px 40px; font-size:11px; font-weight:500;
-  letter-spacing:2px; text-transform:uppercase; font-family:var(--sans);
-  cursor:pointer; text-decoration:none; display:inline-block;
-  box-shadow:0 8px 32px rgba(201,168,76,.30);
-  transition:transform .2s, box-shadow .2s;
-}
-.btn-primary:hover { transform:translateY(-2px); box-shadow:0 14px 42px rgba(201,168,76,.42); }
-
-.btn-ghost {
-  background:var(--glass-white); border:1px solid var(--glass-border-b);
-  color:var(--text); border-radius:8px; padding:16px 40px;
-  font-size:11px; letter-spacing:2px; text-transform:uppercase; font-family:var(--sans);
-  cursor:pointer; text-decoration:none; display:inline-block;
-  backdrop-filter:blur(12px); transition:background .3s;
-}
-.btn-ghost:hover { background:var(--glass-white-h); }
-
-/* ── HERO ── */
-.hero {
-  min-height:100vh; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; text-align:center;
-  padding:130px 48px 90px; position:relative;
-}
-.hero-badge {
-  display:inline-flex; align-items:center; gap:10px;
-  background:rgba(201,168,76,.08); border:1px solid rgba(201,168,76,.22);
-  border-radius:40px; padding:8px 20px;
-  font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gold);
-  margin-bottom:36px; animation:fadeDown 1s ease both;
-}
-.pulse { width:6px;height:6px;background:var(--gold);border-radius:50%; animation:pulse 2.5s ease infinite; }
+.stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 8% 10%,rgba(255,255,255,.55) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 22% 4%,rgba(255,255,255,.40) 0%,transparent 100%),radial-gradient(1px 1px at 55% 8%,rgba(255,255,255,.60) 0%,transparent 100%),radial-gradient(1px 1px at 79% 3%,rgba(255,255,255,.35) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 92% 16%,rgba(255,255,255,.50) 0%,transparent 100%),radial-gradient(2px 2px at 14% 54%,rgba(201,168,76,.55) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 43% 72%,rgba(201,168,76,.40) 0%,transparent 100%),radial-gradient(2px 2px at 95% 90%,rgba(201,168,76,.45) 0%,transparent 100%)}
+.page{position:relative;z-index:1}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px 52px;background:rgba(4,30,66,.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:.5px solid var(--glass-border)}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit}
+.logo-icon{width:36px;height:36px;background:var(--gold-dim);border:1px solid var(--glass-gold-b);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .3s}
+.nav-logo:hover .logo-icon{background:rgba(201,168,76,.22)}
+.logo-name{font-weight:400;font-size:13px;letter-spacing:3px;text-transform:uppercase}
+.logo-sub{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold-dim);border:1px solid var(--glass-gold-b);color:var(--gold);padding:10px 26px;font-size:10px;letter-spacing:3px;text-transform:uppercase;border-radius:6px;cursor:pointer;font-family:var(--sans);font-weight:400;text-decoration:none;display:inline-block;transition:background .3s}
+.nav-cta:hover{background:rgba(201,168,76,.22)}
+.nav-mobile{display:none}
+.btn-primary{background:linear-gradient(135deg,#C9A84C,#b8922e);color:var(--gt-blue);border:none;border-radius:8px;padding:16px 40px;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;font-family:var(--sans);cursor:pointer;text-decoration:none;display:inline-block;box-shadow:0 8px 32px rgba(201,168,76,.30);transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 42px rgba(201,168,76,.42)}
+.btn-ghost{background:var(--glass-white);border:1px solid var(--glass-border-b);color:var(--text);border-radius:8px;padding:16px 40px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:var(--sans);cursor:pointer;text-decoration:none;display:inline-block;backdrop-filter:blur(12px);transition:background .3s}
+.btn-ghost:hover{background:var(--glass-white-h)}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 48px 90px;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.22);border-radius:40px;padding:8px 20px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:36px;animation:fadeDown 1s ease both}
+.pulse{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2.5s ease infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
-
-.hero h1 {
-  font-family:var(--serif); font-size:clamp(52px,8.5vw,108px);
-  font-weight:300; line-height:1.0; color:var(--text);
-  margin-bottom:12px; animation:fadeDown 1s .1s ease both;
-}
-.hero h1 em {
-  font-style:italic;
-  background:linear-gradient(135deg,#C9A84C 0%,#F0D98A 50%,#C9A84C 100%);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-}
-.hero-sub-head {
-  font-family:var(--serif); font-size:clamp(28px,4vw,52px);
-  font-weight:300; font-style:italic; color:var(--text-mid);
-  margin-bottom:32px; animation:fadeDown 1s .18s ease both;
-}
-.hero-p {
-  font-size:16px; line-height:1.85; color:var(--text-mid);
-  max-width:560px; margin:0 auto 48px; animation:fadeDown 1s .26s ease both;
-}
-.hero-actions {
-  display:flex; gap:14px; align-items:center; justify-content:center;
-  flex-wrap:wrap; margin-bottom:20px; animation:fadeDown 1s .34s ease both;
-}
-.hero-meta {
-  font-size:11px; color:var(--text-muted); letter-spacing:.5px;
-  margin-bottom:64px; animation:fadeDown 1s .40s ease both;
-}
-.hero-meta span { color:var(--gold); margin:0 4px; }
-
-/* hero stat pills */
-.hero-pills { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; animation:fadeUp 1s .5s ease both; }
-.pill {
-  background:rgba(255,255,255,.04); backdrop-filter:blur(20px);
-  border:1px solid var(--glass-border); border-top-color:var(--glass-border-b);
-  border-radius:50px; padding:12px 24px;
-  display:flex; align-items:center; gap:10px;
-  box-shadow:var(--shadow-float); transition:transform .25s, box-shadow .25s;
-}
-.pill:hover { transform:translateY(-3px); box-shadow:var(--shadow-float-g); }
-.pill-num { font-family:var(--serif); font-size:22px; font-weight:300; color:var(--gold); }
-.pill-lbl { font-size:11px; color:var(--text-muted); letter-spacing:1px; }
-
-/* ── MARQUEE ── */
-.marquee-wrap {
-  overflow:hidden;
-  border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06);
-  padding:22px 0; background:rgba(4,30,66,.40); backdrop-filter:blur(10px);
-}
-.marquee-track { display:flex; gap:52px; animation:marquee 24s linear infinite; white-space:nowrap; }
-.marquee-item { display:flex; align-items:center; gap:18px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); flex-shrink:0; }
-.mgem { color:var(--gold); font-size:8px; opacity:.65; }
+.hero h1{font-family:var(--serif);font-size:clamp(52px,8.5vw,108px);font-weight:300;line-height:1.0;color:var(--text);margin-bottom:12px;animation:fadeDown 1s .1s ease both}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,#C9A84C 0%,#F0D98A 50%,#C9A84C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub-head{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-weight:300;font-style:italic;color:var(--text-mid);margin-bottom:32px;animation:fadeDown 1s .18s ease both}
+.hero-p{font-size:16px;line-height:1.85;color:var(--text-mid);max-width:560px;margin:0 auto 48px;animation:fadeDown 1s .26s ease both}
+.hero-actions{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:20px;animation:fadeDown 1s .34s ease both}
+.hero-meta{font-size:11px;color:var(--text-muted);letter-spacing:.5px;margin-bottom:64px;animation:fadeDown 1s .40s ease both}
+.hero-meta span{color:var(--gold);margin:0 4px}
+.hero-pills{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;animation:fadeUp 1s .5s ease both}
+.pill{background:rgba(255,255,255,.04);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-top-color:var(--glass-border-b);border-radius:50px;padding:12px 24px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-float);transition:transform .25s,box-shadow .25s}
+.pill:hover{transform:translateY(-3px);box-shadow:var(--shadow-float-g)}
+.pill-num{font-family:var(--serif);font-size:22px;font-weight:300;color:var(--gold)}
+.pill-lbl{font-size:11px;color:var(--text-muted);letter-spacing:1px}
+.marquee-wrap{overflow:hidden;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:22px 0;background:rgba(4,30,66,.40);backdrop-filter:blur(10px)}
+.marquee-track{display:flex;gap:52px;animation:marquee 24s linear infinite;white-space:nowrap}
+.marquee-item{display:flex;align-items:center;gap:18px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);flex-shrink:0}
+.mgem{color:var(--gold);font-size:8px;opacity:.65}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ── SECTION HEADER ── */
-.section-label {
-  display:inline-flex; align-items:center; gap:14px;
-  font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold);
-  margin-bottom:14px;
-}
-.section-label::before { content:''; width:28px; height:1px; background:var(--gold); }
-.section-title {
-  font-family:var(--serif); font-size:clamp(32px,4vw,52px);
-  font-weight:300; line-height:1.15; color:var(--text);
-  margin-bottom:14px;
-}
-.section-sub { font-size:14px; color:var(--text-mid); max-width:520px; }
-
-/* ── GLASS CARD BASE ── */
-.gc {
-  background:var(--glass-white); backdrop-filter:blur(28px); -webkit-backdrop-filter:blur(28px);
-  border:1px solid var(--glass-border); border-top-color:var(--glass-border-b);
-  border-radius:20px; padding:36px;
-  box-shadow:var(--shadow-float);
-  transition:transform .3s, box-shadow .3s, background .3s;
-  position:relative; overflow:hidden;
-}
-.gc:hover { transform:translateY(-5px); box-shadow:var(--shadow-deep); background:var(--glass-white-h); }
-.gc::before {
-  content:''; position:absolute; top:0; left:20%; right:20%; height:1px;
-  background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);
-  opacity:0; transition:opacity .3s;
-}
-.gc:hover::before { opacity:1; }
-.gc-gold {
-  background:rgba(201,168,76,.065); border-color:var(--glass-gold-b);
-  border-top-color:rgba(201,168,76,.40);
-}
-.gc-gold:hover { background:rgba(201,168,76,.10); box-shadow:var(--shadow-float-g); }
-.gc-dark {
-  background:rgba(2,10,30,.75); border-color:rgba(255,255,255,.06);
-  border-top-color:rgba(255,255,255,.12); box-shadow:var(--shadow-deep);
-}
-.gc-dark:hover { background:rgba(2,10,30,.85); }
-
-/* ── PROBLEM SECTION ── */
-.problem-section { padding:90px 52px; }
-.problem-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:48px; }
-.prob-icon { font-size:30px; margin-bottom:20px; display:block; }
-.prob-title { font-family:var(--serif); font-size:22px; font-weight:300; color:var(--text); margin-bottom:12px; line-height:1.2; }
-.prob-body { font-size:13px; color:var(--text-mid); line-height:1.85; }
-
-/* ── SOLUTION SECTION ── */
-.solution-section { padding:0 52px 90px; }
-.solution-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:48px; }
-.sol-feature { display:flex; align-items:flex-start; gap:16px; padding:20px 0; border-bottom:1px solid rgba(255,255,255,.05); }
-.sol-feature:last-child { border-bottom:none; }
-.sol-icon {
-  width:44px; height:44px; flex-shrink:0;
-  background:var(--gold-dim); border:1px solid rgba(201,168,76,.22); border-radius:12px;
-  display:flex; align-items:center; justify-content:center; font-size:20px;
-}
-.sol-title { font-size:14px; font-weight:400; color:var(--text); margin-bottom:4px; }
-.sol-body { font-size:12px; color:var(--text-mid); line-height:1.75; }
-.solution-callout {
-  background:rgba(201,168,76,.07); backdrop-filter:blur(28px);
-  border:1px solid var(--glass-gold-b); border-top-color:rgba(201,168,76,.40);
-  border-radius:20px; padding:48px;
-  box-shadow:var(--shadow-float-g);
-}
-.callout-title { font-family:var(--serif); font-size:clamp(28px,3vw,40px); font-weight:300; color:var(--text); margin-bottom:18px; line-height:1.2; }
-.callout-body { font-size:14px; color:var(--text-mid); line-height:1.85; margin-bottom:28px; }
-.callout-tags { display:flex; flex-wrap:wrap; gap:8px; }
-.ctag {
-  font-size:10px; letter-spacing:1px;
-  background:rgba(255,255,255,.04); border:1px solid var(--glass-border);
-  color:var(--text-muted); padding:6px 14px; border-radius:40px;
-  transition:all .2s;
-}
-.ctag:hover { background:var(--gold-dim); border-color:var(--glass-gold-b); color:var(--gold); }
-
-/* ── BENTO / MODULES ── */
-.modules-section { padding:0 52px 90px; }
-.bento { display:grid; grid-template-columns:repeat(12,1fr); gap:14px; margin-top:48px; }
-.b-wide  { grid-column:span 7; }
-.b-mid   { grid-column:span 5; }
-.b-third { grid-column:span 4; }
-.b-half  { grid-column:span 6; }
-.b-full  { grid-column:span 12; }
-
-.mod-num { font-family:var(--serif); font-size:48px; font-weight:300; color:var(--text-dim); line-height:1; margin-bottom:8px; }
-.mod-tag { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; display:block; }
-.mod-title { font-family:var(--serif); font-size:24px; font-weight:300; color:var(--text); margin-bottom:14px; line-height:1.2; }
-.mod-title-lg { font-family:var(--serif); font-size:clamp(28px,3vw,38px); font-weight:300; color:var(--text); margin-bottom:16px; line-height:1.15; }
-.mod-body { font-size:13px; color:var(--text-mid); line-height:1.85; }
-.mod-list { list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:8px; }
-.mod-list li { display:flex; align-items:center; gap:10px; font-size:12px; color:var(--text-mid); }
-.mod-list li::before { content:'✓'; color:var(--gold); font-size:12px; flex-shrink:0; }
-
-.big-num { font-family:var(--serif); font-size:64px; font-weight:300; color:var(--text); line-height:1; margin-bottom:6px; }
-.big-num span { color:var(--gold); font-style:italic; }
-.big-label { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-bottom:10px; }
-.big-body { font-size:12px; color:var(--text-mid); line-height:1.75; }
-
-/* full module list card */
-.module-rows { display:flex; flex-direction:column; gap:2px; margin-top:4px; }
-.mrow {
-  display:flex; align-items:center; gap:16px;
-  background:rgba(255,255,255,.03); border:1px solid var(--glass-border);
-  border-radius:10px; padding:13px 18px;
-  font-size:12px; color:var(--text-mid);
-  transition:background .2s;
-}
-.mrow:hover { background:rgba(255,255,255,.06); }
-.mrow-num { font-family:var(--serif); font-size:15px; color:var(--gold); min-width:28px; }
-.mrow-title { flex:1; }
-.mrow-badge {
-  font-size:9px; letter-spacing:1.5px; text-transform:uppercase;
-  padding:3px 10px; border-radius:20px;
-}
-.mb-free { background:rgba(34,197,94,.09); color:#4ade80; border:1px solid rgba(34,197,94,.20); }
-.mb-pro  { background:var(--gold-dim); color:var(--gold); border:1px solid rgba(201,168,76,.22); }
-
-/* ── BONUSES ── */
-.bonuses-section { padding:0 52px 90px; }
-.bonuses-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:48px; }
-.bonus-val { font-size:10px; letter-spacing:2px; color:var(--gold); margin-top:16px; }
-
-/* ── INSTRUCTOR ── */
-.instructor-section { padding:0 52px 90px; }
-.instructor-card {
-  display:grid; grid-template-columns:auto 1fr; gap:0;
-  background:rgba(2,10,30,.75); backdrop-filter:blur(28px);
-  border:1px solid rgba(255,255,255,.07); border-top-color:rgba(255,255,255,.14);
-  border-radius:20px; overflow:hidden; box-shadow:var(--shadow-deep);
-  margin-top:48px; transition:transform .3s;
-}
-.instructor-card:hover { transform:translateY(-4px); }
-.instructor-left {
-  background:var(--gold-dim); border-right:1px solid rgba(201,168,76,.18);
-  padding:56px 48px; display:flex; flex-direction:column; align-items:center;
-  justify-content:center; gap:20px; min-width:260px;
-}
-.instructor-avatar {
-  width:100px; height:100px; border-radius:50%;
-  background:linear-gradient(135deg,#C9A84C,#b8922e);
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--serif); font-size:36px; font-weight:300; color:var(--gt-blue);
-  border:3px solid rgba(201,168,76,.40);
-  box-shadow:0 12px 36px rgba(201,168,76,.22);
-}
-.instructor-name { font-family:var(--serif); font-size:28px; font-weight:300; color:var(--text); text-align:center; }
-.instructor-creds { display:flex; flex-direction:column; gap:8px; width:100%; }
-.cred {
-  display:flex; align-items:center; gap:10px;
-  background:rgba(255,255,255,.04); border:1px solid var(--glass-border);
-  border-radius:8px; padding:8px 14px;
-  font-size:11px; color:var(--text-mid);
-}
-.cred-icon { font-size:14px; flex-shrink:0; }
-.instructor-right { padding:56px 52px; }
-.instructor-right .section-label { margin-bottom:12px; }
-.instructor-title { font-family:var(--serif); font-size:clamp(28px,3vw,40px); font-weight:300; color:var(--text); margin-bottom:20px; line-height:1.15; }
-.instructor-bio { font-size:14px; color:var(--text-mid); line-height:1.90; }
-
-/* ── PRICING ── */
-.pricing-section { padding:0 52px 90px; }
-.pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:48px; }
-.price-card {
-  background:var(--glass-white); backdrop-filter:blur(28px);
-  border:1px solid var(--glass-border); border-top-color:var(--glass-border-b);
-  border-radius:20px; padding:40px 32px;
-  box-shadow:var(--shadow-float); transition:transform .3s, box-shadow .3s;
-  position:relative; overflow:hidden;
-}
-.price-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-deep); }
-.price-card-featured {
-  background:rgba(201,168,76,.07);
-  border:1px solid var(--glass-gold-b); border-top-color:rgba(201,168,76,.44);
-  box-shadow:var(--shadow-float-g);
-}
-.price-card-featured:hover { box-shadow:0 40px 100px rgba(201,168,76,.22),0 12px 32px rgba(4,30,66,.50); }
-.price-featured-badge {
-  position:absolute; top:20px; right:20px;
-  font-size:9px; letter-spacing:2px; text-transform:uppercase;
-  background:var(--gold-dim); border:1px solid rgba(201,168,76,.30);
-  color:var(--gold); padding:5px 12px; border-radius:20px;
-}
-.price-tier { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-bottom:16px; }
-.price-amount { font-family:var(--serif); font-size:56px; font-weight:300; line-height:1; color:var(--text); margin-bottom:6px; }
-.price-amount sup { font-size:24px; vertical-align:super; color:var(--gold); }
-.price-period { font-size:11px; color:var(--text-muted); margin-bottom:28px; letter-spacing:1px; }
-.price-divider { height:1px; background:var(--glass-border); margin-bottom:24px; }
-.price-features { list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:32px; }
-.price-feature { display:flex; align-items:flex-start; gap:10px; font-size:12px; color:var(--text-mid); line-height:1.5; }
-.pf-check { color:var(--gold); font-size:13px; flex-shrink:0; margin-top:1px; }
-.pf-x { color:var(--text-dim); font-size:13px; flex-shrink:0; }
-.price-btn {
-  width:100%; padding:15px; border-radius:10px;
-  font-size:11px; font-weight:400; letter-spacing:2px; text-transform:uppercase;
-  font-family:var(--sans); cursor:pointer; text-decoration:none; display:block; text-align:center;
-  transition:all .2s;
-}
-.pb-ghost { background:var(--glass-white); border:1px solid var(--glass-border-b); color:var(--text); }
-.pb-ghost:hover { background:var(--glass-white-h); }
-.pb-gold {
-  background:linear-gradient(135deg,#C9A84C,#b8922e);
-  border:none; color:var(--gt-blue); font-weight:500;
-  box-shadow:0 8px 28px rgba(201,168,76,.30);
-}
-.pb-gold:hover { box-shadow:0 12px 40px rgba(201,168,76,.45); transform:translateY(-1px); }
-
-/* ── FAQ ── */
-.faq-section { padding:0 52px 90px; }
-.faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:48px; }
-.faq-item {
-  background:var(--glass-white); backdrop-filter:blur(20px);
-  border:1px solid var(--glass-border); border-top-color:var(--glass-border-b);
-  border-radius:16px; padding:28px 30px;
-  box-shadow:var(--shadow-float); cursor:pointer;
-  transition:background .3s, transform .25s;
-}
-.faq-item:hover { background:var(--glass-white-h); transform:translateY(-2px); }
-.faq-q { font-size:14px; font-weight:400; color:var(--text); margin-bottom:10px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
-.faq-icon { color:var(--gold); font-size:18px; flex-shrink:0; transition:transform .3s; }
-.faq-item.open .faq-icon { transform:rotate(45deg); }
-.faq-a { font-size:12px; color:var(--text-mid); line-height:1.80; display:none; margin-top:8px; }
-.faq-item.open .faq-a { display:block; }
-
-/* ── FREE KIT / CTA ── */
-.kit-section { padding:0 52px 90px; display:flex; justify-content:center; }
-.kit-card {
-  background:rgba(201,168,76,.06); backdrop-filter:blur(40px);
-  border:1px solid var(--glass-gold-b); border-top-color:rgba(201,168,76,.44);
-  border-radius:24px; padding:72px 80px; text-align:center;
-  max-width:780px; width:100%; box-shadow:var(--shadow-deep);
-  position:relative; overflow:hidden;
-}
-.kit-card::before {
-  content:''; position:absolute; top:0; left:15%; right:15%; height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-}
-.kit-card::after {
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,168,76,.055),transparent);
-  pointer-events:none;
-}
-.kit-label { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
-.kit-title { font-family:var(--serif); font-size:clamp(32px,5vw,52px); font-weight:300; color:var(--text); line-height:1.1; margin-bottom:18px; }
-.kit-title em { font-style:italic; background:linear-gradient(135deg,#C9A84C,#f0d98a); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.kit-sub { font-size:13px; color:var(--text-mid); line-height:1.85; max-width:440px; margin:0 auto 36px; }
-.kit-form { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; position:relative; z-index:1; }
-.kit-input {
-  background:rgba(255,255,255,.06); border:1px solid var(--glass-border-b);
-  color:var(--text); border-radius:8px; padding:14px 20px;
-  font-size:13px; font-family:var(--sans); min-width:260px; flex:1; max-width:320px;
-  outline:none; transition:border-color .3s;
-}
-.kit-input::placeholder { color:var(--text-muted); }
-.kit-input:focus { border-color:rgba(201,168,76,.5); }
-
-/* ── FINAL CTA ── */
-.final-cta { padding:0 52px 100px; text-align:center; }
-.final-cta-inner { max-width:680px; margin:0 auto; }
-.final-headline { font-family:var(--serif); font-size:clamp(34px,5vw,60px); font-weight:300; color:var(--text); line-height:1.1; margin-bottom:18px; }
-.final-headline em { font-style:italic; background:linear-gradient(135deg,#C9A84C,#f0d98a); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.final-sub { font-size:14px; color:var(--text-mid); line-height:1.85; margin-bottom:36px; }
-.final-meta { font-size:11px; color:var(--text-muted); margin-top:18px; letter-spacing:.5px; }
-
-/* ── FOOTER ── */
-footer {
-  border-top:1px solid rgba(255,255,255,.06); padding:36px 52px;
-  display:flex; align-items:center; justify-content:space-between;
-  background:rgba(4,30,66,.50); backdrop-filter:blur(16px);
-}
-.footer-logo { display:flex; align-items:center; gap:12px; }
-.footer-links { display:flex; gap:24px; list-style:none; }
-.footer-links a { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); text-decoration:none; transition:color .3s; }
-.footer-links a:hover { color:var(--gold); }
-.footer-copy { font-size:10px; letter-spacing:1.5px; color:var(--text-dim); }
-
-/* ── ANIMATIONS ── */
+.section-label{display:inline-flex;align-items:center;gap:14px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.section-label::before{content:'';width:28px;height:1px;background:var(--gold)}
+.section-title{font-family:var(--serif);font-size:clamp(32px,4vw,52px);font-weight:300;line-height:1.15;color:var(--text);margin-bottom:14px}
+.section-sub{font-size:14px;color:var(--text-mid);max-width:520px}
+.gc{background:var(--glass-white);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--glass-border);border-top-color:var(--glass-border-b);border-radius:20px;padding:36px;box-shadow:var(--shadow-float);transition:transform .3s,box-shadow .3s,background .3s;position:relative;overflow:hidden}
+.gc:hover{transform:translateY(-5px);box-shadow:var(--shadow-deep);background:var(--glass-white-h)}
+.gc::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);opacity:0;transition:opacity .3s}
+.gc:hover::before{opacity:1}
+.gc-gold{background:rgba(201,168,76,.065);border-color:var(--glass-gold-b);border-top-color:rgba(201,168,76,.40)}
+.gc-gold:hover{background:rgba(201,168,76,.10);box-shadow:var(--shadow-float-g)}
+.gc-dark{background:rgba(2,10,30,.75);border-color:rgba(255,255,255,.06);border-top-color:rgba(255,255,255,.12);box-shadow:var(--shadow-deep)}
+.gc-dark:hover{background:rgba(2,10,30,.85)}
+.problem-section{padding:90px 52px}
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.prob-icon{font-size:30px;margin-bottom:20px;display:block}
+.prob-title{font-family:var(--serif);font-size:22px;font-weight:300;color:var(--text);margin-bottom:12px;line-height:1.2}
+.prob-body{font-size:13px;color:var(--text-mid);line-height:1.85}
+.solution-section{padding:0 52px 90px}
+.solution-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+.sol-feature{display:flex;align-items:flex-start;gap:16px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.sol-feature:last-child{border-bottom:none}
+.sol-icon{width:44px;height:44px;flex-shrink:0;background:var(--gold-dim);border:1px solid rgba(201,168,76,.22);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.sol-title{font-size:14px;font-weight:400;color:var(--text);margin-bottom:4px}
+.sol-body{font-size:12px;color:var(--text-mid);line-height:1.75}
+.solution-callout{background:rgba(201,168,76,.07);backdrop-filter:blur(28px);border:1px solid var(--glass-gold-b);border-top-color:rgba(201,168,76,.40);border-radius:20px;padding:48px;box-shadow:var(--shadow-float-g)}
+.callout-title{font-family:var(--serif);font-size:clamp(28px,3vw,40px);font-weight:300;color:var(--text);margin-bottom:18px;line-height:1.2}
+.callout-body{font-size:14px;color:var(--text-mid);line-height:1.85;margin-bottom:28px}
+.callout-tags{display:flex;flex-wrap:wrap;gap:8px}
+.ctag{font-size:10px;letter-spacing:1px;background:rgba(255,255,255,.04);border:1px solid var(--glass-border);color:var(--text-muted);padding:6px 14px;border-radius:40px;transition:all .2s}
+.ctag:hover{background:var(--gold-dim);border-color:var(--glass-gold-b);color:var(--gold)}
+.modules-section{padding:0 52px 90px}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:48px}
+.b-wide{grid-column:span 7}.b-mid{grid-column:span 5}.b-third{grid-column:span 4}.b-half{grid-column:span 6}.b-full{grid-column:span 12}
+.mod-num{font-family:var(--serif);font-size:48px;font-weight:300;color:var(--text-dim);line-height:1;margin-bottom:8px}
+.mod-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
+.mod-title{font-family:var(--serif);font-size:24px;font-weight:300;color:var(--text);margin-bottom:14px;line-height:1.2}
+.mod-title-lg{font-family:var(--serif);font-size:clamp(28px,3vw,38px);font-weight:300;color:var(--text);margin-bottom:16px;line-height:1.15}
+.mod-body{font-size:13px;color:var(--text-mid);line-height:1.85}
+.mod-list{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.mod-list li{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-mid)}
+.mod-list li::before{content:'\2713';color:var(--gold);font-size:12px;flex-shrink:0}
+.big-num{font-family:var(--serif);font-size:64px;font-weight:300;color:var(--text);line-height:1;margin-bottom:6px}
+.big-num span{color:var(--gold);font-style:italic}
+.big-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px}
+.big-body{font-size:12px;color:var(--text-mid);line-height:1.75}
+.module-rows{display:flex;flex-direction:column;gap:2px;margin-top:4px}
+.mrow{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.03);border:1px solid var(--glass-border);border-radius:10px;padding:13px 18px;font-size:12px;color:var(--text-mid);transition:background .2s}
+.mrow:hover{background:rgba(255,255,255,.06)}
+.mrow-num{font-family:var(--serif);font-size:15px;color:var(--gold);min-width:28px}
+.mrow-title{flex:1}
+.mrow-badge{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:20px}
+.mb-free{background:rgba(34,197,94,.09);color:#4ade80;border:1px solid rgba(34,197,94,.20)}
+.mb-pro{background:var(--gold-dim);color:var(--gold);border:1px solid rgba(201,168,76,.22)}
+.bonuses-section{padding:0 52px 90px}
+.bonuses-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.bonus-val{font-size:10px;letter-spacing:2px;color:var(--gold);margin-top:16px}
+.instructor-section{padding:0 52px 90px}
+.instructor-card{display:grid;grid-template-columns:auto 1fr;gap:0;background:rgba(2,10,30,.75);backdrop-filter:blur(28px);border:1px solid rgba(255,255,255,.07);border-top-color:rgba(255,255,255,.14);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-deep);margin-top:48px;transition:transform .3s}
+.instructor-card:hover{transform:translateY(-4px)}
+.instructor-left{background:var(--gold-dim);border-right:1px solid rgba(201,168,76,.18);padding:56px 48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;min-width:260px}
+.instructor-avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#b8922e);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:36px;font-weight:300;color:var(--gt-blue);border:3px solid rgba(201,168,76,.40);box-shadow:0 12px 36px rgba(201,168,76,.22)}
+.instructor-name{font-family:var(--serif);font-size:28px;font-weight:300;color:var(--text);text-align:center}
+.instructor-creds{display:flex;flex-direction:column;gap:8px;width:100%}
+.cred{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid var(--glass-border);border-radius:8px;padding:8px 14px;font-size:11px;color:var(--text-mid)}
+.cred-icon{font-size:14px;flex-shrink:0}
+.instructor-right{padding:56px 52px}
+.instructor-right .section-label{margin-bottom:12px}
+.instructor-title{font-family:var(--serif);font-size:clamp(28px,3vw,40px);font-weight:300;color:var(--text);margin-bottom:20px;line-height:1.15}
+.instructor-bio{font-size:14px;color:var(--text-mid);line-height:1.90}
+.pricing-section{padding:0 52px 90px}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.price-card{background:var(--glass-white);backdrop-filter:blur(28px);border:1px solid var(--glass-border);border-top-color:var(--glass-border-b);border-radius:20px;padding:40px 32px;box-shadow:var(--shadow-float);transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.price-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-deep)}
+.price-card-featured{background:rgba(201,168,76,.07);border:1px solid var(--glass-gold-b);border-top-color:rgba(201,168,76,.44);box-shadow:var(--shadow-float-g)}
+.price-card-featured:hover{box-shadow:0 40px 100px rgba(201,168,76,.22),0 12px 32px rgba(4,30,66,.50)}
+.price-featured-badge{position:absolute;top:20px;right:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:var(--gold-dim);border:1px solid rgba(201,168,76,.30);color:var(--gold);padding:5px 12px;border-radius:20px}
+.price-tier{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px}
+.price-amount{font-family:var(--serif);font-size:56px;font-weight:300;line-height:1;color:var(--text);margin-bottom:6px}
+.price-amount sup{font-size:24px;vertical-align:super;color:var(--gold)}
+.price-period{font-size:11px;color:var(--text-muted);margin-bottom:28px;letter-spacing:1px}
+.price-divider{height:1px;background:var(--glass-border);margin-bottom:24px}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.price-feature{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--text-mid);line-height:1.5}
+.pf-check{color:var(--gold);font-size:13px;flex-shrink:0;margin-top:1px}
+.pf-x{color:var(--text-dim);font-size:13px;flex-shrink:0}
+.price-btn{width:100%;padding:15px;border-radius:10px;font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;font-family:var(--sans);cursor:pointer;text-decoration:none;display:block;text-align:center;transition:all .2s}
+.pb-ghost{background:var(--glass-white);border:1px solid var(--glass-border-b);color:var(--text)}
+.pb-ghost:hover{background:var(--glass-white-h)}
+.pb-gold{background:linear-gradient(135deg,#C9A84C,#b8922e);border:none;color:var(--gt-blue);font-weight:500;box-shadow:0 8px 28px rgba(201,168,76,.30)}
+.pb-gold:hover{box-shadow:0 12px 40px rgba(201,168,76,.45);transform:translateY(-1px)}
+.faq-section{padding:0 52px 90px}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px}
+.faq-item{background:var(--glass-white);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-top-color:var(--glass-border-b);border-radius:16px;padding:28px 30px;box-shadow:var(--shadow-float);cursor:pointer;transition:background .3s,transform .25s}
+.faq-item:hover{background:var(--glass-white-h);transform:translateY(-2px)}
+.faq-q{font-size:14px;font-weight:400;color:var(--text);margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.faq-icon{color:var(--gold);font-size:18px;flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{font-size:12px;color:var(--text-mid);line-height:1.80;display:none;margin-top:8px}
+.faq-item.open .faq-a{display:block}
+.kit-section{padding:0 52px 90px;display:flex;justify-content:center}
+.kit-card{background:rgba(201,168,76,.06);backdrop-filter:blur(40px);border:1px solid var(--glass-gold-b);border-top-color:rgba(201,168,76,.44);border-radius:24px;padding:72px 80px;text-align:center;max-width:780px;width:100%;box-shadow:var(--shadow-deep);position:relative;overflow:hidden}
+.kit-card::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.kit-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,168,76,.055),transparent);pointer-events:none}
+.kit-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.kit-title{font-family:var(--serif);font-size:clamp(32px,5vw,52px);font-weight:300;color:var(--text);line-height:1.1;margin-bottom:18px}
+.kit-title em{font-style:italic;background:linear-gradient(135deg,#C9A84C,#f0d98a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.kit-sub{font-size:13px;color:var(--text-mid);line-height:1.85;max-width:440px;margin:0 auto 36px}
+.kit-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.kit-input{background:rgba(255,255,255,.06);border:1px solid var(--glass-border-b);color:var(--text);border-radius:8px;padding:14px 20px;font-size:13px;font-family:var(--sans);min-width:260px;flex:1;max-width:320px;outline:none;transition:border-color .3s}
+.kit-input::placeholder{color:var(--text-muted)}
+.kit-input:focus{border-color:rgba(201,168,76,.5)}
+.final-cta{padding:0 52px 100px;text-align:center}
+.final-cta-inner{max-width:680px;margin:0 auto}
+.final-headline{font-family:var(--serif);font-size:clamp(34px,5vw,60px);font-weight:300;color:var(--text);line-height:1.1;margin-bottom:18px}
+.final-headline em{font-style:italic;background:linear-gradient(135deg,#C9A84C,#f0d98a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.final-sub{font-size:14px;color:var(--text-mid);line-height:1.85;margin-bottom:36px}
+.final-meta{font-size:11px;color:var(--text-muted);margin-top:18px;letter-spacing:.5px}
+footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(4,30,66,.50);backdrop-filter:blur(16px)}
+.footer-logo{display:flex;align-items:center;gap:12px}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color .3s}
+.footer-links a:hover{color:var(--gold)}
+.footer-copy{font-size:10px;letter-spacing:1.5px;color:var(--text-dim)}
 @keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  .problem-grid,.bonuses-grid,.pricing-grid { grid-template-columns:1fr 1fr; }
-  .faq-grid { grid-template-columns:1fr; }
-  .solution-grid { grid-template-columns:1fr; }
-  .instructor-card { grid-template-columns:1fr; }
-  .instructor-left { min-width:unset; flex-direction:row; flex-wrap:wrap; justify-content:flex-start; }
-  .bento .b-wide,.bento .b-mid,.bento .b-third,.bento .b-half { grid-column:span 6; }
-}
-@media(max-width:768px){
-  nav { padding:16px 24px; }
-  .nav-links,.nav-cta { display:none; }
-  .nav-mobile { display:block; font-size:22px; background:none; border:none; color:var(--gold); cursor:pointer; }
-  .hero,.problem-section,.solution-section,.modules-section,.bonuses-section,
-  .instructor-section,.pricing-section,.faq-section,.final-cta { padding-left:24px; padding-right:24px; }
-  .kit-section { padding-left:24px; padding-right:24px; }
-  .kit-card { padding:48px 28px; }
-  .problem-grid,.bonuses-grid,.pricing-grid { grid-template-columns:1fr; }
-  .bento .b-wide,.bento .b-mid,.bento .b-third,.bento .b-half,.bento .b-full { grid-column:span 12; }
-  footer { flex-direction:column; gap:20px; padding:32px 24px; text-align:center; }
-  .footer-links { flex-wrap:wrap; justify-content:center; gap:16px; }
-}
+@media(max-width:1024px){.problem-grid,.bonuses-grid,.pricing-grid{grid-template-columns:1fr 1fr}.faq-grid{grid-template-columns:1fr}.solution-grid{grid-template-columns:1fr}.instructor-card{grid-template-columns:1fr}.instructor-left{min-width:unset;flex-direction:row;flex-wrap:wrap;justify-content:flex-start}.bento .b-wide,.bento .b-mid,.bento .b-third,.bento .b-half{grid-column:span 6}}
+@media(max-width:768px){nav{padding:16px 24px}.nav-links,.nav-cta{display:none}.nav-mobile{display:block;font-size:22px;background:none;border:none;color:var(--gold);cursor:pointer}.hero,.problem-section,.solution-section,.modules-section,.bonuses-section,.instructor-section,.pricing-section,.faq-section,.final-cta{padding-left:24px;padding-right:24px}.kit-section{padding-left:24px;padding-right:24px}.kit-card{padding:48px 28px}.problem-grid,.bonuses-grid,.pricing-grid{grid-template-columns:1fr}.bento .b-wide,.bento .b-mid,.bento .b-third,.bento .b-half,.bento .b-full{grid-column:span 12}footer{flex-direction:column;gap:20px;padding:32px 24px;text-align:center}.footer-links{flex-wrap:wrap;justify-content:center;gap:16px}}
 </style>
-</head>
-<body>
-
-<div class="bg">
-  <div class="orb o1"></div><div class="orb o2"></div>
-  <div class="orb o3"></div><div class="orb o4"></div>
-  <div class="stars"></div>
-</div>
-
+</head><body>
+<div class="bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div><div class="stars"></div></div>
 <div class="page">
-
-<!-- NAV -->
 <nav id="home">
-  <a href="#home" class="nav-logo">
-    <div class="logo-icon">🦞</div>
-    <div>
-      <div class="logo-name">Legion</div>
-      <div class="logo-sub">Claw School</div>
-    </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#problem">Problem</a></li>
-    <li><a href="#solution">Solution</a></li>
-    <li><a href="#modules">Modules</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#faq">FAQ</a></li>
-  </ul>
+  <a href="#home" class="nav-logo"><div class="logo-icon">🦞</div><div><div class="logo-name">Legion</div><div class="logo-sub">Claw School</div></div></a>
+  <ul class="nav-links"><li><a href="#problem">Problem</a></li><li><a href="#solution">Solution</a></li><li><a href="#modules">Modules</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
   <a href="#pricing" class="nav-cta">Get Access — $147</a>
   <button class="nav-mobile">☰</button>
 </nav>
-
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">
-    <span class="pulse"></span>
-    Learn to Build AI Agents
-  </div>
+  <div class="hero-badge"><span class="pulse"></span>Learn to Build AI Agents</div>
   <h1>Stop Doing Everything<br><em>Manually.</em></h1>
   <div class="hero-sub-head">Build Your AI Workforce.</div>
   <p class="hero-p">The step-by-step system to deploy AI agents that handle your research, content, admin, sales, and ops — so you can focus on what actually grows your business.</p>
-  <div class="hero-actions">
-    <a href="#pricing" class="btn-primary">Join Now — $147</a>
-    <a href="#modules" class="btn-ghost">See What's Inside →</a>
-  </div>
-  <p class="hero-meta">
-    <span>9 modules</span> · <span>10 ready-to-use templates</span> · <span>Private community</span> · <span>Lifetime access</span> · <span>30-day guarantee</span>
-  </p>
-  <div class="hero-pills">
-    <div class="pill"><div class="pill-num">9</div><div class="pill-lbl">Core Modules</div></div>
-    <div class="pill"><div class="pill-num">10</div><div class="pill-lbl">Prompt Templates</div></div>
-    <div class="pill"><div class="pill-num">30<span style="font-size:14px;color:var(--gold)">min</span></div><div class="pill-lbl">First Agent Live</div></div>
-    <div class="pill"><div class="pill-num">$0</div><div class="pill-lbl">Coding Required</div></div>
-  </div>
+  <div class="hero-actions"><a href="#pricing" class="btn-primary">Join Now — $147</a><a href="#modules" class="btn-ghost">See What's Inside →</a></div>
+  <p class="hero-meta"><span>9 modules</span> · <span>10 ready-to-use templates</span> · <span>Private community</span> · <span>Lifetime access</span> · <span>30-day guarantee</span></p>
+  <div class="hero-pills"><div class="pill"><div class="pill-num">9</div><div class="pill-lbl">Core Modules</div></div><div class="pill"><div class="pill-num">10</div><div class="pill-lbl">Prompt Templates</div></div><div class="pill"><div class="pill-num">30<span style="font-size:14px;color:var(--gold)">min</span></div><div class="pill-lbl">First Agent Live</div></div><div class="pill"><div class="pill-num">$0</div><div class="pill-lbl">Coding Required</div></div></div>
 </section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <div class="marquee-item"><span class="mgem">◆</span>Research Automation</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Content Pipelines</div>
-    <div class="marquee-item"><span class="mgem">◆</span>AI Agent Deployment</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Email Triage</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Cold Outreach Playbooks</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Multi-Agent Workflows</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Prompt Engineering</div>
-    <div class="marquee-item"><span class="mgem">◆</span>MCP Connectors</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Claude Desktop + Cowork</div>
-    <div class="marquee-item"><span class="mgem">◆</span>No-Code Automation</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Research Automation</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Content Pipelines</div>
-    <div class="marquee-item"><span class="mgem">◆</span>AI Agent Deployment</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Email Triage</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Cold Outreach Playbooks</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Multi-Agent Workflows</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Prompt Engineering</div>
-    <div class="marquee-item"><span class="mgem">◆</span>MCP Connectors</div>
-    <div class="marquee-item"><span class="mgem">◆</span>Claude Desktop + Cowork</div>
-    <div class="marquee-item"><span class="mgem">◆</span>No-Code Automation</div>
-  </div>
+<div class="marquee-wrap"><div class="marquee-track"><div class="marquee-item"><span class="mgem">◆</span>Research Automation</div><div class="marquee-item"><span class="mgem">◆</span>Content Pipelines</div><div class="marquee-item"><span class="mgem">◆</span>AI Agent Deployment</div><div class="marquee-item"><span class="mgem">◆</span>Email Triage</div><div class="marquee-item"><span class="mgem">◆</span>Cold Outreach Playbooks</div><div class="marquee-item"><span class="mgem">◆</span>Multi-Agent Workflows</div><div class="marquee-item"><span class="mgem">◆</span>Prompt Engineering</div><div class="marquee-item"><span class="mgem">◆</span>MCP Connectors</div><div class="marquee-item"><span class="mgem">◆</span>Claude Desktop + Cowork</div><div class="marquee-item"><span class="mgem">◆</span>No-Code Automation</div><div class="marquee-item"><span class="mgem">◆</span>Research Automation</div><div class="marquee-item"><span class="mgem">◆</span>Content Pipelines</div><div class="marquee-item"><span class="mgem">◆</span>AI Agent Deployment</div><div class="marquee-item"><span class="mgem">◆</span>Email Triage</div><div class="marquee-item"><span class="mgem">◆</span>Cold Outreach Playbooks</div><div class="marquee-item"><span class="mgem">◆</span>Multi-Agent Workflows</div><div class="marquee-item"><span class="mgem">◆</span>Prompt Engineering</div><div class="marquee-item"><span class="mgem">◆</span>MCP Connectors</div><div class="marquee-item"><span class="mgem">◆</span>Claude Desktop + Cowork</div><div class="marquee-item"><span class="mgem">◆</span>No-Code Automation</div></div></div>
+<section class="problem-section" id="problem"><div class="section-label">The Problem</div><h2 class="section-title">You Know AI Is the Future.<br>But You're Stuck.</h2><div class="problem-grid"><div class="gc"><span class="prob-icon">⏰</span><h3 class="prob-title">You're Doing Everything Manually</h3><p class="prob-body">Research, email drafts, content creation, data entry, follow-ups — you're buried in repetitive work that doesn't move the needle. There aren't enough hours.</p></div><div class="gc gc-gold"><span class="prob-icon">🤖</span><h3 class="prob-title">ChatGPT Feels Like a Toy</h3><p class="prob-body">You've used AI chatbots. You copy-paste back and forth. It helps sometimes, but it doesn't <em style="color:var(--text)">do work for you</em>. It's not real automation — it's just a fancier search engine.</p></div><div class="gc gc-dark"><span class="prob-icon">📈</span><h3 class="prob-title">The Window Is Closing</h3><p class="prob-body">Your competitors are deploying AI agents right now. Every week you wait, the gap widens. The early adopters in AI automation will own the next decade.</p></div></div></section><section class="solution-section" id="solution"><div class="section-label">The Solution</div><h2 class="section-title">What If You Had a Team<br>That Never Sleeps?</h2><div class="solution-grid"><div class="solution-callout"><h3 class="callout-title">AI agents aren't chatbots. They're autonomous digital workers.</h3><p class="callout-body">You give them a job, they do it — research, writing, email, data, outreach — without you hovering over a chat window. <strong style="color:var(--text);font-weight:400">Build Your AI Workforce</strong> teaches you the exact system to set up, prompt, and deploy these agents using Claude Desktop, Cowork, and tools you already have. No coding required.</p><div class="callout-tags"><span class="ctag">🎯 Real-World System</span><span class="ctag">⚙️ Step-by-Step</span><span class="ctag">📋 Copy-Paste Templates</span><span class="ctag">No coding needed</span><span class="ctag">Deploy in 30 minutes</span></div></div><div><div class="gc" style="height:100%"><div class="sol-feature"><div class="sol-icon">🎯</div><div><div class="sol-title">Real-World System</div><div class="sol-body">Built from actual business ops — not theory from someone who just talks about AI.</div></div></div><div class="sol-feature"><div class="sol-icon">⚙️</div><div><div class="sol-title">Step-by-Step</div><div class="sol-body">Exact prompts, exact tools, exact setup instructions. Deploy your first agent in 30 minutes.</div></div></div><div class="sol-feature"><div class="sol-icon">📋</div><div><div class="sol-title">Copy-Paste Templates</div><div class="sol-body">10 battle-tested prompt templates. Customize them, deploy them, start saving hours today.</div></div></div></div></div></div></section>
+<section class="modules-section" id="modules"><div class="section-label">The Curriculum</div><h2 class="section-title">9 Modules. Zero Fluff.</h2><p class="section-sub">From first principles to a fully operational AI workforce.</p><div class="bento"><div class="gc gc-gold b-wide"><span class="mod-tag">Full Curriculum</span><h3 class="mod-title-lg">Every module.<br>Every deliverable.</h3><div class="module-rows"><div class="mrow"><span class="mrow-num">00</span><span class="mrow-title">Welcome &amp; Course Map</span><span class="mrow-badge mb-free">Free</span></div><div class="mrow"><span class="mrow-num">01</span><span class="mrow-title">The AI Agent Mental Model</span><span class="mrow-badge mb-free">Free</span></div><div class="mrow"><span class="mrow-num">02</span><span class="mrow-title">Your First Agent in 30 Minutes</span><span class="mrow-badge mb-pro">Pro</span></div><div class="mrow"><span class="mrow-num">03</span><span class="mrow-title">Prompt Engineering for Agents (CRAFT)</span><span class="mrow-badge mb-pro">Pro</span></div><div class="mrow"><span class="mrow-num">04</span><span class="mrow-title">Building Your Agent Toolkit</span><span class="mrow-badge mb-pro">Pro</span></div><div class="mrow"><span class="mrow-num">05</span><span class="mrow-title">The 5 Agents Every Solopreneur Needs</span><span class="mrow-badge mb-pro">Pro</span></div><div class="mrow"><span class="mrow-num">06</span><span class="mrow-title">Multi-Agent Workflows</span><span class="mrow-badge mb-pro">Pro</span></div><div class="mrow"><span class="mrow-num">07</span><span class="mrow-title">Scaling Your AI Workforce</span><span class="mrow-badge mb-pro">Pro</span></div><div class="mrow"><span class="mrow-num">08</span><span class="mrow-title">Launch Playbook: Your First 7 Days</span><span class="mrow-badge mb-pro">Pro</span></div></div></div><div class="gc b-mid" style="display:flex;flex-direction:column;justify-content:center"><div class="big-num"><span>30</span><span style="font-size:32px;color:var(--gold)">min</span></div><div class="big-label">To Your First Agent</div><p class="big-body">Module 02 walks you from zero to a fully running autonomous agent — before you finish your coffee.</p></div><div class="gc gc-dark b-third"><div class="mod-num">03</div><span class="mod-tag">CRAFT Framework</span><h3 class="mod-title">Prompt Engineering for Agents</h3><p class="mod-body">Context · Role · Actions · Format · Triggers. The five-part formula for prompts that actually work.</p></div><div class="gc b-third"><div class="mod-num">05</div><span class="mod-tag">Core Agents</span><h3 class="mod-title">5 Agents Every Solopreneur Needs</h3><ul class="mod-list"><li>Research Analyst</li><li>Content Engine</li><li>Admin Assistant</li><li>Sales Rep</li><li>Ops Manager</li></ul></div><div class="gc gc-gold b-third"><div class="mod-num">06</div><span class="mod-tag">Advanced</span><h3 class="mod-title">Multi-Agent Workflows</h3><p class="mod-body">Chain agents together. Research → Content → Distribution. Fully automated pipelines that run without you.</p></div><div class="gc gc-dark b-half" style="display:flex;flex-direction:column;justify-content:center"><div class="big-num"><span>10</span></div><div class="big-label">Done-For-You Templates</div><p class="big-body">Research analyst, email triage, cold outreach, meeting prep, social media, SOP generator, competitor intel, daily briefing, content repurposer, proposal writer. Copy. Customize. Deploy.</p></div><div class="gc b-half"><div class="mod-num">04</div><span class="mod-tag">The Toolkit</span><h3 class="mod-title">Your Full Agent Ecosystem</h3><div class="callout-tags" style="margin-top:16px"><span class="ctag">Claude Desktop</span><span class="ctag">Cowork</span><span class="ctag">Claude Code</span><span class="ctag">Gmail MCP</span><span class="ctag">Google Calendar</span><span class="ctag">Slack MCP</span><span class="ctag">Google Drive</span></div><p class="mod-body" style="margin-top:16px;font-size:12px">Complete cost breakdown included — what you actually spend to run a real AI workforce.</p></div></div></section><section class="bonuses-section"><div class="section-label">Included</div><h2 class="section-title">Plus These Bonuses</h2><div class="bonuses-grid"><div class="gc gc-gold"><span style="font-size:30px;display:block;margin-bottom:20px">📋</span><h3 class="mod-title">10 Done-for-You Prompt Templates</h3><p class="mod-body">Research analyst, content repurposer, email triage, cold outreach, meeting prep, social media, SOP generator, competitor intel, daily briefing, proposal writer. Copy, customize, deploy.</p><div class="bonus-val">$97 value</div></div><div class="gc"><span style="font-size:30px;display:block;margin-bottom:20px">⚡</span><h3 class="mod-title">AI Agent Starter Kit</h3><p class="mod-body">A standalone quick-start guide covering the 3 easiest agents to deploy — Research, Content, Admin — with complete prompts for each. Start getting value before you finish the course.</p><div class="bonus-val">$47 value</div></div><div class="gc gc-dark"><span style="font-size:30px;display:block;margin-bottom:20px">💬</span><h3 class="mod-title">Private Community Access</h3><p class="mod-body">Join a private Discord with other course members. Share agent configs, get troubleshooting help, and stay current as the AI agent ecosystem evolves.</p><div class="bonus-val">$53 value</div></div></div></section>
+<section class="instructor-section"><div class="section-label">Your Instructor</div><h2 class="section-title">Nathan Pancake</h2><div class="instructor-card"><div class="instructor-left"><div class="instructor-avatar">NP</div><div class="instructor-name">Nathan Pancake</div><div class="instructor-creds"><div class="cred"><span class="cred-icon">🪖</span> Marine Veteran · USMC</div><div class="cred"><span class="cred-icon">🎓</span> Georgetown Master's · CRE</div><div class="cred"><span class="cred-icon">🏢</span> CEO · Legion Securities</div></div></div><div class="instructor-right"><div class="section-label">Built from the Field</div><h3 class="instructor-title">Not theory. Not YouTube tutorials.<br>Real systems from a real company.</h3><p class="instructor-bio">Marine veteran. Georgetown master's in commercial real estate. CEO of Legion Securities — a startup where AI agents handle research, content, outreach, and operations every single day.<br><br>This course isn't built from theory or YouTube tutorials. It's built from running AI agents in production for a real company. The same systems Nathan uses to run his own business are what you'll learn to build for yours.</p></div></div></section>
+<section class="pricing-section" id="pricing"><div class="section-label">Pricing</div><h2 class="section-title">One Price. Everything Included.</h2><p class="section-sub">Less than what a virtual assistant costs for a single week.</p><div class="pricing-grid"><div class="price-card"><div class="price-tier">Free Preview</div><div class="price-amount"><sup>$</sup>0</div><div class="price-period">forever · no credit card</div><div class="price-divider"></div><ul class="price-features"><li class="price-feature"><span class="pf-check">✓</span> Module 00: Welcome &amp; Course Map</li><li class="price-feature"><span class="pf-check">✓</span> Module 01: The AI Agent Mental Model</li><li class="price-feature"><span class="pf-check">✓</span> AI Agent Starter Kit download</li><li class="price-feature"><span class="pf-check">✓</span> Community Discord access</li><li class="price-feature"><span class="pf-x">✕</span> <span style="color:var(--text-dim)">Full 9-module curriculum</span></li><li class="price-feature"><span class="pf-x">✕</span> <span style="color:var(--text-dim)">10 prompt templates</span></li></ul><a href="#" class="price-btn pb-ghost">Get Free Preview</a></div><div class="price-card price-card-featured"><span class="price-featured-badge">Best Value</span><div class="price-tier">Complete Course</div><div class="price-amount"><sup>$</sup>147</div><div class="price-period">one-time · lifetime access</div><div class="price-divider"></div><ul class="price-features"><li class="price-feature"><span class="pf-check">✓</span> All 9 modules with step-by-step guides</li><li class="price-feature"><span class="pf-check">✓</span> 10 ready-to-use prompt templates</li><li class="price-feature"><span class="pf-check">✓</span> AI Agent Starter Kit</li><li class="price-feature"><span class="pf-check">✓</span> Private Discord community</li><li class="price-feature"><span class="pf-check">✓</span> Lifetime updates &amp; new content</li><li class="price-feature"><span class="pf-check">✓</span> 30-day money-back guarantee</li></ul><a href="https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400" class="price-btn pb-gold">Start Building — $147</a></div><div class="price-card"><div class="price-tier">Your ROI</div><div class="price-amount" style="font-size:38px;line-height:1.1"><sup style="font-size:18px">saves</sup>$2K<span style="font-size:24px;color:var(--gold)">/mo</span></div><div class="price-period">vs. a virtual assistant</div><div class="price-divider"></div><ul class="price-features"><li class="price-feature"><span class="pf-check">✓</span> AI agents work 24/7</li><li class="price-feature"><span class="pf-check">✓</span> No payroll, no sick days, no onboarding</li><li class="price-feature"><span class="pf-check">✓</span> Scales instantly as you grow</li><li class="price-feature"><span class="pf-check">✓</span> Pays for itself in the first week</li><li class="price-feature"><span class="pf-check">✓</span> One-time cost, infinite return</li></ul><a href="https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400" class="price-btn pb-ghost">Get Started Now</a></div></div></section><section class="faq-section" id="faq"><div class="section-label">FAQ</div><h2 class="section-title">Common Questions</h2><div class="faq-grid"><div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Do I need coding experience? <span class="faq-icon">+</span></div><div class="faq-a">No. This course uses Claude Desktop and Cowork — tools designed for non-developers. If you can write an email, you can write an agent prompt. No terminal, no code, no APIs required for the core modules.</div></div><div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">What tools do I need? <span class="faq-icon">+</span></div><div class="faq-a">A computer and a Claude Pro or Max subscription ($20–$100/month from Anthropic). That's it to get started. The course walks you through setting up Claude Desktop, Cowork mode, and MCP connectors for tools like Gmail, Google Calendar, and Slack.</div></div><div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How is this different from other AI courses? <span class="faq-icon">+</span></div><div class="faq-a">Most AI courses teach you to chat with a chatbot. This course teaches you to deploy autonomous agents that do real work without you sitting in front of a screen. It's built from actual business operations — not theory.</div></div><div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How long does it take to complete? <span class="faq-icon">+</span></div><div class="faq-a">You can deploy your first agent on Day 1 (Module 02). Most people work through the full course in 1–2 weeks at 1–2 hours per day. But you have lifetime access, so go at whatever pace works for you.</div></div><div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">What if it's not for me? <span class="faq-icon">+</span></div><div class="faq-a">30-day money-back guarantee, no questions asked. If you go through the material and don't feel like you got your money's worth, email us and we'll refund you in full.</div></div><div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Will this work for my specific business? <span class="faq-icon">+</span></div><div class="faq-a">If your business involves research, writing, email, data, outreach, or admin — yes. The 5 core agents apply to virtually every knowledge-work business. The templates are designed to be customized for your specific workflows.</div></div><div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Is there ongoing support? <span class="faq-icon">+</span></div><div class="faq-a">Yes — the private Discord community is included for life. Ask questions, share your agent setups, get troubleshooting help. The course content is also updated as new tools and capabilities are released.</div></div><div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">What exactly is an AI agent? <span class="faq-icon">+</span></div><div class="faq-a">An AI agent is an autonomous AI system that can take actions on your behalf — browsing the web, reading emails, writing content, updating documents — without you directing every step. Unlike a chatbot, it operates on the Perceive → Plan → Act → Reflect loop, completing multi-step tasks independently.</div></div></div></section>
+<section class="kit-section"><div class="kit-card"><div class="kit-label">Not Ready to Buy?</div><h2 class="kit-title">Get the Free<br><em>AI Agent Starter Kit.</em></h2><p class="kit-sub">3 agents you can deploy today — with complete prompts. Research Analyst, Content Engine, and Admin Assistant. No spam, unsubscribe anytime.</p><div class="kit-form"><input type="email" class="kit-input" placeholder="Your email address"><button class="btn-primary" style="padding:14px 32px;border-radius:8px">Get the Free Kit</button></div></div></section>
+<section class="final-cta"><div class="final-cta-inner"><h2 class="final-headline">Your Time Is Worth<br><em>More Than $147.</em></h2><p class="final-sub">A virtual assistant costs $2,000+/month. AI agents cost a fraction of that and work 24/7. This course pays for itself the first week you use it.<br><br>9 modules. 10 templates. Private community. Lifetime access. 30-day guarantee.</p><a href="https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400" class="btn-primary" style="font-size:12px;padding:18px 52px">Start Building Your AI Workforce — $147</a><p class="final-meta">One-time $147 · No subscriptions · No upsells inside the course · Secure payment via Stripe</p></div></section>
+<footer><div class="footer-logo"><div class="logo-icon" style="width:28px;height:28px;font-size:14px;border-radius:8px">🦞</div><div><div class="logo-name" style="font-size:11px">Legion Claw School</div><div class="logo-sub">A Legion Securities Co.</div></div></div><ul class="footer-links"><li><a href="#modules">Modules</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li><li><a href="mailto:nathan@legionclawschool.com">Contact</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul><div class="footer-copy">© 2026 Build Your AI Workforce · Legion Securities Inc.</div></footer>
 </div>
-
-<!-- PROBLEM -->
-<section class="problem-section" id="problem">
-  <div class="section-label">The Problem</div>
-  <h2 class="section-title">You Know AI Is the Future.<br>But You're Stuck.</h2>
-  <div class="problem-grid">
-    <div class="gc">
-      <span class="prob-icon">⏰</span>
-      <h3 class="prob-title">You're Doing Everything Manually</h3>
-      <p class="prob-body">Research, email drafts, content creation, data entry, follow-ups — you're buried in repetitive work that doesn't move the needle. There aren't enough hours.</p>
-    </div>
-    <div class="gc gc-gold">
-      <span class="prob-icon">🤖</span>
-      <h3 class="prob-title">ChatGPT Feels Like a Toy</h3>
-      <p class="prob-body">You've used AI chatbots. You copy-paste back and forth. It helps sometimes, but it doesn't <em style="color:var(--text)">do work for you</em>. It's not real automation — it's just a fancier search engine.</p>
-    </div>
-    <div class="gc gc-dark">
-      <span class="prob-icon">📈</span>
-      <h3 class="prob-title">The Window Is Closing</h3>
-      <p class="prob-body">Your competitors are deploying AI agents right now. Every week you wait, the gap widens. The early adopters in AI automation will own the next decade.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SOLUTION -->
-<section class="solution-section" id="solution">
-  <div class="section-label">The Solution</div>
-  <h2 class="section-title">What If You Had a Team<br>That Never Sleeps?</h2>
-  <div class="solution-grid">
-    <div class="solution-callout">
-      <h3 class="callout-title">AI agents aren't chatbots. They're autonomous digital workers.</h3>
-      <p class="callout-body">You give them a job, they do it — research, writing, email, data, outreach — without you hovering over a chat window. <strong style="color:var(--text);font-weight:400">Build Your AI Workforce</strong> teaches you the exact system to set up, prompt, and deploy these agents using Claude Desktop, Cowork, and tools you already have. No coding required.</p>
-      <div class="callout-tags">
-        <span class="ctag">🎯 Real-World System</span>
-        <span class="ctag">⚙️ Step-by-Step</span>
-        <span class="ctag">📋 Copy-Paste Templates</span>
-        <span class="ctag">No coding needed</span>
-        <span class="ctag">Deploy in 30 minutes</span>
-      </div>
-    </div>
-    <div>
-      <div class="gc" style="height:100%">
-        <div class="sol-feature">
-          <div class="sol-icon">🎯</div>
-          <div><div class="sol-title">Real-World System</div><div class="sol-body">Built from actual business ops — not theory from someone who just talks about AI.</div></div>
-        </div>
-        <div class="sol-feature">
-          <div class="sol-icon">⚙️</div>
-          <div><div class="sol-title">Step-by-Step</div><div class="sol-body">Exact prompts, exact tools, exact setup instructions. Deploy your first agent in 30 minutes.</div></div>
-        </div>
-        <div class="sol-feature">
-          <div class="sol-icon">📋</div>
-          <div><div class="sol-title">Copy-Paste Templates</div><div class="sol-body">10 battle-tested prompt templates. Customize them, deploy them, start saving hours today.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MODULES BENTO -->
-<section class="modules-section" id="modules">
-  <div class="section-label">The Curriculum</div>
-  <h2 class="section-title">9 Modules. Zero Fluff.</h2>
-  <p class="section-sub">From first principles to a fully operational AI workforce.</p>
-
-  <div class="bento">
-
-    <!-- all modules list — wide card -->
-    <div class="gc gc-gold b-wide">
-      <span class="mod-tag">Full Curriculum</span>
-      <h3 class="mod-title-lg">Every module.<br>Every deliverable.</h3>
-      <div class="module-rows">
-        <div class="mrow"><span class="mrow-num">00</span><span class="mrow-title">Welcome &amp; Course Map</span><span class="mrow-badge mb-free">Free</span></div>
-        <div class="mrow"><span class="mrow-num">01</span><span class="mrow-title">The AI Agent Mental Model</span><span class="mrow-badge mb-free">Free</span></div>
-        <div class="mrow"><span class="mrow-num">02</span><span class="mrow-title">Your First Agent in 30 Minutes</span><span class="mrow-badge mb-pro">Pro</span></div>
-        <div class="mrow"><span class="mrow-num">03</span><span class="mrow-title">Prompt Engineering for Agents (CRAFT)</span><span class="mrow-badge mb-pro">Pro</span></div>
-        <div class="mrow"><span class="mrow-num">04</span><span class="mrow-title">Building Your Agent Toolkit</span><span class="mrow-badge mb-pro">Pro</span></div>
-        <div class="mrow"><span class="mrow-num">05</span><span class="mrow-title">The 5 Agents Every Solopreneur Needs</span><span class="mrow-badge mb-pro">Pro</span></div>
-        <div class="mrow"><span class="mrow-num">06</span><span class="mrow-title">Multi-Agent Workflows</span><span class="mrow-badge mb-pro">Pro</span></div>
-        <div class="mrow"><span class="mrow-num">07</span><span class="mrow-title">Scaling Your AI Workforce</span><span class="mrow-badge mb-pro">Pro</span></div>
-        <div class="mrow"><span class="mrow-num">08</span><span class="mrow-title">Launch Playbook: Your First 7 Days</span><span class="mrow-badge mb-pro">Pro</span></div>
-      </div>
-    </div>
-
-    <!-- stat: 30 min -->
-    <div class="gc b-mid" style="display:flex;flex-direction:column;justify-content:center">
-      <div class="big-num"><span>30</span><span style="font-size:32px;color:var(--gold)">min</span></div>
-      <div class="big-label">To Your First Agent</div>
-      <p class="big-body">Module 02 walks you from zero to a fully running autonomous agent — before you finish your coffee.</p>
-    </div>
-
-    <!-- Module 03 highlight -->
-    <div class="gc gc-dark b-third">
-      <div class="mod-num">03</div>
-      <span class="mod-tag">CRAFT Framework</span>
-      <h3 class="mod-title">Prompt Engineering for Agents</h3>
-      <p class="mod-body">Context · Role · Actions · Format · Triggers. The five-part formula for prompts that actually work.</p>
-    </div>
-
-    <!-- Module 05 highlight -->
-    <div class="gc b-third">
-      <div class="mod-num">05</div>
-      <span class="mod-tag">Core Agents</span>
-      <h3 class="mod-title">5 Agents Every Solopreneur Needs</h3>
-      <ul class="mod-list">
-        <li>Research Analyst</li>
-        <li>Content Engine</li>
-        <li>Admin Assistant</li>
-        <li>Sales Rep</li>
-        <li>Ops Manager</li>
-      </ul>
-    </div>
-
-    <!-- Module 06 highlight -->
-    <div class="gc gc-gold b-third">
-      <div class="mod-num">06</div>
-      <span class="mod-tag">Advanced</span>
-      <h3 class="mod-title">Multi-Agent Workflows</h3>
-      <p class="mod-body">Chain agents together. Research → Content → Distribution. Fully automated pipelines that run without you.</p>
-    </div>
-
-    <!-- stat: templates -->
-    <div class="gc gc-dark b-half" style="display:flex;flex-direction:column;justify-content:center">
-      <div class="big-num"><span>10</span></div>
-      <div class="big-label">Done-For-You Templates</div>
-      <p class="big-body">Research analyst, email triage, cold outreach, meeting prep, social media, SOP generator, competitor intel, daily briefing, content repurposer, proposal writer. Copy. Customize. Deploy.</p>
-    </div>
-
-    <!-- Module 04 tools -->
-    <div class="gc b-half">
-      <div class="mod-num">04</div>
-      <span class="mod-tag">The Toolkit</span>
-      <h3 class="mod-title">Your Full Agent Ecosystem</h3>
-      <div class="callout-tags" style="margin-top:16px">
-        <span class="ctag">Claude Desktop</span>
-        <span class="ctag">Cowork</span>
-        <span class="ctag">Claude Code</span>
-        <span class="ctag">Gmail MCP</span>
-        <span class="ctag">Google Calendar</span>
-        <span class="ctag">Slack MCP</span>
-        <span class="ctag">Google Drive</span>
-      </div>
-      <p class="mod-body" style="margin-top:16px;font-size:12px">Complete cost breakdown included — what you actually spend to run a real AI workforce.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- BONUSES -->
-<section class="bonuses-section">
-  <div class="section-label">Included</div>
-  <h2 class="section-title">Plus These Bonuses</h2>
-  <div class="bonuses-grid">
-    <div class="gc gc-gold">
-      <span style="font-size:30px;display:block;margin-bottom:20px">📋</span>
-      <h3 class="mod-title">10 Done-for-You Prompt Templates</h3>
-      <p class="mod-body">Research analyst, content repurposer, email triage, cold outreach, meeting prep, social media, SOP generator, competitor intel, daily briefing, proposal writer. Copy, customize, deploy.</p>
-      <div class="bonus-val">$97 value</div>
-    </div>
-    <div class="gc">
-      <span style="font-size:30px;display:block;margin-bottom:20px">⚡</span>
-      <h3 class="mod-title">AI Agent Starter Kit</h3>
-      <p class="mod-body">A standalone quick-start guide covering the 3 easiest agents to deploy — Research, Content, Admin — with complete prompts for each. Start getting value before you finish the course.</p>
-      <div class="bonus-val">$47 value</div>
-    </div>
-    <div class="gc gc-dark">
-      <span style="font-size:30px;display:block;margin-bottom:20px">💬</span>
-      <h3 class="mod-title">Private Community Access</h3>
-      <p class="mod-body">Join a private Discord with other course members. Share agent configs, get troubleshooting help, and stay current as the AI agent ecosystem evolves.</p>
-      <div class="bonus-val">$53 value</div>
-    </div>
-  </div>
-</section>
-
-<!-- INSTRUCTOR -->
-<section class="instructor-section">
-  <div class="section-label">Your Instructor</div>
-  <h2 class="section-title">Nathan Pancake</h2>
-  <div class="instructor-card">
-    <div class="instructor-left">
-      <div class="instructor-avatar">NP</div>
-      <div class="instructor-name">Nathan Pancake</div>
-      <div class="instructor-creds">
-        <div class="cred"><span class="cred-icon">🪖</span> Marine Veteran · USMC</div>
-        <div class="cred"><span class="cred-icon">🎓</span> Georgetown Master's · CRE</div>
-        <div class="cred"><span class="cred-icon">🏢</span> CEO · Legion Securities</div>
-      </div>
-    </div>
-    <div class="instructor-right">
-      <div class="section-label">Built from the Field</div>
-      <h3 class="instructor-title">Not theory. Not YouTube tutorials.<br>Real systems from a real company.</h3>
-      <p class="instructor-bio">Marine veteran. Georgetown master's in commercial real estate. CEO of Legion Securities — a startup where AI agents handle research, content, outreach, and operations every single day.<br><br>This course isn't built from theory or YouTube tutorials. It's built from running AI agents in production for a real company. The same systems Nathan uses to run his own business are what you'll learn to build for yours.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="pricing-section" id="pricing">
-  <div class="section-label">Pricing</div>
-  <h2 class="section-title">One Price. Everything Included.</h2>
-  <p class="section-sub">Less than what a virtual assistant costs for a single week.</p>
-  <div class="pricing-grid">
-
-    <div class="price-card">
-      <div class="price-tier">Free Preview</div>
-      <div class="price-amount"><sup>$</sup>0</div>
-      <div class="price-period">forever · no credit card</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li class="price-feature"><span class="pf-check">✓</span> Module 00: Welcome &amp; Course Map</li>
-        <li class="price-feature"><span class="pf-check">✓</span> Module 01: The AI Agent Mental Model</li>
-        <li class="price-feature"><span class="pf-check">✓</span> AI Agent Starter Kit download</li>
-        <li class="price-feature"><span class="pf-check">✓</span> Community Discord access</li>
-        <li class="price-feature"><span class="pf-x">✕</span> <span style="color:var(--text-dim)">Full 9-module curriculum</span></li>
-        <li class="price-feature"><span class="pf-x">✕</span> <span style="color:var(--text-dim)">10 prompt templates</span></li>
-      </ul>
-      <a href="#" class="price-btn pb-ghost">Get Free Preview</a>
-    </div>
-
-    <div class="price-card price-card-featured">
-      <span class="price-featured-badge">Best Value</span>
-      <div class="price-tier">Complete Course</div>
-      <div class="price-amount"><sup>$</sup>147</div>
-      <div class="price-period">one-time · lifetime access</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li class="price-feature"><span class="pf-check">✓</span> All 9 modules with step-by-step guides</li>
-        <li class="price-feature"><span class="pf-check">✓</span> 10 ready-to-use prompt templates</li>
-        <li class="price-feature"><span class="pf-check">✓</span> AI Agent Starter Kit</li>
-        <li class="price-feature"><span class="pf-check">✓</span> Private Discord community</li>
-        <li class="price-feature"><span class="pf-check">✓</span> Lifetime updates &amp; new content</li>
-        <li class="price-feature"><span class="pf-check">✓</span> 30-day money-back guarantee</li>
-      </ul>
-      <a href="https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400" class="price-btn pb-gold">Start Building — $147</a>
-    </div>
-
-    <div class="price-card">
-      <div class="price-tier">Your ROI</div>
-      <div class="price-amount" style="font-size:38px;line-height:1.1"><sup style="font-size:18px">saves</sup>$2K<span style="font-size:24px;color:var(--gold)">/mo</span></div>
-      <div class="price-period">vs. a virtual assistant</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li class="price-feature"><span class="pf-check">✓</span> AI agents work 24/7</li>
-        <li class="price-feature"><span class="pf-check">✓</span> No payroll, no sick days, no onboarding</li>
-        <li class="price-feature"><span class="pf-check">✓</span> Scales instantly as you grow</li>
-        <li class="price-feature"><span class="pf-check">✓</span> Pays for itself in the first week</li>
-        <li class="price-feature"><span class="pf-check">✓</span> One-time cost, infinite return</li>
-      </ul>
-      <a href="https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400" class="price-btn pb-ghost">Get Started Now</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq-section" id="faq">
-  <div class="section-label">FAQ</div>
-  <h2 class="section-title">Common Questions</h2>
-  <div class="faq-grid">
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">Do I need coding experience? <span class="faq-icon">+</span></div>
-      <div class="faq-a">No. This course uses Claude Desktop and Cowork — tools designed for non-developers. If you can write an email, you can write an agent prompt. No terminal, no code, no APIs required for the core modules.</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">What tools do I need? <span class="faq-icon">+</span></div>
-      <div class="faq-a">A computer and a Claude Pro or Max subscription ($20–$100/month from Anthropic). That's it to get started. The course walks you through setting up Claude Desktop, Cowork mode, and MCP connectors for tools like Gmail, Google Calendar, and Slack.</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">How is this different from other AI courses? <span class="faq-icon">+</span></div>
-      <div class="faq-a">Most AI courses teach you to chat with a chatbot. This course teaches you to deploy autonomous agents that do real work without you sitting in front of a screen. It's built from actual business operations — not theory.</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">How long does it take to complete? <span class="faq-icon">+</span></div>
-      <div class="faq-a">You can deploy your first agent on Day 1 (Module 02). Most people work through the full course in 1–2 weeks at 1–2 hours per day. But you have lifetime access, so go at whatever pace works for you.</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">What if it's not for me? <span class="faq-icon">+</span></div>
-      <div class="faq-a">30-day money-back guarantee, no questions asked. If you go through the material and don't feel like you got your money's worth, email us and we'll refund you in full.</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">Will this work for my specific business? <span class="faq-icon">+</span></div>
-      <div class="faq-a">If your business involves research, writing, email, data, outreach, or admin — yes. The 5 core agents apply to virtually every knowledge-work business. The templates are designed to be customized for your specific workflows.</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">Is there ongoing support? <span class="faq-icon">+</span></div>
-      <div class="faq-a">Yes — the private Discord community is included for life. Ask questions, share your agent setups, get troubleshooting help. The course content is also updated as new tools and capabilities are released.</div>
-    </div>
-    <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">What exactly is an AI agent? <span class="faq-icon">+</span></div>
-      <div class="faq-a">An AI agent is an autonomous AI system that can take actions on your behalf — browsing the web, reading emails, writing content, updating documents — without you directing every step. Unlike a chatbot, it operates on the Perceive → Plan → Act → Reflect loop, completing multi-step tasks independently.</div>
-    </div>
-  </div>
-</section>
-
-<!-- FREE KIT -->
-<section class="kit-section">
-  <div class="kit-card">
-    <div class="kit-label">Not Ready to Buy?</div>
-    <h2 class="kit-title">Get the Free<br><em>AI Agent Starter Kit.</em></h2>
-    <p class="kit-sub">3 agents you can deploy today — with complete prompts. Research Analyst, Content Engine, and Admin Assistant. No spam, unsubscribe anytime.</p>
-    <div class="kit-form">
-      <input type="email" class="kit-input" placeholder="Your email address">
-      <button class="btn-primary" style="padding:14px 32px;border-radius:8px">Get the Free Kit</button>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="final-cta">
-  <div class="final-cta-inner">
-    <h2 class="final-headline">Your Time Is Worth<br><em>More Than $147.</em></h2>
-    <p class="final-sub">A virtual assistant costs $2,000+/month. AI agents cost a fraction of that and work 24/7. This course pays for itself the first week you use it.<br><br>9 modules. 10 templates. Private community. Lifetime access. 30-day guarantee.</p>
-    <a href="https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400" class="btn-primary" style="font-size:12px;padding:18px 52px">Start Building Your AI Workforce — $147</a>
-    <p class="final-meta">One-time $147 · No subscriptions · No upsells inside the course · Secure payment via Stripe</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">
-    <div class="logo-icon" style="width:28px;height:28px;font-size:14px;border-radius:8px">🦞</div>
-    <div>
-      <div class="logo-name" style="font-size:11px">Legion Claw School</div>
-      <div class="logo-sub">A Legion Securities Co.</div>
-    </div>
-  </div>
-  <ul class="footer-links">
-    <li><a href="#modules">Modules</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="mailto:nathan@legionclawschool.com">Contact</a></li>
-    <li><a href="#">Privacy</a></li>
-    <li><a href="#">Terms</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 Build Your AI Workforce · Legion Securities Inc.</div>
-</footer>
-
-</div><!-- /page -->
-
 <script>
-// FAQ accordion
-document.querySelectorAll('.faq-item').forEach(item => {
-  item.addEventListener('click', () => {
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  });
-});
-
-// Smooth nav scroll + mobile menu placeholder
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-  });
-});
+document.querySelectorAll('.faq-item').forEach(item=>{item.addEventListener('click',()=>{const wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!wasOpen)item.classList.add('open')})});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const target=document.querySelector(a.getAttribute('href'));if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'})}})});
 </script>
 </body>
 </html>

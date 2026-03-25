@@ -14,14 +14,16 @@ const SUPABASE_URL = 'https://ocoyzdkzzqlksqdcqzke.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_4T-u1Pn7d62kSAUdFzy8uw_aQ8e7x3T';
 
 // Initialize Supabase client
-const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+// Note: CDN creates global 'var supabase' (the library), so we use a temp name
+const _sbClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
-if (!supabase) {
+if (!_sbClient) {
   console.error('Supabase client failed to initialize. Ensure @supabase/supabase-js is loaded before config.js');
 }
 
-// Export as global for use in other modules
-window.supabase = supabase;
+// Export as globals for use in auth.js (uses 'supabase') and inline scripts (use 'supabaseClient')
+window.supabaseClient = _sbClient;
+window.supabase = _sbClient;
 
 // ===== POSTHOG CONFIGURATION =====
 // Replace with your PostHog project API key from: https://us.posthog.com

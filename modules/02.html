@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 02: Your First Agent in 30 Minutes | Legion Claw School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/shared.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div id="loading" class="loading-spinner"></div>
+<div id="page-content" style="display:none">
+
+<nav>
+  <a href="/" class="nav-logo"><div class="logo-icon">🦞</div><div><div class="logo-name">Legion</div><div class="logo-sub">Claw School</div></div></a>
+  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+</nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="/dashboard.html">Dashboard</a> → Module 02
+  </div>
+
+  <div class="progress-indicator">Module 2 of 9</div>
+
+  <h1>Module 02: Your First Agent in 30 Minutes</h1>
+
+  <div class="tier-badge paid">Paid</div>
+
+  <div id="module-content" class="module-content">
+    <h2>Set Up Your Environment</h2>
+    <p>In this module, you'll build your first working AI agent from scratch. We'll walk you through every step: setting up your API keys, choosing an agent framework, defining your first goal, and running your agent on a real task. By the end of 30 minutes, you'll have an autonomous agent that can perform a meaningful action—and you'll understand exactly how it works. This is the moment where theory becomes practice.</p>
+
+    <h2>Choosing Your Agent Framework</h2>
+    <p>You have several options: Claude's native API with agent patterns, LangChain, Anthropic's frameworks, or purpose-built tools like AutoGPT. For this course, we'll use Claude directly with a proven agent pattern because it's straightforward, reliable, and gives you full control. You'll integrate with APIs, manage state, and handle errors—all the fundamentals that apply regardless of framework. Understanding the mechanics here makes switching frameworks trivial later.</p>
+
+    <h2>Building Your First Agent: The Task Runner</h2>
+    <p>Your first agent will be a Task Runner—something that accepts a goal, breaks it into steps, executes them, and reports results. We'll keep it simple: your agent reads from a text file, processes the content, and writes results to another file. This simple loop demonstrates everything: planning, tool use, error handling, and execution. Once you understand this pattern, you can extend it to web APIs, databases, email, and any other system you need to automate.</p>
+
+    <h2>Testing and Iteration</h2>
+    <p>After you've built your agent, we'll show you how to test it safely in a sandbox environment and refine it based on results. This is crucial because real agents will sometimes fail, take unexpected paths, or misunderstand instructions. Learning to instrument, debug, and iterate on agents is a core skill. You'll set up logging, define success metrics, and create feedback loops that help your agent improve over multiple runs.</p>
+  </div>
+
+  <div id="locked-overlay" style="display:none" class="locked-overlay">
+    <div class="lock-icon">🔒</div>
+    <h2>This module requires the Complete Course</h2>
+    <p>Build your first working AI agent and move from theory to execution. Unlock the full course to access hands-on projects and launch your AI workforce.</p>
+    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER)">Unlock the Full Course</button>
+  </div>
+
+  <div id="module-nav" class="module-nav" style="display:none">
+    <a href="/modules/01.html">← Module 01: The AI Agent Mental Model</a>
+    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 03 →</button>
+  </div>
+</main>
+
+</div>
+
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+const MODULE_NUMBER = 2;
+(async () => {
+  const user = await requireAuth();
+  if (!user) return;
+
+  const profile = await getProfile(user.id);
+  const tier = profile?.account_tier || 'free';
+  const accessible = canAccessModule(MODULE_NUMBER, tier);
+
+  if (accessible) {
+    document.getElementById('module-content').style.display = '';
+    document.getElementById('module-nav').style.display = '';
+    document.getElementById('locked-overlay').style.display = 'none';
+
+    await markModuleStarted(user.id, MODULE_NUMBER);
+  } else {
+    document.getElementById('module-content').style.display = 'none';
+    document.getElementById('module-nav').style.display = 'none';
+    document.getElementById('locked-overlay').style.display = '';
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('page-content').style.display = '';
+
+  const completeBtn = document.getElementById('complete-btn');
+  if (completeBtn && accessible) {
+    completeBtn.addEventListener('click', async () => {
+      await markModuleCompleted(user.id, MODULE_NUMBER);
+      showToast('Module completed!');
+      window.location.href = '/modules/03.html';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 07: Scaling Your AI Workforce | Legion Claw School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/shared.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div id="loading" class="loading-spinner"></div>
+<div id="page-content" style="display:none">
+
+<nav>
+  <a href="/" class="nav-logo"><div class="logo-icon">🦞</div><div><div class="logo-name">Legion</div><div class="logo-sub">Claw School</div></div></a>
+  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+</nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="/dashboard.html">Dashboard</a> → Module 07
+  </div>
+
+  <div class="progress-indicator">Module 7 of 9</div>
+
+  <h1>Module 07: Scaling Your AI Workforce</h1>
+
+  <div class="tier-badge paid">Paid</div>
+
+  <div id="module-content" class="module-content">
+    <h2>From Proof of Concept to Production Scale</h2>
+    <p>You've built agents. They work. Now comes the hard part: running them reliably at scale. Scaling agents isn't just about running them more often—it's about instrumentation, resilience, cost management, and organizational discipline. In this module, we'll cover the operational practices that turn agent experiments into reliable, production systems. You'll learn how to monitor agent behavior, handle failures gracefully, optimize costs, and maintain quality as you add more agents and more volume.</p>
+
+    <h2>Instrumentation: Observability and Debugging</h2>
+    <p>You can't manage what you don't measure. Instrumentation means logging agent decisions, tracking tool usage, monitoring costs, and capturing errors. We'll show you how to structure logs so you can quickly diagnose why an agent failed, which tools are most used, and where your costs are going. You'll set up dashboards that show you real-time agent health. You'll build alerts that notify you when something goes wrong. Without proper instrumentation, scaling agents becomes chaos.</p>
+
+    <h2>Resilience Patterns: Retry, Fallback, and Escalation</h2>
+    <p>Real systems fail. Tools time out, APIs return errors, agents make mistakes. Resilience means building systems that fail gracefully and recover automatically. You'll learn retry strategies that don't cause runaway loops, fallback paths that let agents accomplish goals even when preferred tools are unavailable, and escalation mechanisms that alert humans when an agent truly can't proceed. These patterns prevent cascading failures and keep your agents working even when external systems are degraded.</p>
+
+    <h2>Cost Management and Optimization</h2>
+    <p>Every API call has a cost. Every token sent to Claude costs money. At scale, these costs add up quickly. We'll show you how to track costs per agent, identify expensive agents, and optimize prompts and tool usage to reduce spend. You'll learn techniques like prompt caching, batch processing, and selective tool enabling. You'll understand the trade-offs between agent capability and cost. By the end of this module, you'll have a clear cost model for your agent deployment and know how to optimize it as your usage grows.</p>
+
+    <h2>Maintenance and Iteration in Production</h2>
+    <p>Agents don't set and forget. You'll need to monitor performance, update prompts based on failures, add new tools, and improve accuracy. We'll cover how to safely deploy updates to production agents, how to run experiments to test new capabilities, and how to maintain version control of your agent configurations. You'll learn when to manually review an agent's work and when you can trust it fully. By the end of this section, you'll have a sustainable operation where agents improve over time without requiring constant manual intervention.</p>
+  </div>
+
+  <div id="locked-overlay" style="display:none" class="locked-overlay">
+    <div class="lock-icon">🔒</div>
+    <h2>This module requires the Complete Course</h2>
+    <p>Learn the operational practices that turn agent experiments into reliable, production-grade systems. Unlock the full course for scaling strategies and best practices.</p>
+    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER)">Unlock the Full Course</button>
+  </div>
+
+  <div id="module-nav" class="module-nav" style="display:none">
+    <a href="/modules/06.html">← Module 06: Multi-Agent Workflows</a>
+    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 08 →</button>
+  </div>
+</main>
+
+</div>
+
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+const MODULE_NUMBER = 7;
+(async () => {
+  const user = await requireAuth();
+  if (!user) return;
+
+  const profile = await getProfile(user.id);
+  const tier = profile?.account_tier || 'free';
+  const accessible = canAccessModule(MODULE_NUMBER, tier);
+
+  if (accessible) {
+    document.getElementById('module-content').style.display = '';
+    document.getElementById('module-nav').style.display = '';
+    document.getElementById('locked-overlay').style.display = 'none';
+
+    await markModuleStarted(user.id, MODULE_NUMBER);
+  } else {
+    document.getElementById('module-content').style.display = 'none';
+    document.getElementById('module-nav').style.display = 'none';
+    document.getElementById('locked-overlay').style.display = '';
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('page-content').style.display = '';
+
+  const completeBtn = document.getElementById('complete-btn');
+  if (completeBtn && accessible) {
+    completeBtn.addEventListener('click', async () => {
+      await markModuleCompleted(user.id, MODULE_NUMBER);
+      showToast('Module completed!');
+      window.location.href = '/modules/08.html';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

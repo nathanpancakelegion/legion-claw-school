@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 03: Prompt Engineering for Agents (CRAFT) | Legion Claw School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/shared.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div id="loading" class="loading-spinner"></div>
+<div id="page-content" style="display:none">
+
+<nav>
+  <a href="/" class="nav-logo"><div class="logo-icon">🦞</div><div><div class="logo-name">Legion</div><div class="logo-sub">Claw School</div></div></a>
+  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+</nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="/dashboard.html">Dashboard</a> → Module 03
+  </div>
+
+  <div class="progress-indicator">Module 3 of 9</div>
+
+  <h1>Module 03: Prompt Engineering for Agents (CRAFT)</h1>
+
+  <div class="tier-badge paid">Paid</div>
+
+  <div id="module-content" class="module-content">
+    <h2>The CRAFT Framework</h2>
+    <p>Prompt engineering for agents is different from writing chat prompts. You're not just asking a question—you're defining an autonomous system that needs to make decisions, handle edge cases, and execute reliably. We introduce CRAFT: Context, Role, Approach, Format, and Testing. This framework ensures your agents understand their mission, know how to reason, and deliver output you can work with. A well-crafted agent prompt can mean the difference between a tool that works 80% of the time and one that works 98%.</p>
+
+    <h2>Context: Telling Your Agent Everything It Needs to Know</h2>
+    <p>Context is the intelligence layer. It includes your business rules, domain knowledge, historical data, and constraints. An agent for lead scoring needs to know your ICP, conversion rates, and past deal patterns. An agent for customer support needs to know your product, policies, and escalation rules. The more precise and complete your context, the better your agent reasons. We'll show you how to structure context so agents can use it efficiently, and how to update it as your business evolves without rewriting the entire system.</p>
+
+    <h2>Role and Approach: The Personality and Strategy</h2>
+    <p>Role defines who the agent is and what it's responsible for. Approach defines how it should think and decide. A research agent might be a "Senior Analyst" who takes a "hypothesis-driven approach." A sales agent might be a "Business Development Lead" with a "relationship-first approach." These definitions sound soft, but they dramatically impact agent behavior—how it weighs risk, handles ambiguity, and prioritizes goals. You'll learn how to write role and approach statements that produce consistent, predictable agent behavior.</p>
+
+    <h2>Format and Testing: Making Output Actionable</h2>
+    <p>Format defines how your agent communicates its output—JSON, markdown, structured tables, or something else. A well-defined format means downstream systems can parse and act on agent output without ambiguity. Testing is how you verify your prompt works. You'll run your agent on diverse inputs, check for failure modes, and iterate. By the end of this module, you'll have a repeatable method for building and validating agent prompts that work reliably in production.</p>
+  </div>
+
+  <div id="locked-overlay" style="display:none" class="locked-overlay">
+    <div class="lock-icon">🔒</div>
+    <h2>This module requires the Complete Course</h2>
+    <p>Master the CRAFT framework and learn to write agent prompts that produce reliable, consistent results. Unlock the full course to access advanced prompt engineering techniques.</p>
+    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER)">Unlock the Full Course</button>
+  </div>
+
+  <div id="module-nav" class="module-nav" style="display:none">
+    <a href="/modules/02.html">← Module 02: Your First Agent in 30 Minutes</a>
+    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 04 →</button>
+  </div>
+</main>
+
+</div>
+
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+const MODULE_NUMBER = 3;
+(async () => {
+  const user = await requireAuth();
+  if (!user) return;
+
+  const profile = await getProfile(user.id);
+  const tier = profile?.account_tier || 'free';
+  const accessible = canAccessModule(MODULE_NUMBER, tier);
+
+  if (accessible) {
+    document.getElementById('module-content').style.display = '';
+    document.getElementById('module-nav').style.display = '';
+    document.getElementById('locked-overlay').style.display = 'none';
+
+    await markModuleStarted(user.id, MODULE_NUMBER);
+  } else {
+    document.getElementById('module-content').style.display = 'none';
+    document.getElementById('module-nav').style.display = 'none';
+    document.getElementById('locked-overlay').style.display = '';
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('page-content').style.display = '';
+
+  const completeBtn = document.getElementById('complete-btn');
+  if (completeBtn && accessible) {
+    completeBtn.addEventListener('click', async () => {
+      await markModuleCompleted(user.id, MODULE_NUMBER);
+      showToast('Module completed!');
+      window.location.href = '/modules/04.html';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

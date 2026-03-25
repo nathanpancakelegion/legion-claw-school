@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 08: Launch Playbook: Your First 7 Days | Legion Claw School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/shared.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div id="loading" class="loading-spinner"></div>
+<div id="page-content" style="display:none">
+
+<nav>
+  <a href="/" class="nav-logo"><div class="logo-icon">🦞</div><div><div class="logo-name">Legion</div><div class="logo-sub">Claw School</div></div></a>
+  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+</nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="/dashboard.html">Dashboard</a> → Module 08
+  </div>
+
+  <div class="progress-indicator">Module 8 of 9</div>
+
+  <h1>Module 08: Launch Playbook: Your First 7 Days</h1>
+
+  <div class="tier-badge paid">Paid</div>
+
+  <div id="module-content" class="module-content">
+    <h2>From Learning to Doing</h2>
+    <p>This is it. You've finished the course, and now you're going to deploy your first production agents. This module isn't theory—it's a day-by-day playbook for getting real value from agents in your business in the next seven days. We'll tell you exactly what to build on Day 1, what to measure on Day 2, when to iterate, when to scale, and what mistakes to avoid. By the end of this week, you'll have working agents processing real business tasks and generating measurable ROI. This playbook removes the guesswork and accelerates your time to value.</p>
+
+    <h2>Days 1-2: Pick Your First Agent and Go Live</h2>
+    <p>Choose one. Pick the agent that will save you the most time or generate the most obvious value. Don't try to do everything—pick the Lead Scout, or the Communicator, or the Content Engine. Build it using what you've learned. Deploy it to a subset of your workflow. Measure its output. Run it parallel to your manual process for a day to build confidence. This teaches you the deployment mechanics and builds momentum. Most importantly, you'll see real results immediately, which keeps you motivated.</p>
+
+    <h2>Days 3-4: Measure, Tweak, and Iterate</h2>
+    <p>Now that your agent is running, you have data. Measure: How many tasks is it handling? How many need human review? What's the error rate? How much time are you actually saving? Use these metrics to identify what to improve. Iterate on the agent's prompt, its tools, or its scope. This is where science meets art—you're tuning your agent to your specific business. Make small changes, measure the impact, repeat. This cycle of measure-improve-measure is how agents get really good.</p>
+
+    <h2>Days 5-6: Add a Second Agent and Create Workflows</h2>
+    <p>Now deploy a second agent that complements the first. The Lead Scout → Communicator is a great combo. Or Researcher → Content Engine. Start with sequential workflows (one hands off to the next). Measure how the combination works. This is when you start seeing the real power of AI agents—when they work together. Share context, manage handoffs, and watch your workflow become more efficient. Document what works.</p>
+
+    <h2>Day 7: Plan Your Next 30 Days</h2>
+    <p>You've launched. You have working agents. Now plan what's next. Based on what you've learned, what should you build next? What new tools or integrations would unlock more value? How should you scale your existing agents? What processes could you automate next? Use this module to build a 30-day roadmap that extends the work you've started this week. This transforms agents from a one-time experiment into a sustainable practice that keeps improving over time.</p>
+  </div>
+
+  <div id="locked-overlay" style="display:none" class="locked-overlay">
+    <div class="lock-icon">🔒</div>
+    <h2>This module requires the Complete Course</h2>
+    <p>Get the day-by-day launch playbook and deploy your first agents this week. Unlock the full course to access checklists, templates, and deployment guidance.</p>
+    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER)">Unlock the Full Course</button>
+  </div>
+
+  <div id="module-nav" class="module-nav" style="display:none">
+    <a href="/modules/07.html">← Module 07: Scaling Your AI Workforce</a>
+    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Complete Course →</button>
+  </div>
+</main>
+
+</div>
+
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+const MODULE_NUMBER = 8;
+(async () => {
+  const user = await requireAuth();
+  if (!user) return;
+
+  const profile = await getProfile(user.id);
+  const tier = profile?.account_tier || 'free';
+  const accessible = canAccessModule(MODULE_NUMBER, tier);
+
+  if (accessible) {
+    document.getElementById('module-content').style.display = '';
+    document.getElementById('module-nav').style.display = '';
+    document.getElementById('locked-overlay').style.display = 'none';
+
+    await markModuleStarted(user.id, MODULE_NUMBER);
+  } else {
+    document.getElementById('module-content').style.display = 'none';
+    document.getElementById('module-nav').style.display = 'none';
+    document.getElementById('locked-overlay').style.display = '';
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('page-content').style.display = '';
+
+  const completeBtn = document.getElementById('complete-btn');
+  if (completeBtn && accessible) {
+    completeBtn.addEventListener('click', async () => {
+      await markModuleCompleted(user.id, MODULE_NUMBER);
+      showToast('Module completed!');
+      window.location.href = '/completion.html';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

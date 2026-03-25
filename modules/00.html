@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 00: Welcome & Course Map | Legion Claw School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/shared.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div id="loading" class="loading-spinner"></div>
+<div id="page-content" style="display:none">
+
+<nav>
+  <a href="/" class="nav-logo"><div class="logo-icon">🦞</div><div><div class="logo-name">Legion</div><div class="logo-sub">Claw School</div></div></a>
+  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+</nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="/dashboard.html">Dashboard</a> → Module 00
+  </div>
+
+  <div class="progress-indicator">Module 0 of 9</div>
+
+  <h1>Module 00: Welcome & Course Map</h1>
+
+  <div class="tier-badge free">Free</div>
+
+  <div id="module-content" class="module-content">
+    <h2>Welcome to Legion Claw School</h2>
+    <p>You're about to embark on a journey that will transform how you work. This course teaches you how to build and deploy AI agents—autonomous systems that think, plan, and execute tasks on your behalf. Whether you're a solopreneur, freelancer, or small business owner, AI agents are the force multiplier you've been waiting for.</p>
+
+    <h2>What You'll Learn</h2>
+    <p>Over the next nine modules, we'll guide you from zero to deployed. You'll start with the mental model that makes agent-building intuitive, then move quickly to hands-on creation. By Module 02, you'll have built your first working agent. By the end of this course, you'll understand multi-agent workflows, scaling principles, and have a concrete launch plan for integrating agents into your business.</p>
+
+    <h2>The Course Map</h2>
+    <p>This module (00) sets the foundation and gives you the road ahead. Modules 01 teaches the conceptual framework. Modules 02–04 are your hands-on core—building, prompting, and tooling. Modules 05–07 scale your thinking to advanced patterns. Module 08 is your launch playbook. Each module builds on the last, but you can revisit earlier ones anytime.</p>
+
+    <h2>How to Get the Most from This Course</h2>
+    <p>This is a self-paced course. We recommend setting aside 1–2 hours per module. Follow the exercises, take notes, and most importantly: build as you learn. The agents you create in this course can become the foundation of your AI workforce. Let's get started.</p>
+  </div>
+
+  <div id="locked-overlay" style="display:none" class="locked-overlay">
+    <div class="lock-icon">🔒</div>
+    <h2>This module requires the Complete Course</h2>
+    <p>This is a free preview module—you have full access. Continue to unlock all remaining content and start building your AI workforce today.</p>
+    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER)">Unlock the Full Course</button>
+  </div>
+
+  <div id="module-nav" class="module-nav" style="display:none">
+    <a href="/dashboard.html">← Dashboard</a>
+    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 01 →</button>
+  </div>
+</main>
+
+</div>
+
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+const MODULE_NUMBER = 0;
+(async () => {
+  const user = await requireAuth();
+  if (!user) return;
+
+  const profile = await getProfile(user.id);
+  const tier = profile?.account_tier || 'free';
+  const accessible = canAccessModule(MODULE_NUMBER, tier);
+
+  if (accessible) {
+    document.getElementById('module-content').style.display = '';
+    document.getElementById('module-nav').style.display = '';
+    document.getElementById('locked-overlay').style.display = 'none';
+
+    await markModuleStarted(user.id, MODULE_NUMBER);
+  } else {
+    document.getElementById('module-content').style.display = 'none';
+    document.getElementById('module-nav').style.display = 'none';
+    document.getElementById('locked-overlay').style.display = '';
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('page-content').style.display = '';
+
+  const completeBtn = document.getElementById('complete-btn');
+  if (completeBtn && accessible) {
+    completeBtn.addEventListener('click', async () => {
+      await markModuleCompleted(user.id, MODULE_NUMBER);
+      showToast('Module completed!');
+      window.location.href = '/modules/01.html';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

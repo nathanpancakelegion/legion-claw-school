@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Complete | Legion Claw School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/shared.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div><div class="stars"></div></div>
+<div class="page">
+<nav>
+  <a href="/" class="nav-logo"><div class="logo-icon">🦞</div><div><div class="logo-name">Legion</div><div class="logo-sub">Claw School</div></div></a>
+  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+</nav>
+
+<div id="loading" style="min-height:100vh;display:flex;align-items:center;justify-content:center"><div class="loading-spinner"></div></div>
+<div id="content" class="completion-page" style="display:none">
+  <div class="completion-icon">🎉</div>
+  <h1 class="completion-title">You Did It.</h1>
+  <p class="completion-sub">You've completed Build Your AI Workforce — all 9 modules. You now have the system, the templates, and the framework to deploy AI agents across every part of your business.<br><br>This isn't the end. It's the beginning of running your business with an AI workforce that works 24/7.</p>
+
+  <h2 style="font-family:var(--serif);font-size:24px;font-weight:300;color:var(--text);margin-bottom:24px">What's Next?</h2>
+
+  <div class="completion-links">
+    <a href="https://legionsecurities.com" class="completion-link" target="_blank">
+      <div class="completion-link-icon">🏢</div>
+      <div>
+        <div class="completion-link-title">Explore Legion Securities</div>
+        <div class="completion-link-sub">See how Legion is using AI to transform real estate investing.</div>
+      </div>
+    </a>
+    <a href="#" class="completion-link">
+      <div class="completion-link-icon">🚀</div>
+      <div>
+        <div class="completion-link-title">Join Legion Launch</div>
+        <div class="completion-link-sub">Our 30-day business incubator for founders ready to build. Coming soon.</div>
+      </div>
+    </a>
+    <a href="#" class="completion-link">
+      <div class="completion-link-icon">🏘️</div>
+      <div>
+        <div class="completion-link-title">Browse Commercial Properties</div>
+        <div class="completion-link-sub">Explore available municipal property listings in your area. Coming soon.</div>
+      </div>
+    </a>
+    <a href="/dashboard.html" class="completion-link">
+      <div class="completion-link-icon">📚</div>
+      <div>
+        <div class="completion-link-title">Revisit Your Modules</div>
+        <div class="completion-link-sub">Go back to any module to refresh your knowledge or grab templates.</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<footer><div class="footer-logo"><div class="logo-icon" style="width:28px;height:28px;font-size:14px;border-radius:8px">🦞</div><div><div class="logo-name" style="font-size:11px">Legion Claw School</div><div class="logo-sub">A Legion Securities Co.</div></div></div><ul class="footer-links"><li><a href="/#modules">Modules</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/#faq">FAQ</a></li><li><a href="mailto:nathan@legionclawschool.com">Contact</a></li></ul><div class="footer-copy">&copy; 2026 Build Your AI Workforce &middot; Legion Securities Inc.</div></footer>
+</div>
+
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+(async () => {
+  const user = await requireAuth();
+  if (!user) return;
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('content').style.display = '';
+  if (typeof posthog !== 'undefined') posthog.capture('course_completed');
+})();
+</script>
+</body>
+</html>

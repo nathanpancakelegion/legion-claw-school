@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 04: Building Your Agent Toolkit | Legion Claw School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/shared.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div id="loading" class="loading-spinner"></div>
+<div id="page-content" style="display:none">
+
+<nav>
+  <a href="/" class="nav-logo"><div class="logo-icon">🦞</div><div><div class="logo-name">Legion</div><div class="logo-sub">Claw School</div></div></a>
+  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+</nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="/dashboard.html">Dashboard</a> → Module 04
+  </div>
+
+  <div class="progress-indicator">Module 4 of 9</div>
+
+  <h1>Module 04: Building Your Agent Toolkit</h1>
+
+  <div class="tier-badge paid">Paid</div>
+
+  <div id="module-content" class="module-content">
+    <h2>Tools Are the Agent's Hands</h2>
+    <p>An agent without tools is a theorist with no ability to act. Tools are how agents interact with your systems: APIs, databases, file systems, email, web search, spreadsheets. The more capabilities you give an agent, the more autonomously it can operate. But every tool also introduces complexity and potential failure points. In this module, you'll learn how to design tool sets that give agents power without creating risk. You'll define tools clearly, specify their inputs and outputs, handle errors gracefully, and monitor tool usage.</p>
+
+    <h2>Types of Tools: Read, Write, and Execute</h2>
+    <p>Tools fall into three categories. Read tools let agents access information—querying databases, fetching emails, searching the web. Write tools let agents modify systems—creating records, sending messages, updating files. Execute tools let agents trigger processes—running scripts, scheduling tasks, integrating with services. Most business agents need all three types. A sales agent might read CRM data, write notes and follow-ups, and execute calendar invites. You'll learn how to compose these tool types safely and how to build agents that use them in proper sequence.</p>
+
+    <h2>Designing Tools for Agent Reliability</h2>
+    <p>Tool design matters enormously for agent reliability. An ambiguous tool description can cause agents to misuse it. Unclear error handling can create loops where agents retry the same failed action. Missing rate limits can cause agents to hammer APIs. In this section, we'll teach you how to write tool definitions that are unambiguous, specify constraints clearly, and build failure modes that help agents self-correct. You'll also learn how to add observability—logging and monitoring that tells you what your agents are doing with your tools.</p>
+
+    <h2>Your Toolkit: From Zero to Production</h2>
+    <p>By the end of this module, you'll have built a reusable toolkit that you can plug into multiple agents. We'll walk through a complete example: an agent that integrates with Stripe, Gmail, and Google Sheets. You'll see how to authenticate, handle pagination, manage rate limits, and implement retry logic. This toolkit becomes your asset—you can version it, extend it, and share it across projects. It's the foundation for scaling agent deployment.</p>
+  </div>
+
+  <div id="locked-overlay" style="display:none" class="locked-overlay">
+    <div class="lock-icon">🔒</div>
+    <h2>This module requires the Complete Course</h2>
+    <p>Build powerful, reliable agent toolkits and connect your agents to the systems that matter. Unlock the full course to learn production-grade tool design.</p>
+    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER)">Unlock the Full Course</button>
+  </div>
+
+  <div id="module-nav" class="module-nav" style="display:none">
+    <a href="/modules/03.html">← Module 03: Prompt Engineering for Agents (CRAFT)</a>
+    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 05 →</button>
+  </div>
+</main>
+
+</div>
+
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+const MODULE_NUMBER = 4;
+(async () => {
+  const user = await requireAuth();
+  if (!user) return;
+
+  const profile = await getProfile(user.id);
+  const tier = profile?.account_tier || 'free';
+  const accessible = canAccessModule(MODULE_NUMBER, tier);
+
+  if (accessible) {
+    document.getElementById('module-content').style.display = '';
+    document.getElementById('module-nav').style.display = '';
+    document.getElementById('locked-overlay').style.display = 'none';
+
+    await markModuleStarted(user.id, MODULE_NUMBER);
+  } else {
+    document.getElementById('module-content').style.display = 'none';
+    document.getElementById('module-nav').style.display = 'none';
+    document.getElementById('locked-overlay').style.display = '';
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('page-content').style.display = '';
+
+  const completeBtn = document.getElementById('complete-btn');
+  if (completeBtn && accessible) {
+    completeBtn.addEventListener('click', async () => {
+      await markModuleCompleted(user.id, MODULE_NUMBER);
+      showToast('Module completed!');
+      window.location.href = '/modules/05.html';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

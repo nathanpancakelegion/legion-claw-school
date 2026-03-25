@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 01: The AI Agent Mental Model | Legion Claw School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/shared.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div id="loading" class="loading-spinner"></div>
+<div id="page-content" style="display:none">
+
+<nav>
+  <a href="/" class="nav-logo"><div class="logo-icon">🦞</div><div><div class="logo-name">Legion</div><div class="logo-sub">Claw School</div></div></a>
+  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+</nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="/dashboard.html">Dashboard</a> → Module 01
+  </div>
+
+  <div class="progress-indicator">Module 1 of 9</div>
+
+  <h1>Module 01: The AI Agent Mental Model</h1>
+
+  <div class="tier-badge free">Free</div>
+
+  <div id="module-content" class="module-content">
+    <h2>What Is an AI Agent?</h2>
+    <p>An AI agent is an autonomous system that perceives its environment, reasons about it, and takes action toward a goal—without waiting for human instruction at each step. Think of it less like a chatbot (which responds to questions) and more like an employee who understands your business and can execute tasks independently. Agents have goals, tools, memory, and the ability to plan multi-step sequences.</p>
+
+    <h2>The Core Loop: Observe, Reason, Act</h2>
+    <p>Every AI agent operates on a cycle: it observes the current state, reasons about what to do next using its knowledge and tools, and then acts. This loop repeats until the agent has achieved its goal or encountered a stopping condition. Understanding this loop is critical because it helps you design agents that are reliable, predictable, and aligned with your business objectives. When you give an agent a goal, you're essentially setting up the conditions for this loop to run toward that end state.</p>
+
+    <h2>Agents vs. Chatbots: The Key Difference</h2>
+    <p>A chatbot is stateless and reactive—you ask, it responds. An agent is stateful and proactive—it maintains goals, remembers previous actions, and can run autonomously toward outcomes. Chatbots are great for customer support and Q&A. Agents are transformational for business automation because they can handle complex, multi-step tasks that would normally require human coordination. In this course, we're building agents, not chatbots.</p>
+
+    <h2>The Framework: Goals, Tools, Memory, and Constraints</h2>
+    <p>Every effective agent has four foundational components. Goals define what the agent is trying to accomplish. Tools are the abilities it has—APIs, databases, file systems, web access, etc. Memory is how it retains context across steps and sessions. Constraints are the guardrails that keep it safe and aligned—rules about what it can and cannot do, what information it can access, and how it should behave. In the next module, you'll create your first agent using this exact framework.</p>
+  </div>
+
+  <div id="locked-overlay" style="display:none" class="locked-overlay">
+    <div class="lock-icon">🔒</div>
+    <h2>This module requires the Complete Course</h2>
+    <p>Unlock all remaining content to master AI agents and start building your AI workforce today.</p>
+    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER)">Unlock the Full Course</button>
+  </div>
+
+  <div id="module-nav" class="module-nav" style="display:none">
+    <a href="/modules/00.html">← Module 00: Welcome & Course Map</a>
+    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 02 →</button>
+  </div>
+</main>
+
+</div>
+
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+const MODULE_NUMBER = 1;
+(async () => {
+  const user = await requireAuth();
+  if (!user) return;
+
+  const profile = await getProfile(user.id);
+  const tier = profile?.account_tier || 'free';
+  const accessible = canAccessModule(MODULE_NUMBER, tier);
+
+  if (accessible) {
+    document.getElementById('module-content').style.display = '';
+    document.getElementById('module-nav').style.display = '';
+    document.getElementById('locked-overlay').style.display = 'none';
+
+    await markModuleStarted(user.id, MODULE_NUMBER);
+  } else {
+    document.getElementById('module-content').style.display = 'none';
+    document.getElementById('module-nav').style.display = 'none';
+    document.getElementById('locked-overlay').style.display = '';
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('page-content').style.display = '';
+
+  const completeBtn = document.getElementById('complete-btn');
+  if (completeBtn && accessible) {
+    completeBtn.addEventListener('click', async () => {
+      await markModuleCompleted(user.id, MODULE_NUMBER);
+      showToast('Module completed!');
+      window.location.href = '/modules/02.html';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

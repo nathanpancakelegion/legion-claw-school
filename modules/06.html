@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 06: Multi-Agent Workflows | Legion Claw School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/shared.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div id="loading" class="loading-spinner"></div>
+<div id="page-content" style="display:none">
+
+<nav>
+  <a href="/" class="nav-logo"><div class="logo-icon">🦞</div><div><div class="logo-name">Legion</div><div class="logo-sub">Claw School</div></div></a>
+  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+</nav>
+
+<main>
+  <div class="breadcrumb">
+    <a href="/dashboard.html">Dashboard</a> → Module 06
+  </div>
+
+  <div class="progress-indicator">Module 6 of 9</div>
+
+  <h1>Module 06: Multi-Agent Workflows</h1>
+
+  <div class="tier-badge paid">Paid</div>
+
+  <div id="module-content" class="module-content">
+    <h2>From Solo Agents to Agent Teams</h2>
+    <p>Individual agents are powerful. But the real magic happens when agents work together. Multi-agent workflows allow you to decompose complex tasks into specialized agents that collaborate, hand off work, and coordinate toward a shared goal. Think of it as building a team where each member has a specific expertise and knows when to ask colleagues for help. In this module, you'll learn how to design workflows where agents communicate, share context, and escalate decisions appropriately. This is where AI automation becomes truly transformational.</p>
+
+    <h2>Agent Specialization and Handoff Patterns</h2>
+    <p>The most reliable multi-agent systems use specialization: each agent has a narrow, well-defined responsibility. One agent researches, another analyzes, another makes decisions. The handoff—passing work and context from one agent to the next—is the critical interface. You'll learn three core handoff patterns: sequential (Agent A finishes, then Agent B starts), parallel (multiple agents work simultaneously), and conditional (Agent A's output determines which agent goes next). Proper handoff design prevents duplication, ensures quality, and makes workflows debuggable.</p>
+
+    <h2>Shared Context and Memory in Multi-Agent Systems</h2>
+    <p>When agents work together, they need access to shared context: what has been done, what was learned, what constraints apply. This is harder than it sounds. Context can grow large, become stale, or contain conflicting information. You'll learn how to structure shared memory—a central source of truth that all agents can read and write. We'll cover how to prevent agents from stepping on each other, how to version context, and how to handle disagreements between agents. This layer of infrastructure is essential for reliable multi-agent systems.</p>
+
+    <h2>Building Your First Multi-Agent Workflow</h2>
+    <p>We'll walk through a complete, realistic example: a lead-to-opportunity workflow. The Scout agent identifies prospects, the Researcher agent gathers intelligence, the Scoring agent qualifies leads, and the Outreach agent crafts personalized pitches. Each agent has one job. They share context via a database. The workflow is orchestrated by a simple state machine. By the end of this module, you'll have built a working multi-agent system and understand the architecture patterns you can apply to any business process.</p>
+  </div>
+
+  <div id="locked-overlay" style="display:none" class="locked-overlay">
+    <div class="lock-icon">🔒</div>
+    <h2>This module requires the Complete Course</h2>
+    <p>Orchestrate teams of specialized agents to tackle complex business processes. Unlock the full course to build reliable, scalable multi-agent workflows.</p>
+    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER)">Unlock the Full Course</button>
+  </div>
+
+  <div id="module-nav" class="module-nav" style="display:none">
+    <a href="/modules/05.html">← Module 05: The 5 Agents Every Solopreneur Needs</a>
+    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 07 →</button>
+  </div>
+</main>
+
+</div>
+
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+const MODULE_NUMBER = 6;
+(async () => {
+  const user = await requireAuth();
+  if (!user) return;
+
+  const profile = await getProfile(user.id);
+  const tier = profile?.account_tier || 'free';
+  const accessible = canAccessModule(MODULE_NUMBER, tier);
+
+  if (accessible) {
+    document.getElementById('module-content').style.display = '';
+    document.getElementById('module-nav').style.display = '';
+    document.getElementById('locked-overlay').style.display = 'none';
+
+    await markModuleStarted(user.id, MODULE_NUMBER);
+  } else {
+    document.getElementById('module-content').style.display = 'none';
+    document.getElementById('module-nav').style.display = 'none';
+    document.getElementById('locked-overlay').style.display = '';
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('page-content').style.display = '';
+
+  const completeBtn = document.getElementById('complete-btn');
+  if (completeBtn && accessible) {
+    completeBtn.addEventListener('click', async () => {
+      await markModuleCompleted(user.id, MODULE_NUMBER);
+      showToast('Module completed!');
+      window.location.href = '/modules/07.html';
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

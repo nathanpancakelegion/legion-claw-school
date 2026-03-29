@@ -28,49 +28,11 @@
             z-index: -1;
             overflow: hidden;
         }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.15;
-            filter: blur(80px);
-        }
-
-        .o1 {
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 182, 193, 0.5);
-            top: -100px;
-            left: -100px;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .o2 {
-            width: 350px;
-            height: 350px;
-            background: rgba(173, 216, 230, 0.5);
-            bottom: -50px;
-            right: -50px;
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
-        .o3 {
-            width: 300px;
-            height: 300px;
-            background: rgba(221, 160, 221, 0.5);
-            top: 50%;
-            right: -100px;
-            animation: float 22s ease-in-out infinite;
-        }
-
-        .o4 {
-            width: 250px;
-            height: 250px;
-            background: rgba(255, 218, 185, 0.5);
-            bottom: 20%;
-            left: 10%;
-            animation: float 28s ease-in-out infinite reverse;
-        }
+        .orb { position: absolute; border-radius: 50%; opacity: 0.15; filter: blur(80px); }
+        .o1 { width: 400px; height: 400px; background: rgba(255, 182, 193, 0.5); top: -100px; left: -100px; animation: float 20s ease-in-out infinite; }
+        .o2 { width: 350px; height: 350px; background: rgba(173, 216, 230, 0.5); bottom: -50px; right: -50px; animation: float 25s ease-in-out infinite reverse; }
+        .o3 { width: 300px; height: 300px; background: rgba(221, 160, 221, 0.5); top: 50%; right: -100px; animation: float 22s ease-in-out infinite; }
+        .o4 { width: 250px; height: 250px; background: rgba(255, 218, 185, 0.5); bottom: 20%; left: 10%; animation: float 28s ease-in-out infinite reverse; }
 
         @keyframes float {
             0%, 100% { transform: translate(0, 0); }
@@ -93,7 +55,6 @@
             display: flex;
             align-items: center;
         }
-
         .logo {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
@@ -102,10 +63,7 @@
             color: #fff;
             letter-spacing: 2px;
         }
-
-        .logo:hover {
-            opacity: 0.8;
-        }
+        .logo:hover { opacity: 0.8; }
 
         main {
             position: relative;
@@ -156,14 +114,9 @@
             display: none;
             font-size: 0.9rem;
         }
+        .auth-error.show { display: block; }
 
-        .auth-error.show {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+        .form-group { margin-bottom: 1.5rem; }
 
         .form-input-row {
             display: grid;
@@ -171,10 +124,7 @@
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
-
-        .form-input-row > div {
-            margin-bottom: 0;
-        }
+        .form-input-row > div { margin-bottom: 0; }
 
         .form-label {
             display: block;
@@ -196,17 +146,13 @@
             transition: all 0.2s ease;
             box-sizing: border-box;
         }
-
         .form-input:focus {
             outline: none;
             background: rgba(255, 255, 255, 0.12);
             border-color: rgba(255, 255, 255, 0.3);
             box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
         }
-
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
+        .form-input::placeholder { color: rgba(255, 255, 255, 0.4); }
 
         .form-btn {
             width: 100%;
@@ -222,16 +168,11 @@
             transition: all 0.3s ease;
             margin-top: 1rem;
         }
-
         .form-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
         }
-
-        .form-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
+        .form-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
         .auth-link {
             text-align: center;
@@ -239,17 +180,13 @@
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.7);
         }
-
         .auth-link a {
             color: #667eea;
             text-decoration: none;
             font-weight: 600;
             transition: color 0.2s ease;
         }
-
-        .auth-link a:hover {
-            color: #764ba2;
-        }
+        .auth-link a:hover { color: #764ba2; }
 
         footer {
             position: relative;
@@ -260,28 +197,13 @@
             font-size: 0.85rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        footer a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
+        footer a { color: rgba(255, 255, 255, 0.7); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
 
         @media (max-width: 600px) {
-            .auth-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .auth-title {
-                font-size: 2rem;
-            }
-
-            .form-input-row {
-                grid-template-columns: 1fr;
-            }
+            .auth-card { padding: 2rem 1.5rem; }
+            .auth-title { font-size: 2rem; }
+            .form-input-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -374,6 +296,13 @@
 
             try {
                 await registerUser(email, pw, name, city, state);
+
+                // Notify Zapier to trigger email drip sequence (fire-and-forget)
+                fetch('https://hooks.zapier.com/hooks/catch/26999336/unmwfpp/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: 'email=' + encodeURIComponent(email) + '&first_name=' + encodeURIComponent(name.split(' ')[0]) + '&created_at=' + encodeURIComponent(new Date().toISOString())
+                }).catch(function() {}); // Silent fail — don't block registration
 
                 // Get redirect URL from query params if present
                 const params = new URLSearchParams(window.location.search);

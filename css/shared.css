@@ -31,10 +31,10 @@ body{background:var(--gt-blue);color:var(--text);font-family:var(--sans);font-we
 /* ===== NAVIGATION ===== */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px 52px;background:rgba(4,30,66,.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:.5px solid var(--glass-border)}
 .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit}
-.logo-icon{width:36px;height:36px;background:var(--gold-dim);border:1px solid var(--glass-gold-b);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .3s}
-.nav-logo:hover .logo-icon{background:rgba(201,168,76,.22)}
-.logo-name{font-weight:400;font-size:13px;letter-spacing:3px;text-transform:uppercase}
-.logo-sub{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+.logo-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:opacity .3s}
+.logo-icon img{width:100%;height:100%;object-fit:contain}
+.nav-logo:hover .logo-icon{opacity:0.8}
+.logo-text{font-family:var(--serif);font-size:1.5rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .3s}
 .nav-links a:hover{color:var(--gold)}

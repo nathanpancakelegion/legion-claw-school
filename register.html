@@ -60,14 +60,29 @@
             align-items: center;
         }
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
+            font-size: 1.15rem;
             font-weight: 700;
             text-decoration: none;
             color: #fff;
             letter-spacing: 2px;
         }
         .logo:hover { opacity: 0.8; }
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
 
         main {
             position: relative;
@@ -221,7 +236,10 @@
     </div>
 
     <header>
-        <a href="/" class="logo">LEGION CLAW SCHOOL</a>
+        <a href="/" class="logo">
+            <span class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion"></span>
+            LEGION CLAW SCHOOL
+        </a>
     </header>
 
     <main>

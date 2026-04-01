@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful | Legion Claw School</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+<link rel="apple-touch-icon" href="/images/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/shared.css">
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<style>
+  .success-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 60px;
+  }
+
+  .success-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 28px;
+    animation: scaleIn 0.5s ease both;
+  }
+
+  @keyframes scaleIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .success-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 300;
+    color: var(--text);
+    margin: 0 0 16px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .success-title em {
+    font-style: italic;
+    background: linear-gradient(135deg, #C9A84C 0%, #F0D98A 50%, #C9A84C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .success-sub {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--text-mid);
+    max-width: 480px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+    animation: fadeUp 0.6s 0.35s ease both;
+  }
+
+  .success-cta {
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+
+  .success-status {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  .success-status.error {
+    color: #ff6b6b;
+  }
+
+  @keyframes fadeUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+<div class="bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div><div class="stars"></div></div>
+<div class="page">
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div>
+    <span class="logo-text">Legion Claw School</span>
+  </a>
+  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+</nav>
+
+<div id="loading" style="min-height:100vh;display:flex;align-items:center;justify-content:center">
+  <div class="loading-spinner"></div>
+</div>
+
+<div id="content" class="success-page" style="display:none">
+  <div class="success-icon">&#10022;</div>
+  <h1 class="success-title">You're <em>All In</em></h1>
+  <p class="success-sub">Your payment was successful. All 9 modules, 10 prompt templates, and the full AI agent toolkit are now unlocked. Time to build your workforce.</p>
+  <div class="success-cta">
+    <a href="/dashboard.html" class="btn-primary" style="padding:14px 36px">Go to Dashboard</a>
+  </div>
+  <p id="status-msg" class="success-status"></p>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <div class="logo-icon" style="width:28px;height:28px"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div>
+    <span class="logo-text" style="font-size:1rem">Legion Claw School</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="/#modules">Modules</a></li>
+    <li><a href="/#pricing">Pricing</a></li>
+    <li><a href="/#faq">FAQ</a></li>
+    <li><a href="mailto:nathan@legionclawschool.com">Contact</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2026 Build Your AI Workforce &middot; Legion Securities Inc.</div>
+</footer>
+
+</div>
+
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+(async () => {
+  const user = await requireAuth();
+  if (!user) return;
+
+  const statusMsg = document.getElementById('status-msg');
+
+  try {
+    // Upgrade user to paid tier in Supabase
+    const profile = await getProfile(user.id);
+    if (profile && profile.account_tier !== 'paid') {
+      await upgradeUserToPaid(user.id);
+      statusMsg.textContent = 'Account upgraded to Pro.';
+    } else if (profile && profile.account_tier === 'paid') {
+      statusMsg.textContent = 'Your Pro access is active.';
+    }
+  } catch (err) {
+    console.error('Upgrade error:', err);
+    statusMsg.textContent = 'Account upgrade processing — if modules aren\'t unlocked in a few minutes, email nathan@legionclawschool.com.';
+    statusMsg.className = 'success-status error';
+  }
+
+  // Notify Zapier about Stripe purchase (fire-and-forget backup)
+  fetch('https://hooks.zapier.com/hooks/catch/26999336/unmx9l5/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'email=' + encodeURIComponent(user.email) + '&purchase_date=' + encodeURIComponent(new Date().toISOString())
+  }).catch(function() {});
+
+  // PostHog
+  if (window.posthog) {
+    posthog.capture('purchase_success_page_viewed');
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('content').style.display = '';
+})();
+</script>
+</body>
+</html>

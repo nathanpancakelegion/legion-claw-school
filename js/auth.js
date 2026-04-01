@@ -11,7 +11,7 @@ const MODULES = [
   { num: 0, title: 'Welcome & Course Map', tier: 'free' },
   { num: 1, title: 'The AI Agent Mental Model', tier: 'free' },
   { num: 2, title: 'Your First Agent in 30 Minutes', tier: 'paid' },
-  { num: 3, title: 'Prompt Engineering for Agents (CRAFT)', tier: 'paid' },
+  { num: 3, title: 'Prompt Engineering for Agents (RICO)', tier: 'paid' },
   { num: 4, title: 'Building Your Agent Toolkit', tier: 'paid' },
   { num: 5, title: 'The 5 Agents Every Solopreneur Needs', tier: 'paid' },
   { num: 6, title: 'Multi-Agent Workflows', tier: 'paid' },

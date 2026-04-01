@@ -14,179 +14,266 @@
 
   <!-- Shared styles -->
   <link rel="stylesheet" href="/css/shared.css">
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
   <style>
     .dash-container {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 40px 24px;
+      padding: 120px 24px 60px;
     }
 
+    /* === Header === */
     .dash-header {
       margin-bottom: 48px;
     }
 
+    .dash-welcome-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
     .dash-welcome {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      color: #999;
-      margin: 0 0 12px 0;
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+    }
+
+    .tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    .tier-badge.free {
+      background: var(--glass-white);
+      border: 1px solid var(--glass-border-b);
+      color: var(--text-mid);
+    }
+
+    .tier-badge.paid {
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.35);
+      color: var(--gold);
     }
 
     .dash-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 48px;
-      font-weight: 700;
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 300;
       margin: 0 0 32px 0;
-      color: #000;
+      color: var(--text);
+      line-height: 1.1;
     }
 
+    .dash-title em {
+      font-style: italic;
+      background: linear-gradient(135deg, #C9A84C 0%, #F0D98A 50%, #C9A84C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* === Progress === */
     .progress-bar-wrap {
       width: 100%;
-      height: 8px;
-      background: #e8e8e8;
-      border-radius: 4px;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 3px;
       overflow: hidden;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .progress-bar {
       height: 100%;
-      background: linear-gradient(90deg, #d4572f 0%, #ff8c42 100%);
-      border-radius: 4px;
-      transition: width 0.4s ease;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+      border-radius: 3px;
+      transition: width 0.6s ease;
     }
 
     .progress-text {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      color: #666;
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--text-muted);
       margin: 0;
+      letter-spacing: 0.5px;
     }
 
+    /* === Next Module CTA === */
     .dash-next {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #f5f5f5;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
+      background: var(--glass-white);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid var(--glass-border);
+      border-top-color: var(--glass-border-b);
+      border-radius: 16px;
       padding: 28px 32px;
       margin-bottom: 48px;
+      box-shadow: var(--shadow-float);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .dash-next:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-float-g);
     }
 
     .dash-next-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      color: #999;
+      font-family: var(--sans);
+      font-size: 10px;
+      color: var(--gold);
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       margin-bottom: 8px;
     }
 
     .dash-next-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 28px;
-      font-weight: 600;
-      color: #000;
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--text);
     }
 
+    /* === Section Titles === */
     .dash-section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 32px;
-      font-weight: 600;
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 300;
       margin: 40px 0 24px 0;
-      color: #000;
+      color: var(--text);
     }
 
+    /* === Module Grid === */
     #module-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
       margin-bottom: 48px;
     }
 
     .module-card {
       display: grid;
-      grid-template-columns: 48px 1fr 80px;
+      grid-template-columns: 44px 1fr auto;
       grid-template-rows: auto auto;
-      gap: 0 16px;
+      gap: 0 14px;
       align-items: center;
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
+      background: var(--glass-white);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid var(--glass-border);
+      border-top-color: var(--glass-border-b);
+      border-radius: 14px;
       padding: 20px;
       text-decoration: none;
       color: inherit;
-      transition: all 0.2s ease;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
 
     .module-card:hover:not(.locked) {
-      border-color: #d4572f;
-      box-shadow: 0 4px 12px rgba(212, 87, 47, 0.1);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-float-g);
+      background: var(--glass-white-h);
+    }
+
+    .module-card:hover:not(.locked)::before {
+      opacity: 1;
     }
 
     .module-card.locked {
-      opacity: 0.6;
+      opacity: 0.45;
       cursor: not-allowed;
     }
 
     .module-card.active {
-      border-color: #d4572f;
-      background: #fff9f7;
+      background: rgba(201,168,76,0.065);
+      border-color: rgba(201,168,76,0.28);
+      border-top-color: rgba(201,168,76,0.40);
+    }
+
+    .module-card.active:hover {
+      box-shadow: var(--shadow-float-g);
     }
 
     .mc-status {
       grid-row: 1 / 3;
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
     }
 
     .mc-status.mc-completed {
-      background: #f0f0f0;
-      color: #666;
+      background: rgba(201,168,76,0.15);
+      color: var(--gold);
     }
 
     .mc-status.mc-current {
-      background: #fef3f0;
-      color: #d4572f;
+      background: rgba(201,168,76,0.20);
+      color: var(--gold);
+      box-shadow: 0 0 16px rgba(201,168,76,0.25);
     }
 
     .mc-status.mc-available {
-      background: #f5f5f5;
-      color: #999;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-muted);
     }
 
     .mc-status.mc-locked {
-      background: #f0f0f0;
-      color: #999;
+      background: rgba(255,255,255,0.04);
+      color: var(--text-dim);
     }
 
     .mc-num {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      color: #999;
+      font-family: var(--sans);
+      font-size: 10px;
+      color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       grid-column: 2;
       grid-row: 1;
     }
 
     .mc-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 600;
-      color: #000;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text);
       grid-column: 2;
       grid-row: 2;
       align-self: start;
@@ -195,111 +282,156 @@
     .mc-badge {
       grid-column: 3;
       grid-row: 1 / 3;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
+      font-family: var(--sans);
+      font-size: 9px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 6px 12px;
-      border-radius: 6px;
+      letter-spacing: 1px;
+      padding: 5px 12px;
+      border-radius: 12px;
       text-align: center;
       align-self: center;
       justify-self: end;
     }
 
     .mc-badge-free {
-      background: #f0f0f0;
-      color: #666;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-muted);
     }
 
     .mc-badge-pro {
-      background: #fef3f0;
-      color: #d4572f;
+      background: rgba(201,168,76,0.12);
+      color: var(--gold);
     }
 
     .mc-badge-locked {
-      background: #f5f5f5;
-      color: #999;
+      background: rgba(255,255,255,0.04);
+      color: var(--text-dim);
     }
 
+    .mc-badge-done {
+      background: rgba(201,168,76,0.15);
+      color: var(--gold);
+    }
+
+    /* === Upgrade CTA === */
     .dash-upgrade {
-      background: linear-gradient(135deg, #fef3f0 0%, #fff5f2 100%);
-      border: 1px solid #e8d0c8;
-      border-radius: 16px;
+      background: rgba(201,168,76,0.06);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(201,168,76,0.22);
+      border-top-color: rgba(201,168,76,0.35);
+      border-radius: 20px;
       padding: 48px 40px;
       text-align: center;
       margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dash-upgrade::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
     }
 
     .dash-upgrade-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: var(--serif);
       font-size: 32px;
-      font-weight: 600;
-      margin: 0 0 16px 0;
-      color: #000;
+      font-weight: 300;
+      margin: 0 0 14px 0;
+      color: var(--text);
     }
 
     .dash-upgrade-sub {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      color: #666;
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--text-mid);
       margin: 0 0 28px 0;
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;
+      line-height: 1.7;
     }
 
+    /* === Bonuses === */
     .bonus-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
+      gap: 16px;
       margin-bottom: 48px;
     }
 
     .bonus-card {
-      background: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 32px 24px;
+      background: var(--glass-white);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid var(--glass-border);
+      border-top-color: var(--glass-border-b);
+      border-radius: 16px;
+      padding: 28px 20px;
       text-align: center;
-      transition: all 0.2s ease;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bonus-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
 
     .bonus-card:hover {
-      border-color: #d4572f;
-      box-shadow: 0 4px 12px rgba(212, 87, 47, 0.1);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-float-g);
+      background: var(--glass-white-h);
+    }
+
+    .bonus-card:hover::before {
+      opacity: 1;
     }
 
     .bonus-icon {
-      font-size: 32px;
-      margin-bottom: 12px;
+      font-size: 28px;
+      margin-bottom: 10px;
     }
 
     .bonus-name {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      color: #000;
-      margin-bottom: 16px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 14px;
       display: block;
     }
 
     .bonus-link {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      color: #d4572f;
+      font-family: var(--sans);
+      font-size: 10px;
+      color: var(--gold);
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1.5px;
       font-weight: 600;
       transition: color 0.2s ease;
     }
 
     .bonus-link:hover {
-      color: #a63e24;
+      color: var(--gold-light);
     }
 
+    /* === Loading === */
     #loading {
       min-height: 100vh;
       display: flex;
@@ -308,10 +440,10 @@
     }
 
     .loading-spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid #e0e0e0;
-      border-top-color: #d4572f;
+      width: 36px;
+      height: 36px;
+      border: 2px solid rgba(255,255,255,0.1);
+      border-top-color: var(--gold);
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
     }
@@ -320,13 +452,14 @@
       to { transform: rotate(360deg); }
     }
 
+    /* === Responsive === */
     @media (max-width: 768px) {
       .dash-container {
-        padding: 24px 16px;
+        padding: 100px 16px 40px;
       }
 
       .dash-title {
-        font-size: 36px;
+        font-size: 32px;
         margin-bottom: 24px;
       }
 
@@ -341,6 +474,10 @@
         width: 100%;
       }
 
+      #module-list {
+        grid-template-columns: 1fr;
+      }
+
       .module-card {
         grid-template-columns: 40px 1fr 70px;
       }
@@ -348,7 +485,7 @@
       .mc-status {
         width: 40px;
         height: 40px;
-        font-size: 18px;
+        font-size: 16px;
       }
 
       .mc-title {
@@ -358,22 +495,21 @@
       .bonus-cards {
         grid-template-columns: 1fr;
       }
+
+      .dash-upgrade {
+        padding: 32px 24px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Background orbs -->
+  <!-- Background -->
   <div class="bg">
-    <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="blur">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="40" />
-        </filter>
-      </defs>
-      <circle cx="200" cy="200" r="300" fill="#fef3f0" opacity="0.6" filter="url(#blur)" />
-      <circle cx="800" cy="800" r="350" fill="#fff5f2" opacity="0.5" filter="url(#blur)" />
-      <circle cx="900" cy="100" r="250" fill="#fffaf8" opacity="0.4" filter="url(#blur)" />
-    </svg>
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="orb o4"></div>
+    <div class="stars"></div>
   </div>
 
   <div class="page">
@@ -398,8 +534,11 @@
     <div id="dashboard" class="dash-container" style="display:none">
       <!-- Header -->
       <div class="dash-header">
-        <p class="dash-welcome">Welcome back, <span id="user-name"></span></p>
-        <h1 class="dash-title">Build Your AI Workforce</h1>
+        <div class="dash-welcome-row">
+          <p class="dash-welcome">Welcome back, <span id="user-name"></span></p>
+          <span id="tier-badge" class="tier-badge free"></span>
+        </div>
+        <h1 class="dash-title">Build Your <em>AI Workforce</em></h1>
 
         <!-- Progress bar -->
         <div class="progress-bar-wrap">
@@ -414,7 +553,7 @@
           <div class="dash-next-label">Your Next Module</div>
           <div class="dash-next-title" id="next-module-title"></div>
         </div>
-        <a id="next-module-link" href="#" class="btn-primary" style="padding:12px 28px;font-size:11px;white-space:nowrap">Continue</a>
+        <a id="next-module-link" href="#" class="btn-primary" style="padding:12px 28px;font-size:10px;white-space:nowrap">Continue</a>
       </div>
 
       <!-- Module list -->
@@ -428,51 +567,44 @@
         <a href="https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400" class="btn-primary" style="padding:14px 36px" onclick="trackUpgradeClick('dashboard')">Unlock for $147</a>
       </div>
 
-      <!-- Bonuses -->
-      <h2 class="dash-section-title" style="margin-top:48px">Your Bonuses</h2>
-      <div class="bonus-cards">
-        <div class="bonus-card">
-          <div class="bonus-icon">📋</div>
-          <div class="bonus-name">10 Prompt Templates</div>
-          <a href="#" class="bonus-link">Download</a>
-        </div>
-        <div class="bonus-card">
-          <div class="bonus-icon">⚡</div>
-          <div class="bonus-name">AI Agent Starter Kit</div>
-          <a href="#" class="bonus-link">Download</a>
-        </div>
-        <div class="bonus-card">
-          <div class="bonus-icon">💬</div>
-          <div class="bonus-name">Private Discord</div>
-          <a href="#" class="bonus-link">Join</a>
+      <!-- Bonuses (paid users) -->
+      <div id="bonus-section" style="display:none">
+        <h2 class="dash-section-title" style="margin-top:48px">Your Bonuses</h2>
+        <div class="bonus-cards">
+          <div class="bonus-card">
+            <div class="bonus-icon">📋</div>
+            <div class="bonus-name">10 Prompt Templates</div>
+            <a href="#" class="bonus-link">Download</a>
+          </div>
+          <div class="bonus-card">
+            <div class="bonus-icon">⚡</div>
+            <div class="bonus-name">AI Agent Starter Kit</div>
+            <a href="#" class="bonus-link">Download</a>
+          </div>
+          <div class="bonus-card">
+            <div class="bonus-icon">💬</div>
+            <div class="bonus-name">Private Discord</div>
+            <a href="#" class="bonus-link">Join</a>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Footer -->
     <footer>
-      <div class="footer-content">
-        <div class="footer-col">
-          <div class="footer-logo"><img src="/images/legion-icon-white.png" alt="Legion" style="width:20px;height:20px;object-fit:contain;vertical-align:middle;margin-right:8px">Legion Claw School</div>
-          <p class="footer-desc">Learn to build AI agents that work for you.</p>
-        </div>
-        <div class="footer-col">
-          <div class="footer-links-title">Quick Links</div>
-          <ul class="footer-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="#privacy">Privacy</a></li>
-            <li><a href="#terms">Terms</a></li>
-          </ul>
-        </div>
+      <div class="footer-logo">
+        <div class="logo-icon" style="width:28px;height:28px"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div>
+        <span class="logo-text" style="font-size:1rem">Legion Claw School</span>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Legion Claw School. All rights reserved.</p>
-      </div>
+      <ul class="footer-links">
+        <li><a href="/#modules">Modules</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="mailto:nathan@legionclawschool.com">Contact</a></li>
+      </ul>
+      <div class="footer-copy">&copy; 2026 Build Your AI Workforce &middot; Legion Securities Inc.</div>
     </footer>
   </div>
-
-  <!-- Supabase client -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.1/dist/module/index.js" type="module"></script>
 
   <!-- Config and auth -->
   <script src="/js/config.js"></script>
@@ -490,6 +622,16 @@
 
       // Set user name
       document.getElementById('user-name').textContent = profile?.name || 'there';
+
+      // Set tier badge
+      const tierBadge = document.getElementById('tier-badge');
+      if (tier === 'paid') {
+        tierBadge.className = 'tier-badge paid';
+        tierBadge.textContent = '✦ Pro Access';
+      } else {
+        tierBadge.className = 'tier-badge free';
+        tierBadge.textContent = 'Free Preview';
+      }
 
       // Calculate completion
       const completed = progress.filter(p => p.completed_at).map(p => p.module_number);
@@ -553,7 +695,7 @@
 
         let badgeClass, badgeText;
         if (isCompleted) {
-          badgeClass = 'mc-badge-free'; badgeText = 'Done';
+          badgeClass = 'mc-badge-done'; badgeText = 'Done';
         } else if (mod.tier === 'free') {
           badgeClass = 'mc-badge-free'; badgeText = 'Free';
         } else if (isAccessible) {
@@ -571,21 +713,31 @@
         }
 
         card.innerHTML = '<div class="mc-status ' + statusClass + '">' + statusIcon + '</div>' +
-          '<span class="mc-num">' + String(mod.num).padStart(2,'0') + '</span>' +
+          '<span class="mc-num">Module ' + String(mod.num).padStart(2,'0') + '</span>' +
           '<span class="mc-title">' + mod.title + '</span>' +
           '<span class="mc-badge ' + badgeClass + '">' + badgeText + '</span>';
 
         listEl.appendChild(card);
       });
 
-      // Show upgrade section for free users
+      // Show upgrade section for free users, bonuses for paid
       if (tier === 'free') {
         document.getElementById('upgrade-section').style.display = '';
+      } else {
+        document.getElementById('bonus-section').style.display = '';
       }
 
       // Show dashboard
       document.getElementById('loading').style.display = 'none';
       document.getElementById('dashboard').style.display = '';
+
+      // PostHog dashboard view
+      if (window.posthog) {
+        posthog.capture('dashboard_viewed', {
+          account_tier: tier,
+          modules_completed: completedCount
+        });
+      }
     })();
   </script>
 

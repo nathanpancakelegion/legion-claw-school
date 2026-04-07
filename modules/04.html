@@ -1,105 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 04: Building Your Agent Toolkit | Legion Claw School</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 04: Building Your Agent Team | Legion Claw School</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
     <link rel="apple-touch-icon" href="/images/favicon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/shared.css">
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/shared.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<div id="loading" class="loading-spinner"></div>
-<div id="page-content" style="display:none">
+    <div id="loading" class="loading-spinner"></div>
+    <div id="page-content" style="display:none">
+        <nav>
+            <a href="/" class="nav-logo"><div class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div><span class="logo-text">Legion Claw School</span></a>
+            <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+        </nav>
+        <main>
+            <div class="breadcrumb">
+                <a href="/dashboard.html">Dashboard</a> → Module 04
+            </div>
+            <div class="progress-indicator">Module 4 of 9</div>
 
-<nav>
-  <a href="/" class="nav-logo"><div class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div><span class="logo-text">Legion Claw School</span></a>
-  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
-</nav>
+            <h1>Module 04: Building Your Agent Team</h1>
+            <div class="tier-badge paid">Paid</div>
 
-<main>
-  <div class="breadcrumb">
-    <a href="/dashboard.html">Dashboard</a> → Module 04
-  </div>
+            <div id="module-content" class="module-content">
 
-  <div class="progress-indicator">Module 4 of 9</div>
+                <h2>From Solo Agent to Full Team</h2>
+                <p>You've got one agent running and handling a real task. Now we scale. The mistake most people make is trying to build one "super agent" that does everything. That's like hiring one employee and making them your salesperson, bookkeeper, researcher, and content writer — they'll be mediocre at all of it. The better approach: specialized agents, each with a clear job. Just like a real team.</p>
 
-  <h1>Module 04: Building Your Agent Toolkit</h1>
+                <h2>The AI Org Chart</h2>
+                <p>Here's the agent team structure I recommend for any small business or startup. You don't need all of these on day one, but this is what you're building toward. <strong>Recon — Research &amp; Intelligence Agent:</strong> Researches companies, people, markets, and competitors. Triggers before meetings, when entering a new market, or evaluating a deal. Produces structured briefings, competitive analyses, and market reports. <strong>Ghost — Content &amp; Communications Agent:</strong> Drafts emails, social posts, blog content, presentations, and internal docs. Triggers when you need written content in your voice. <strong>Ops — Operations &amp; Admin Agent:</strong> Organizes information, tracks deliverables, processes data, maintains records. Triggers after meetings, when processing documents, and for weekly admin tasks. <strong>Closer — Sales &amp; Outreach Agent:</strong> Drafts outreach, follow-up sequences, pitch personalization, and objection handling. Triggers when prospecting, following up, or preparing for sales conversations. <strong>Sentinel — QA &amp; Review Agent:</strong> Reviews other agents' output for quality, consistency, and accuracy. Triggers before anything goes external — emails to prospects, published content, client deliverables.</p>
 
-  <div class="tier-badge paid">Paid</div>
+                <h2>Why Specialization Works</h2>
+                <p>When you give one agent a super long, complex instruction set covering research AND sales AND operations AND content, it loses focus on any individual task, produces generic output, can't maintain different tones for different contexts, and gets harder to debug when something goes wrong. Specialized agents have shorter and more focused Role Cards, consistent output quality for their specific domain, clear ownership — when research is wrong you fix Recon, not the entire system — and different tones and styles appropriate to their function.</p>
 
-  <div id="module-content" class="module-content">
-    <h2>Tools Are the Agent's Hands</h2>
-    <p>An agent without tools is a theorist with no ability to act. Tools are how agents interact with your systems: APIs, databases, file systems, email, web search, spreadsheets. The more capabilities you give an agent, the more autonomously it can operate. But every tool also introduces complexity and potential failure points. In this module, you'll learn how to design tool sets that give agents power without creating risk. You'll define tools clearly, specify their inputs and outputs, handle errors gracefully, and monitor tool usage.</p>
+                <h2>Building Agent #2: The Walkthrough</h2>
+                <p>Let's build your second agent using Ghost (content agent) as the example. Step 1 — Write the Role Card using RICO: "You are Ghost, my content and communications agent. You write in my voice — direct, professional, occasionally informal. You understand my business and my audience. You never use corporate buzzwords, filler phrases, or fluff." For Input, you'll provide the type of content needed, the audience, key points or source material, and any constraints. For Constraints: always match your voice, never write anything longer than requested, no emojis unless specified, end every email with a clear next step or CTA, and if there's not enough information to write something good, ask before producing a weak draft. Step 2 — Upload Knowledge Files: 5-10 examples of emails you've written that represent your voice, your company one-pager, brand guidelines, and a list of phrases you love and hate. Step 3 — Create the Claude Project with the Role Card as Custom Instructions. Step 4 — Calibrate by running at least 5 different tasks through Ghost and updating the Role Card with every correction.</p>
 
-    <h2>Types of Tools: Read, Write, and Execute</h2>
-    <p>Tools fall into three categories. Read tools let agents access information—querying databases, fetching emails, searching the web. Write tools let agents modify systems—creating records, sending messages, updating files. Execute tools let agents trigger processes—running scripts, scheduling tasks, integrating with services. Most business agents need all three types. A sales agent might read CRM data, write notes and follow-ups, and execute calendar invites. You'll learn how to compose these tool types safely and how to build agents that use them in proper sequence.</p>
+                <h2>Agent Coordination: The Handoff System</h2>
+                <p>Here's where the real power emerges — agents handing off to each other. Example workflow for an investor meeting: You tell Recon to research Zeal Capital Partners and Leo Peyronnin. Recon produces a briefing document. You paste that briefing into Closer to draft a personalized agenda and three talking points. After the meeting, you paste your notes into Ops to process into action items, follow-up tasks, and a CRM update. You hand the follow-up tasks to Ghost to write a thank-you email. Before sending, you paste Ghost's email into Sentinel to review for tone, accuracy, and any claims you can't back up. Five agents, one workflow, 20 minutes instead of 2 hours. Right now you're manually passing information between agents — that's fine. In Module 08, we'll discuss automation options that reduce even this overhead.</p>
 
-    <h2>Designing Tools for Agent Reliability</h2>
-    <p>Tool design matters enormously for agent reliability. An ambiguous tool description can cause agents to misuse it. Unclear error handling can create loops where agents retry the same failed action. Missing rate limits can cause agents to hammer APIs. In this section, we'll teach you how to write tool definitions that are unambiguous, specify constraints clearly, and build failure modes that help agents self-correct. You'll also learn how to add observability—logging and monitoring that tells you what your agents are doing with your tools.</p>
+                <h2>How Many Agents Do You Need?</h2>
+                <p>Start with two. Get them both dialed in over one week. Then add a third. Recommended build order: First agent — whatever your highest-volume recurring task is (you built this in Module 02). Second — Ghost (content), because almost everyone writes content regularly. Third — Recon (research), because good intel makes everything else better. Fourth and fifth — Ops and Closer, based on which you need more. By the end of this course, you'll have all five. But don't rush it. A well-calibrated team of two agents outperforms a poorly configured team of ten.</p>
 
-    <h2>Your Toolkit: From Zero to Production</h2>
-    <p>By the end of this module, you'll have built a reusable toolkit that you can plug into multiple agents. We'll walk through a complete example: an agent that integrates with Stripe, Gmail, and Google Sheets. You'll see how to authenticate, handle pagination, manage rate limits, and implement retry logic. This toolkit becomes your asset—you can version it, extend it, and share it across projects. It's the foundation for scaling agent deployment.</p>
-  </div>
+            </div>
 
-  <div id="locked-overlay" style="display:none" class="locked-overlay">
-    <div class="lock-icon">🔒</div>
-    <h2>This module requires the Complete Course</h2>
-    <p>Build powerful, reliable agent toolkits and connect your agents to the systems that matter. Unlock the full course to learn production-grade tool design.</p>
-    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER); window.location.href='https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400';">Unlock the Full Course</button>
-  </div>
+            <div id="locked-overlay" style="display:none" class="locked-overlay">
+                <div class="lock-icon">🔒</div>
+                <h2>This module requires the Complete Course</h2>
+                <p>Learn how to build a specialized team of AI agents — Recon, Ghost, Ops, Closer, and Sentinel — and coordinate them through handoff workflows. Unlock the full course to access the complete agent team framework.</p>
+                <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER); window.location.href='https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400';">Unlock the Full Course</button>
+            </div>
 
-  <div id="module-nav" class="module-nav" style="display:none">
-    <a href="/modules/03.html">← Module 03: Prompt Engineering for Agents (RICO)</a>
-    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 05 →</button>
-  </div>
-</main>
+            <div id="module-nav" class="module-nav" style="display:none">
+                <a href="/modules/03.html">← Module 03: Prompt Engineering for Agents (RICO)</a>
+                <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 05 →</button>
+            </div>
+        </main>
+    </div>
 
-</div>
-
-<script src="/js/config.js"></script>
-<script src="/js/auth.js"></script>
-<script>
-const MODULE_NUMBER = 4;
-(async () => {
-  const user = await requireAuth();
-  if (!user) return;
-
-  const profile = await getProfile(user.id);
-  const tier = profile?.account_tier || 'free';
-  const accessible = canAccessModule(MODULE_NUMBER, tier);
-
-  if (accessible) {
-    document.getElementById('module-content').style.display = '';
-    document.getElementById('module-nav').style.display = '';
-    document.getElementById('locked-overlay').style.display = 'none';
-
-    await markModuleStarted(user.id, MODULE_NUMBER);
-  } else {
-    document.getElementById('module-content').style.display = 'none';
-    document.getElementById('module-nav').style.display = 'none';
-    document.getElementById('locked-overlay').style.display = '';
-  }
-
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('page-content').style.display = '';
-
-  const completeBtn = document.getElementById('complete-btn');
-  if (completeBtn && accessible) {
-    completeBtn.addEventListener('click', async () => {
-      await markModuleCompleted(user.id, MODULE_NUMBER);
-      showToast('Module completed!');
-      window.location.href = '/modules/05.html';
-    });
-  }
-})();
-</script>
-
+    <script src="/js/config.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+    const MODULE_NUMBER = 4;
+    (async () => {
+        const user = await requireAuth();
+        if (!user) return;
+        const profile = await getProfile(user.id);
+        const tier = profile?.account_tier || 'free';
+        const accessible = canAccessModule(MODULE_NUMBER, tier);
+        if (accessible) {
+            document.getElementById('module-content').style.display = '';
+            document.getElementById('module-nav').style.display = '';
+            document.getElementById('locked-overlay').style.display = 'none';
+            await markModuleStarted(user.id, MODULE_NUMBER);
+        } else {
+            document.getElementById('module-content').style.display = 'none';
+            document.getElementById('module-nav').style.display = 'none';
+            document.getElementById('locked-overlay').style.display = '';
+        }
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('page-content').style.display = '';
+        const completeBtn = document.getElementById('complete-btn');
+        if (completeBtn && accessible) {
+            completeBtn.addEventListener('click', async () => {
+                await markModuleCompleted(user.id, MODULE_NUMBER);
+                showToast('Module completed!');
+                window.location.href = '/modules/05.html';
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

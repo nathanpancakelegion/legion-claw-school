@@ -1,108 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 07: Scaling Your AI Workforce | Legion Claw School</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 07: Automating Sales &amp; Outreach | Legion Claw School</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
     <link rel="apple-touch-icon" href="/images/favicon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/shared.css">
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/shared.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<div id="loading" class="loading-spinner"></div>
-<div id="page-content" style="display:none">
+    <div id="loading" class="loading-spinner"></div>
+    <div id="page-content" style="display:none">
+        <nav>
+            <a href="/" class="nav-logo"><div class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div><span class="logo-text">Legion Claw School</span></a>
+            <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+        </nav>
+        <main>
+            <div class="breadcrumb">
+                <a href="/dashboard.html">Dashboard</a> → Module 07
+            </div>
+            <div class="progress-indicator">Module 7 of 9</div>
 
-<nav>
-  <a href="/" class="nav-logo"><div class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div><span class="logo-text">Legion Claw School</span></a>
-  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
-</nav>
+            <h1>Module 07: Automating Sales &amp; Outreach</h1>
+            <div class="tier-badge paid">Paid</div>
 
-<main>
-  <div class="breadcrumb">
-    <a href="/dashboard.html">Dashboard</a> → Module 07
-  </div>
+            <div id="module-content" class="module-content">
 
-  <div class="progress-indicator">Module 7 of 9</div>
+                <h2>The Sales Problem AI Actually Solves</h2>
+                <p>Most people hear "AI for sales" and think "spam at scale." That's the opposite of what we're building. The real problem AI solves in sales isn't volume — it's personalization at volume. You know that the best outreach is personal, relevant, and specific. You also know that writing personalized emails for 50 prospects takes 10 hours. So you either send generic outreach (low response rates) or you personalize a few and neglect the rest. Closer solves this. It produces personalized, contextual outreach for every prospect — at the quality of your best manual emails, at the speed of a template.</p>
 
-  <h1>Module 07: Scaling Your AI Workforce</h1>
+                <h2>Building Closer: Your Sales Agent</h2>
+                <p>Here's Closer's full Role Card. Role: "You are Closer, my sales and outreach agent. You write like a smart, direct founder — not a salesperson. Your outreach feels like it's from a real person who did their homework, because it is. You understand that the goal of cold outreach is to start a conversation, not close a deal." Input: Prospect information (name, company, role, relevant background), research brief from Recon when available, outreach type (cold email, follow-up, LinkedIn message, warm intro request), and any specific angle or context. Constraints: Cold emails under 120 words, no exceptions. Follow-ups under 80 words. LinkedIn messages under 100 words. Never use "I hope this finds you well," "circling back," "just following up," "synergy," "leverage," or "value proposition." Always include one specific personal detail that proves you researched them. CTA is always low-commitment: 15-minute call, quick question, or asking for their take. Never pitch in the first email — open a door, don't push through it. Subject lines under 6 words, lowercase, no punctuation gimmicks.</p>
 
-  <div class="tier-badge paid">Paid</div>
+                <h2>The 4-Touch Outreach Sequence</h2>
+                <p><strong>Touch 1 — The Opener (Day 1):</strong> Establish relevance, show you did your homework, ask one low-friction question. One sentence referencing something specific about them, one sentence about what you do and why it's relevant (a connection point, not a pitch), and a low-commitment CTA. <strong>Touch 2 — The Value Add (Day 4):</strong> Give something useful, don't ask for anything. Share an article, a data point, or a market insight relevant to their work. Brief tie-back to why you shared it. No CTA this time. <strong>Touch 3 — The Direct Ask (Day 8):</strong> Clear, final ask. One sentence with a direct request for 15 minutes and specific suggested times. One sentence on what you'd cover and why it's worth their time. Offer to reconnect in the future if timing isn't right. <strong>Touch 4 — The Breakup (Day 14):</strong> Last touch, low pressure, door stays open. Acknowledge you've reached out a few times and don't want to be a pest. One sentence summary of why you reached out. No hard feelings if timing isn't right.</p>
 
-  <div id="module-content" class="module-content">
-    <h2>From Proof of Concept to Production Scale</h2>
-    <p>You've built agents. They work. Now comes the hard part: running them reliably at scale. Scaling agents isn't just about running them more often—it's about instrumentation, resilience, cost management, and organizational discipline. In this module, we'll cover the operational practices that turn agent experiments into reliable, production systems. You'll learn how to monitor agent behavior, handle failures gracefully, optimize costs, and maintain quality as you add more agents and more volume.</p>
+                <h2>Personalizing at Scale with Recon + Closer</h2>
+                <p>Here's the workflow that makes this system powerful. Build a prospect list: 20 names with company, role, and one line of context. Run each through Recon with "Quick Person Brief on this person at this company — focus on recent activity and alignment with your business." Feed each Recon brief into Closer with "Write Touch 1 for this prospect, here's the Recon brief." Review, edit minimally, send. For 20 prospects, this takes about an hour. Manually, it would take a full day.</p>
 
-    <h2>Instrumentation: Observability and Debugging</h2>
-    <p>You can't manage what you don't measure. Instrumentation means logging agent decisions, tracking tool usage, monitoring costs, and capturing errors. We'll show you how to structure logs so you can quickly diagnose why an agent failed, which tools are most used, and where your costs are going. You'll set up dashboards that show you real-time agent health. You'll build alerts that notify you when something goes wrong. Without proper instrumentation, scaling agents becomes chaos.</p>
+                <h2>Objection Handling Library</h2>
+                <p>Closer can also prep you for conversations. Build an objection library: "Here are the 10 most common objections I get in sales conversations. For each, provide: why the prospect is really saying this (the underlying concern), a 2-3 sentence response framework, and a pivot question that moves the conversation forward." Upload this to Closer's project as a knowledge file. Before any meeting, ask: "Based on this prospect's profile, which objections are they most likely to raise? Prep me with responses."</p>
 
-    <h2>Resilience Patterns: Retry, Fallback, and Escalation</h2>
-    <p>Real systems fail. Tools time out, APIs return errors, agents make mistakes. Resilience means building systems that fail gracefully and recover automatically. You'll learn retry strategies that don't cause runaway loops, fallback paths that let agents accomplish goals even when preferred tools are unavailable, and escalation mechanisms that alert humans when an agent truly can't proceed. These patterns prevent cascading failures and keep your agents working even when external systems are degraded.</p>
+                <h2>LinkedIn Content as Outreach</h2>
+                <p>Closer isn't just for direct messages. It can draft LinkedIn posts that serve as indirect outreach: "Write a LinkedIn post about a topic relevant to my target audience. The post should demonstrate expertise, share a specific insight or experience, and be the kind of thing my target prospects would find useful. Under 200 words. End with a question that invites engagement." Consistent LinkedIn content warms up your entire network. When you then send a direct message, the prospect has already seen your name and your thinking.</p>
 
-    <h2>Cost Management and Optimization</h2>
-    <p>Every API call has a cost. Every token sent to Claude costs money. At scale, these costs add up quickly. We'll show you how to track costs per agent, identify expensive agents, and optimize prompts and tool usage to reduce spend. You'll learn techniques like prompt caching, batch processing, and selective tool enabling. You'll understand the trade-offs between agent capability and cost. By the end of this module, you'll have a clear cost model for your agent deployment and know how to optimize it as your usage grows.</p>
+                <h2>Follow-Up Cadence Management</h2>
+                <p>The biggest leak in most sales processes isn't bad outreach — it's no follow-up. People send one email, get no response, and quit. Use Ops + Closer together: Ops tracks your outreach cadence — "Here's my current outreach log, which prospects are due for a follow-up this week, and what touch number are they on?" Closer drafts the appropriate follow-up for each — "Draft Touch 2 for this person at this company, here's the context from our initial outreach." You review, send, and log the activity back in Ops. This system ensures no prospect slips through the cracks.</p>
 
-    <h2>Maintenance and Iteration in Production</h2>
-    <p>Agents don't set and forget. You'll need to monitor performance, update prompts based on failures, add new tools, and improve accuracy. We'll cover how to safely deploy updates to production agents, how to run experiments to test new capabilities, and how to maintain version control of your agent configurations. You'll learn when to manually review an agent's work and when you can trust it fully. By the end of this section, you'll have a sustainable operation where agents improve over time without requiring constant manual intervention.</p>
-  </div>
+                <h2>What Closer Should Never Do</h2>
+                <p>Be clear about the boundaries. Closer drafts — you send. Always review before anything goes out. Closer personalizes — you authenticate. Make sure the personal details are accurate. Closer suggests — you decide. If a prospect isn't a fit, Closer's job is to tell you that, not to pitch them anyway. Closer doesn't handle inbound — for responding to incoming inquiries, that's Ghost's domain with a different set of instructions.</p>
 
-  <div id="locked-overlay" style="display:none" class="locked-overlay">
-    <div class="lock-icon">🔒</div>
-    <h2>This module requires the Complete Course</h2>
-    <p>Learn the operational practices that turn agent experiments into reliable, production-grade systems. Unlock the full course for scaling strategies and best practices.</p>
-    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER); window.location.href='https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400';">Unlock the Full Course</button>
-  </div>
+            </div>
 
-  <div id="module-nav" class="module-nav" style="display:none">
-    <a href="/modules/06.html">← Module 06: Multi-Agent Workflows</a>
-    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 08 →</button>
-  </div>
-</main>
+            <div id="locked-overlay" style="display:none" class="locked-overlay">
+                <div class="lock-icon">🔒</div>
+                <h2>This module requires the Complete Course</h2>
+                <p>Build Closer — your sales and outreach agent — with the 4-touch outreach sequence, objection handling library, and the Recon-to-Closer pipeline for personalized outreach at scale. Unlock the full course to automate your sales process.</p>
+                <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER); window.location.href='https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400';">Unlock the Full Course</button>
+            </div>
 
-</div>
+            <div id="module-nav" class="module-nav" style="display:none">
+                <a href="/modules/06.html">← Module 06: Automating Operations &amp; Admin</a>
+                <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 08 →</button>
+            </div>
+        </main>
+    </div>
 
-<script src="/js/config.js"></script>
-<script src="/js/auth.js"></script>
-<script>
-const MODULE_NUMBER = 7;
-(async () => {
-  const user = await requireAuth();
-  if (!user) return;
-
-  const profile = await getProfile(user.id);
-  const tier = profile?.account_tier || 'free';
-  const accessible = canAccessModule(MODULE_NUMBER, tier);
-
-  if (accessible) {
-    document.getElementById('module-content').style.display = '';
-    document.getElementById('module-nav').style.display = '';
-    document.getElementById('locked-overlay').style.display = 'none';
-
-    await markModuleStarted(user.id, MODULE_NUMBER);
-  } else {
-    document.getElementById('module-content').style.display = 'none';
-    document.getElementById('module-nav').style.display = 'none';
-    document.getElementById('locked-overlay').style.display = '';
-  }
-
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('page-content').style.display = '';
-
-  const completeBtn = document.getElementById('complete-btn');
-  if (completeBtn && accessible) {
-    completeBtn.addEventListener('click', async () => {
-      await markModuleCompleted(user.id, MODULE_NUMBER);
-      showToast('Module completed!');
-      window.location.href = '/modules/08.html';
-    });
-  }
-})();
-</script>
-
+    <script src="/js/config.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+    const MODULE_NUMBER = 7;
+    (async () => {
+        const user = await requireAuth();
+        if (!user) return;
+        const profile = await getProfile(user.id);
+        const tier = profile?.account_tier || 'free';
+        const accessible = canAccessModule(MODULE_NUMBER, tier);
+        if (accessible) {
+            document.getElementById('module-content').style.display = '';
+            document.getElementById('module-nav').style.display = '';
+            document.getElementById('locked-overlay').style.display = 'none';
+            await markModuleStarted(user.id, MODULE_NUMBER);
+        } else {
+            document.getElementById('module-content').style.display = 'none';
+            document.getElementById('module-nav').style.display = 'none';
+            document.getElementById('locked-overlay').style.display = '';
+        }
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('page-content').style.display = '';
+        const completeBtn = document.getElementById('complete-btn');
+        if (completeBtn && accessible) {
+            completeBtn.addEventListener('click', async () => {
+                await markModuleCompleted(user.id, MODULE_NUMBER);
+                showToast('Module completed!');
+                window.location.href = '/modules/08.html';
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

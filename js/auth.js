@@ -7,16 +7,17 @@
  */
 
 // ===== MODULE DATA =====
+
 const MODULES = [
-  { num: 0, title: 'Welcome & Course Map', tier: 'free' },
-  { num: 1, title: 'The AI Agent Mental Model', tier: 'free' },
-  { num: 2, title: 'Your First Agent in 30 Minutes', tier: 'paid' },
-  { num: 3, title: 'Prompt Engineering for Agents (RICO)', tier: 'paid' },
-  { num: 4, title: 'Building Your Agent Toolkit', tier: 'paid' },
-  { num: 5, title: 'The 5 Agents Every Solopreneur Needs', tier: 'paid' },
-  { num: 6, title: 'Multi-Agent Workflows', tier: 'paid' },
-  { num: 7, title: 'Scaling Your AI Workforce', tier: 'paid' },
-  { num: 8, title: 'Launch Playbook: Your First 7 Days', tier: 'paid' }
+  { num: 0, title: 'Welcome & The AI Workforce Mindset', tier: 'free' },
+  { num: 1, title: 'The AI Agent Landscape', tier: 'free' },
+  { num: 2, title: 'Your First AI Agent Setup', tier: 'paid' },
+  { num: 3, title: 'The Prompt Engineering Framework (RICO)', tier: 'paid' },
+  { num: 4, title: 'Building Your Agent Team', tier: 'paid' },
+  { num: 5, title: 'Automating Research & Market Intel', tier: 'paid' },
+  { num: 6, title: 'Automating Operations & Admin', tier: 'paid' },
+  { num: 7, title: 'Automating Sales & Outreach', tier: 'paid' },
+  { num: 8, title: 'Scaling & Managing Your AI Workforce', tier: 'paid' }
 ];
 
 // ===== AUTH HELPERS =====

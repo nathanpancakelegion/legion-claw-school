@@ -1,108 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 08: Launch Playbook: Your First 7 Days | Legion Claw School</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 08: Scaling &amp; Managing Your AI Workforce | Legion Claw School</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
     <link rel="apple-touch-icon" href="/images/favicon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/shared.css">
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/shared.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<div id="loading" class="loading-spinner"></div>
-<div id="page-content" style="display:none">
+    <div id="loading" class="loading-spinner"></div>
+    <div id="page-content" style="display:none">
+        <nav>
+            <a href="/" class="nav-logo"><div class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div><span class="logo-text">Legion Claw School</span></a>
+            <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+        </nav>
+        <main>
+            <div class="breadcrumb">
+                <a href="/dashboard.html">Dashboard</a> → Module 08
+            </div>
+            <div class="progress-indicator">Module 8 of 9</div>
 
-<nav>
-  <a href="/" class="nav-logo"><div class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div><span class="logo-text">Legion Claw School</span></a>
-  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
-</nav>
+            <h1>Module 08: Scaling &amp; Managing Your AI Workforce</h1>
+            <div class="tier-badge paid">Paid</div>
 
-<main>
-  <div class="breadcrumb">
-    <a href="/dashboard.html">Dashboard</a> → Module 08
-  </div>
+            <div id="module-content" class="module-content">
 
-  <div class="progress-indicator">Module 8 of 9</div>
+                <h2>You've Built the Team. Now Run It.</h2>
+                <p>Over the last eight modules, you've gone from zero to a functioning AI workforce: Recon, Ghost, Ops, Closer, and Sentinel. Each has a Role Card, knowledge files, and real output under its belt. This final module is about three things: systematizing your workflows so they run consistently, measuring whether your agents are actually saving you time and improving quality, and evolving the system as your business grows.</p>
 
-  <h1>Module 08: Launch Playbook: Your First 7 Days</h1>
+                <h2>Workflow Design</h2>
+                <p>A workflow is a repeatable sequence of agent actions triggered by a specific event. You've already been doing this informally — Recon to Closer, meeting notes to Ops to Ghost. Now we formalize it. Use this template: Name the workflow, define the trigger (what kicks it off — a meeting, a new prospect, a weekly cadence), list the agents involved in order, and estimate time with agents vs. without. Then map the steps: which agent does what, with what input, producing what output, including human review points and the final action (send, publish, file). Five core workflows to build: <strong>Pre-Meeting Prep</strong> (10 min instead of 45) — Recon researches, Closer generates talking points, Ops creates a meeting notes template. <strong>Post-Meeting Processing</strong> (5 min instead of 25) — Ops processes raw notes, Ghost drafts follow-up email, Ops logs action items. <strong>Weekly Outreach Batch</strong> (1 hr instead of 6) — Recon researches prospects, Closer drafts Touch 1-4 emails, Sentinel QA reviews. <strong>Content Production</strong> (30 min instead of 3 hrs) — Recon researches topic, Ghost drafts content, Sentinel reviews. <strong>Weekly Review</strong> (15 min instead of 1 hr) — Ops compiles activities, generates status report, identifies next week's priorities.</p>
 
-  <div class="tier-badge paid">Paid</div>
+                <h2>Measuring Agent Performance</h2>
+                <p>Track three metrics. <strong>Time Saved:</strong> For each workflow, track how long it took before agents and how long it takes now. Example: Pre-meeting prep took 45 minutes manually, now takes 10 with agents — that's 35 minutes saved per meeting. At 5 meetings per week, that's nearly 3 hours per week, over 150 hours per year from one workflow. <strong>Output Quality Score:</strong> Rate each agent output 1-5 after every use. 1 = unusable, had to redo from scratch. 2 = heavy editing, more than 50% rewritten. 3 = moderate editing, structure was good. 4 = light editing, minor tweaks. 5 = send as-is. Your goal is consistent 4-5 scores. If an agent is stuck at 2-3 after two weeks, the Role Card needs a major revision. <strong>Consistency Rate:</strong> Run the same type of task 5 times. If quality varies wildly, the Role Card needs tighter constraints. If it's consistent (even if not perfect), the foundation is solid and you just need incremental improvements.</p>
 
-  <div id="module-content" class="module-content">
-    <h2>From Learning to Doing</h2>
-    <p>This is it. You've finished the course, and now you're going to deploy your first production agents. This module isn't theory—it's a day-by-day playbook for getting real value from agents in your business in the next seven days. We'll tell you exactly what to build on Day 1, what to measure on Day 2, when to iterate, when to scale, and what mistakes to avoid. By the end of this week, you'll have working agents processing real business tasks and generating measurable ROI. This playbook removes the guesswork and accelerates your time to value.</p>
+                <h2>Agent Maintenance and Evolution</h2>
+                <p>Your agents aren't "set and forget." Monthly Agent Review Checklist for each agent: Review the Role Card — is anything outdated, has your business changed, are there new constraints you've been mentally applying but haven't written down? Update Knowledge Files — remove outdated docs, add new ones, update your company one-pager if it's changed. Review Quality Scores — trending up, down, or flat? Common causes of decline: stale knowledge files, evolved expectations that haven't been written into the Role Card, or increased task complexity. Retire or Replace — if an agent isn't providing value, kill it; if a task has changed so much the agent doesn't fit, rebuild from scratch rather than patching. Add New Agents — as your business grows, new functions emerge, use the same framework.</p>
 
-    <h2>Days 1-2: Pick Your First Agent and Go Live</h2>
-    <p>Choose one. Pick the agent that will save you the most time or generate the most obvious value. Don't try to do everything—pick Recon, or Ghost, or Closer. Build it using what you've learned. Deploy it to a subset of your workflow. Measure its output. Run it parallel to your manual process for a day to build confidence. This teaches you the deployment mechanics and builds momentum. Most importantly, you'll see real results immediately, which keeps you motivated.</p>
+                <h2>Automation Tiers</h2>
+                <p>Your AI workforce can operate at different levels. <strong>Tier 1 — Manual Trigger</strong> (where you are now): You prompt each agent manually, copy outputs between agents, review everything. This is fine and captures most of the value. <strong>Tier 2 — Semi-Automated:</strong> Use Zapier/Make.com to trigger agents based on events — new calendar event auto-generates a Recon brief, email from certain contacts auto-drafts a response for review, form submission auto-processes through Ops. You still review everything. <strong>Tier 3 — Workflow Automation:</strong> Chain agent actions together — meeting ends, transcript auto-sent to Ops, notes processed, follow-up email drafted by Ghost, you review and send. This can reduce workflow time by another 50-70%. <strong>Tier 4 — Autonomous Operations:</strong> Certain low-risk, high-frequency tasks run without review — internal status reports generated and filed automatically, research briefs produced on a schedule, content drafts queued for batch review. Most businesses should aim for Tier 2-3. Tier 4 is for specific tasks where the stakes of an imperfect output are low.</p>
 
-    <h2>Days 3-4: Measure, Tweak, and Iterate</h2>
-    <p>Now that your agent is running, you have data. Measure: How many tasks is it handling? How many need human review? What's the error rate? How much time are you actually saving? Use these metrics to identify what to improve. Iterate on the agent's prompt, its tools, or its scope. This is where science meets art—you're tuning your agent to your specific business. Make small changes, measure the impact, repeat. This cycle of measure-improve-measure is how agents get really good.</p>
+                <h2>Building Your Knowledge Base as a Competitive Advantage</h2>
+                <p>Every brief, every meeting note, every outreach sequence your agents produce should be saved. Over months, you build an intelligence database (profiles on every company and person you've researched), a content library (everything Ghost has written), an outreach archive (every sequence, what worked, what didn't), and an operations record (meeting notes, decisions, action items going back months). This archive becomes increasingly valuable: your agents reference it and get better over time, you have institutional memory even if team members change, and pattern recognition emerges — you can see what outreach styles get responses, what content gets engagement, what meeting formats produce the best outcomes. Store everything in your Obsidian vault with consistent naming conventions. This is your company's second brain.</p>
 
-    <h2>Days 5-6: Add a Second Agent and Create Workflows</h2>
-    <p>Now deploy a second agent that complements the first. Recon → Ghost is a great combo — research flows into content. Or Recon → Closer — intelligence feeds directly into outreach. Start with sequential workflows (one hands off to the next). Measure how the combination works. This is when you start seeing the real power of AI agents—when they work together. Share context, manage handoffs, and watch your workflow become more efficient. Document what works.</p>
+                <h2>What's Next After This Course</h2>
+                <p>Run the system for 30 days — don't add complexity, just execute the workflows consistently and track your metrics. After 30 days, review your time savings and quality scores, double down on what's working, fix or cut what isn't. Teach your team — the framework (Role Cards, RICO, workflows) works for anyone. Stay current — set a monthly reminder to check what's new in Claude, what integrations have launched, what capabilities have been added. Consider going deeper — custom MCP integrations, API-based automation, fine-tuned models. You've built something most businesses don't have: a scalable, intelligent operations layer that runs at a fraction of the cost of traditional staffing. Keep iterating. Keep measuring. Keep building.</p>
 
-    <h2>Day 7: Plan Your Next 30 Days</h2>
-    <p>You've launched. You have working agents. Now plan what's next. Based on what you've learned, what should you build next? What new tools or integrations would unlock more value? How should you scale your existing agents? What processes could you automate next? Use this module to build a 30-day roadmap that extends the work you've started this week. This transforms agents from a one-time experiment into a sustainable practice that keeps improving over time.</p>
-  </div>
+            </div>
 
-  <div id="locked-overlay" style="display:none" class="locked-overlay">
-    <div class="lock-icon">🔒</div>
-    <h2>This module requires the Complete Course</h2>
-    <p>Get the day-by-day launch playbook and deploy your first agents this week. Unlock the full course to access checklists, templates, and deployment guidance.</p>
-    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER); window.location.href='https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400';">Unlock the Full Course</button>
-  </div>
+            <div id="locked-overlay" style="display:none" class="locked-overlay">
+                <div class="lock-icon">🔒</div>
+                <h2>This module requires the Complete Course</h2>
+                <p>Design five core workflows, measure agent performance with three key metrics, and build a system that compounds over time. Unlock the full course to master the complete AI workforce management system.</p>
+                <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER); window.location.href='https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400';">Unlock the Full Course</button>
+            </div>
 
-  <div id="module-nav" class="module-nav" style="display:none">
-    <a href="/modules/07.html">← Module 07: Scaling Your AI Workforce</a>
-    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Complete Course →</button>
-  </div>
-</main>
+            <div id="module-nav" class="module-nav" style="display:none">
+                <a href="/modules/07.html">← Module 07: Automating Sales &amp; Outreach</a>
+                <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Complete Course →</button>
+            </div>
+        </main>
+    </div>
 
-</div>
-
-<script src="/js/config.js"></script>
-<script src="/js/auth.js"></script>
-<script>
-const MODULE_NUMBER = 8;
-(async () => {
-  const user = await requireAuth();
-  if (!user) return;
-
-  const profile = await getProfile(user.id);
-  const tier = profile?.account_tier || 'free';
-  const accessible = canAccessModule(MODULE_NUMBER, tier);
-
-  if (accessible) {
-    document.getElementById('module-content').style.display = '';
-    document.getElementById('module-nav').style.display = '';
-    document.getElementById('locked-overlay').style.display = 'none';
-
-    await markModuleStarted(user.id, MODULE_NUMBER);
-  } else {
-    document.getElementById('module-content').style.display = 'none';
-    document.getElementById('module-nav').style.display = 'none';
-    document.getElementById('locked-overlay').style.display = '';
-  }
-
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('page-content').style.display = '';
-
-  const completeBtn = document.getElementById('complete-btn');
-  if (completeBtn && accessible) {
-    completeBtn.addEventListener('click', async () => {
-      await markModuleCompleted(user.id, MODULE_NUMBER);
-      showToast('Module completed!');
-      window.location.href = '/completion.html';
-    });
-  }
-})();
-</script>
-
+    <script src="/js/config.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+    const MODULE_NUMBER = 8;
+    (async () => {
+        const user = await requireAuth();
+        if (!user) return;
+        const profile = await getProfile(user.id);
+        const tier = profile?.account_tier || 'free';
+        const accessible = canAccessModule(MODULE_NUMBER, tier);
+        if (accessible) {
+            document.getElementById('module-content').style.display = '';
+            document.getElementById('module-nav').style.display = '';
+            document.getElementById('locked-overlay').style.display = 'none';
+            await markModuleStarted(user.id, MODULE_NUMBER);
+        } else {
+            document.getElementById('module-content').style.display = 'none';
+            document.getElementById('module-nav').style.display = 'none';
+            document.getElementById('locked-overlay').style.display = '';
+        }
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('page-content').style.display = '';
+        const completeBtn = document.getElementById('complete-btn');
+        if (completeBtn && accessible) {
+            completeBtn.addEventListener('click', async () => {
+                await markModuleCompleted(user.id, MODULE_NUMBER);
+                showToast('Course completed!');
+                window.location.href = '/completion.html';
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

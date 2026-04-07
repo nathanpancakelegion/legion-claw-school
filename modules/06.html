@@ -1,105 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 06: Multi-Agent Workflows | Legion Claw School</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 06: Automating Operations &amp; Admin | Legion Claw School</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
     <link rel="apple-touch-icon" href="/images/favicon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/shared.css">
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/shared.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<div id="loading" class="loading-spinner"></div>
-<div id="page-content" style="display:none">
+    <div id="loading" class="loading-spinner"></div>
+    <div id="page-content" style="display:none">
+        <nav>
+            <a href="/" class="nav-logo"><div class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div><span class="logo-text">Legion Claw School</span></a>
+            <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+        </nav>
+        <main>
+            <div class="breadcrumb">
+                <a href="/dashboard.html">Dashboard</a> → Module 06
+            </div>
+            <div class="progress-indicator">Module 6 of 9</div>
 
-<nav>
-  <a href="/" class="nav-logo"><div class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div><span class="logo-text">Legion Claw School</span></a>
-  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
-</nav>
+            <h1>Module 06: Automating Operations &amp; Admin</h1>
+            <div class="tier-badge paid">Paid</div>
 
-<main>
-  <div class="breadcrumb">
-    <a href="/dashboard.html">Dashboard</a> → Module 06
-  </div>
+            <div id="module-content" class="module-content">
 
-  <div class="progress-indicator">Module 6 of 9</div>
+                <h2>The Admin Tax</h2>
+                <p>Every business owner pays an invisible tax: the hours spent on meeting notes, status updates, data entry, file organization, and follow-up tracking. It's not strategic work. It doesn't generate revenue. But it has to get done or things fall apart. This is where your Ops agent earns its keep. Ops handles the organizational backbone of your business so you can focus on the work that actually moves the needle.</p>
 
-  <h1>Module 06: Multi-Agent Workflows</h1>
+                <h2>Building Ops: Your Operations Agent</h2>
+                <p>Here's Ops' full Role Card. Role: "You are Ops, my operations and administration agent. You process unstructured information into organized, actionable formats. You are meticulous, consistent, and efficient. You never summarize away important details — you restructure them. You think in systems: inputs, processes, outputs." Input: One of five types — Meeting Notes (raw notes or transcripts), Task Processing (items that need organizing, prioritizing, or tracking), Data Cleanup (messy data that needs reformatting), Status Request (a request for a status summary), or Document Processing (a document to parse, summarize, or restructure). Constraints: Never lose information during processing — restructure, don't reduce. Flag ambiguities rather than making assumptions. Use consistent formatting. When assigning task owners, use names provided — if no owner is clear, flag as "Owner: TBD." Date everything. If a task has a deadline, bold it.</p>
 
-  <div class="tier-badge paid">Paid</div>
+                <h2>Ops Template 1: Meeting Notes Processor</h2>
+                <p>When you dump raw meeting notes into Ops, it produces a structured document: Meeting date and attendees, meeting type (Internal/External/Investor/Partner), Key Decisions as a bullet list, Action Items in a table with task, owner, deadline, and status columns, Open Questions that weren't resolved, Follow-Up Required with who needs to do what by when, and the Raw Notes preserved at the bottom for reference. This turns a mess of bullet points and partial sentences into something you can actually act on.</p>
 
-  <div id="module-content" class="module-content">
-    <h2>From Solo Agents to Agent Teams</h2>
-    <p>Individual agents are powerful. But the real magic happens when agents work together. Multi-agent workflows allow you to decompose complex tasks into specialized agents that collaborate, hand off work, and coordinate toward a shared goal. Think of it as building a team where each member has a specific expertise and knows when to ask colleagues for help. In this module, you'll learn how to design workflows where agents communicate, share context, and escalate decisions appropriately. This is where AI automation becomes truly transformational.</p>
+                <h2>Ops Template 2: Weekly Status Report</h2>
+                <p>Feed Ops your week's activities and it produces: Completed This Week (items with brief context), In Progress as a table with item, status, next step, and blocker columns, Priorities for Next Week ranked with why each matters, Decisions Needed with who needs to make them and by when, and Metrics if applicable showing this week vs. last week with trend indicators. This replaces the 30-60 minutes most people spend manually compiling their weekly status.</p>
 
-    <h2>Agent Specialization and Handoff Patterns</h2>
-    <p>The most reliable multi-agent systems use specialization: each agent has a narrow, well-defined responsibility. One agent researches, another analyzes, another makes decisions. The handoff—passing work and context from one agent to the next—is the critical interface. You'll learn three core handoff patterns: sequential (Agent A finishes, then Agent B starts), parallel (multiple agents work simultaneously), and conditional (Agent A's output determines which agent goes next). Proper handoff design prevents duplication, ensures quality, and makes workflows debuggable.</p>
+                <h2>Ops Template 3: Task Prioritization</h2>
+                <p>Give Ops a brain dump of everything on your plate and it organizes using the Eisenhower matrix: Urgent + Important (Do Now) with deadlines and time estimates, Important + Not Urgent (Schedule) with target dates, Urgent + Not Important (Delegate) with delegation targets, and Neither (Drop or Defer) with reasoning for why each can wait. It finishes with a Recommended Focus Order for today — your top 3 tasks ranked with why each is first.</p>
 
-    <h2>Shared Context and Memory in Multi-Agent Systems</h2>
-    <p>When agents work together, they need access to shared context: what has been done, what was learned, what constraints apply. This is harder than it sounds. Context can grow large, become stale, or contain conflicting information. You'll learn how to structure shared memory—a central source of truth that all agents can read and write. We'll cover how to prevent agents from stepping on each other, how to version context, and how to handle disagreements between agents. This layer of infrastructure is essential for reliable multi-agent systems.</p>
+                <h2>Ops Template 4: Data Cleanup</h2>
+                <p>When you have messy data — a CSV disaster, a spreadsheet with inconsistent formatting, contact information scattered across emails — Ops structures it. Feed it a pile of contacts from a conference and it produces a clean table with Name, Company, Title, Email, Phone, Notes, and Follow-Up columns. It flags Missing Information (who's missing an email, whose company is unclear) and suggests Groupings — Hot Leads, Potential Partners, General Network — with reasoning for each.</p>
 
-    <h2>Building Your First Multi-Agent Workflow</h2>
-    <p>We'll walk through a complete, realistic example: a lead-to-opportunity workflow. The Scout agent identifies prospects, the Researcher agent gathers intelligence, the Scoring agent qualifies leads, and the Outreach agent crafts personalized pitches. Each agent has one job. They share context via a database. The workflow is orchestrated by a simple state machine. By the end of this module, you'll have built a working multi-agent system and understand the architecture patterns you can apply to any business process.</p>
-  </div>
+                <h2>Real-World Workflow: Post-Meeting Processing</h2>
+                <p>Here's the actual post-meeting workflow: Meeting ends, you have rough notes (bullet points, partial sentences, voice-to-text transcription — messy). Paste the raw notes into Ops: "Process these meeting notes. Attendees were these people. This was this type of meeting." Ops produces structured meeting notes with action items, decisions, and follow-ups. Review for 2 minutes, make corrections. Paste the action items into your task tracker. Hand the follow-up items to Ghost for email drafting. Total time: 5 minutes. Previously: 20-30 minutes of organizing after every meeting.</p>
 
-  <div id="locked-overlay" style="display:none" class="locked-overlay">
-    <div class="lock-icon">🔒</div>
-    <h2>This module requires the Complete Course</h2>
-    <p>Orchestrate teams of specialized agents to tackle complex business processes. Unlock the full course to build reliable, scalable multi-agent workflows.</p>
-    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER); window.location.href='https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400';">Unlock the Full Course</button>
-  </div>
+                <h2>Connecting Ops to Your Other Agents</h2>
+                <p>Ops is the connective tissue of your AI workforce. Recon's research output gets filed and tracked through Ops. Meeting notes flow through Ops to Ghost for follow-up emails. Ops identifies which follow-ups are sales-related and queues them for Closer. Any agent output that needs to be logged, tracked, or organized goes through Ops. Think of Ops as your Chief of Staff — it doesn't make strategic decisions, but it makes sure everything is documented, organized, and nothing falls through the cracks.</p>
 
-  <div id="module-nav" class="module-nav" style="display:none">
-    <a href="/modules/05.html">← Module 05: The 5 Agents Every Solopreneur Needs</a>
-    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 07 →</button>
-  </div>
-</main>
+                <h2>Automation Level-Up: Zapier Integration</h2>
+                <p>For those ready to go further, Ops becomes truly powerful when connected to Zapier. Forward certain emails to a Zapier workflow that sends them to Ops for processing. After each calendar meeting, auto-generate a meeting notes template. When someone fills out a form, Ops processes and categorizes the submission. We'll cover this more in Module 08, but start thinking about which Ops tasks could be triggered automatically.</p>
 
-</div>
+            </div>
 
-<script src="/js/config.js"></script>
-<script src="/js/auth.js"></script>
-<script>
-const MODULE_NUMBER = 6;
-(async () => {
-  const user = await requireAuth();
-  if (!user) return;
+            <div id="locked-overlay" style="display:none" class="locked-overlay">
+                <div class="lock-icon">🔒</div>
+                <h2>This module requires the Complete Course</h2>
+                <p>Build Ops — your operations and admin agent — with four ready-to-use templates for meeting notes, status reports, task prioritization, and data cleanup. Unlock the full course to eliminate the admin tax on your productivity.</p>
+                <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER); window.location.href='https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400';">Unlock the Full Course</button>
+            </div>
 
-  const profile = await getProfile(user.id);
-  const tier = profile?.account_tier || 'free';
-  const accessible = canAccessModule(MODULE_NUMBER, tier);
+            <div id="module-nav" class="module-nav" style="display:none">
+                <a href="/modules/05.html">← Module 05: Automating Research &amp; Market Intel</a>
+                <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 07 →</button>
+            </div>
+        </main>
+    </div>
 
-  if (accessible) {
-    document.getElementById('module-content').style.display = '';
-    document.getElementById('module-nav').style.display = '';
-    document.getElementById('locked-overlay').style.display = 'none';
-
-    await markModuleStarted(user.id, MODULE_NUMBER);
-  } else {
-    document.getElementById('module-content').style.display = 'none';
-    document.getElementById('module-nav').style.display = 'none';
-    document.getElementById('locked-overlay').style.display = '';
-  }
-
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('page-content').style.display = '';
-
-  const completeBtn = document.getElementById('complete-btn');
-  if (completeBtn && accessible) {
-    completeBtn.addEventListener('click', async () => {
-      await markModuleCompleted(user.id, MODULE_NUMBER);
-      showToast('Module completed!');
-      window.location.href = '/modules/07.html';
-    });
-  }
-})();
-</script>
-
+    <script src="/js/config.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+    const MODULE_NUMBER = 6;
+    (async () => {
+        const user = await requireAuth();
+        if (!user) return;
+        const profile = await getProfile(user.id);
+        const tier = profile?.account_tier || 'free';
+        const accessible = canAccessModule(MODULE_NUMBER, tier);
+        if (accessible) {
+            document.getElementById('module-content').style.display = '';
+            document.getElementById('module-nav').style.display = '';
+            document.getElementById('locked-overlay').style.display = 'none';
+            await markModuleStarted(user.id, MODULE_NUMBER);
+        } else {
+            document.getElementById('module-content').style.display = 'none';
+            document.getElementById('module-nav').style.display = 'none';
+            document.getElementById('locked-overlay').style.display = '';
+        }
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('page-content').style.display = '';
+        const completeBtn = document.getElementById('complete-btn');
+        if (completeBtn && accessible) {
+            completeBtn.addEventListener('click', async () => {
+                await markModuleCompleted(user.id, MODULE_NUMBER);
+                showToast('Module completed!');
+                window.location.href = '/modules/07.html';
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

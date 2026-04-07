@@ -1,111 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 05: The 5 Agents Every Solopreneur Needs | Legion Claw School</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 05: Automating Research &amp; Market Intel | Legion Claw School</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
     <link rel="apple-touch-icon" href="/images/favicon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/shared.css">
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/shared.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<div id="loading" class="loading-spinner"></div>
-<div id="page-content" style="display:none">
+    <div id="loading" class="loading-spinner"></div>
+    <div id="page-content" style="display:none">
+        <nav>
+            <a href="/" class="nav-logo"><div class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div><span class="logo-text">Legion Claw School</span></a>
+            <a href="/dashboard.html" class="nav-cta">Dashboard</a>
+        </nav>
+        <main>
+            <div class="breadcrumb">
+                <a href="/dashboard.html">Dashboard</a> → Module 05
+            </div>
+            <div class="progress-indicator">Module 5 of 9</div>
 
-<nav>
-  <a href="/" class="nav-logo"><div class="logo-icon"><img src="/images/legion-icon-white.png" alt="Legion" style="width:100%;height:100%;object-fit:contain"></div><span class="logo-text">Legion Claw School</span></a>
-  <a href="/dashboard.html" class="nav-cta">Dashboard</a>
-</nav>
+            <h1>Module 05: Automating Research &amp; Market Intel</h1>
+            <div class="tier-badge paid">Paid</div>
 
-<main>
-  <div class="breadcrumb">
-    <a href="/dashboard.html">Dashboard</a> → Module 05
-  </div>
+            <div id="module-content" class="module-content">
 
-  <div class="progress-indicator">Module 5 of 9</div>
+                <h2>Why Research Is the Highest-ROI Automation</h2>
+                <p>Research is the silent time killer. Before a meeting, you spend 30 minutes googling a company. Before entering a market, you spend hours reading reports. Before a sales call, you're scanning LinkedIn profiles. Most of this research follows a pattern — same types of questions, same types of sources, same output format. That pattern is exactly what an AI agent excels at. A well-built research agent replaces 5-10 hours per week of manual research with 5-10 minutes of agent briefings. And the output is more consistent because the agent never skips steps.</p>
 
-  <h1>Module 05: The 5 Agents Every Solopreneur Needs</h1>
+                <h2>Building Recon: Your Research Agent</h2>
+                <p>If you built Recon in Module 04, we're going to upgrade it. Here's Recon's full Role Card. Role: "You are Recon, my research and intelligence analyst. You produce structured, actionable briefings. You are thorough but concise — every sentence should earn its place. You never pad output with filler. You always cite your reasoning and flag when you're making inferences vs. stating facts." Input: One of four research triggers — Person Brief (a name and context, produce a profile), Company Brief (a company name, produce a company analysis), Market Brief (an industry, geography, or trend, produce a market overview), or Competitive Brief (a competitor or set of competitors, produce a comparison analysis). Constraints: Clearly label facts vs. inferences, if you cannot find reliable information say so — do not fabricate, keep each brief to one page (400-600 words) unless asked for more depth, prioritize recent activity (last 12 months), and always end with "Implications for my business."</p>
 
-  <div class="tier-badge paid">Paid</div>
+                <h2>The Four Research Templates</h2>
+                <p><strong>Person Brief:</strong> Background (2-3 sentences on role, company, career trajectory), Relevant Activity (recent news, posts, talks, deals from last 12 months), Connection Points (what you have in common, mutual contacts, shared interests), Talking Points (3 personalized conversation starters), Watch-Outs (red flags, controversies, sensitivities), and Implications (why this person matters and what the play is). <strong>Company Brief:</strong> Overview (what they do, size, leadership), Business Model (how they make money, who their customers are), Recent Developments (last 12 months — funding, launches, partnerships), Strengths, Vulnerabilities, Alignment (partnership, competition, customer, or irrelevant), and Recommended Action. <strong>Market Brief:</strong> Market Overview (size, growth trajectory, key players), Key Trends (3-5 trends shaping the market now), Regulatory Landscape, Opportunity Assessment (where the gaps are), Risk Factors, and Implications. <strong>Competitive Brief:</strong> Competitor Profiles, Comparison Matrix, Where We Win, Where They Win (be honest), and Strategic Recommendations.</p>
 
-  <div id="module-content" class="module-content">
-    <h2>The AI Org Chart</h2>
-    <p>If you’re building a business alone, your time is your scarcest resource. The five agents in this module are your AI Org Chart — designed specifically to multiply your effectiveness across the core functions every solopreneur faces: research, content, operations, sales, and quality control. These aren’t generic agents — they’re focused on the exact workflows that will return the most value for independent builders, consultants, and service providers. By deploying these five, you’ll effectively have a team working for you 24/7.</p>
+                <h2>Upgrading Recon with Knowledge Files</h2>
+                <p>Upload these to Recon's Claude Project: Your company one-pager — so Recon always knows who you are and what you do when writing the "Implications" section. Your current prospect/target list — so Recon can cross-reference and add context. An example of a good brief you've written or received — so Recon has a quality benchmark. Industry glossary (if your field has specialized terms) — so Recon uses correct terminology.</p>
 
-    <h2>Agent 1: Recon — Research &amp; Intelligence</h2>
-    <p>Recon continuously monitors your target market, researches prospects, and delivers structured intelligence briefs before every meeting. It reads your CRM, searches for companies matching your criteria, and surfaces hot prospects daily. Instead of spending 45 minutes prepping for each call, Recon delivers a complete brief in minutes. It learns from your sales conversations — which leads became customers, which didn’t — and improves its targeting over time. We’ll show you how to build Recon with web search, company databases, and your CRM data.</p>
+                <h2>Real-World Workflow: The Morning Intel Briefing</h2>
+                <p>Here's how I use Recon every day. Every morning, I give Recon a batch prompt: "Today I have meetings with Person A at Company X and Person B at Company Y. I'm also monitoring a market trend. Produce: Person Brief for Person A, Company Brief for Company X, Person Brief for Person B, Company Brief for Company Y, and a 3-sentence update on the market trend — just the latest, nothing I'd already know." In one prompt, I get my entire day's intelligence. Total time: 3 minutes to write the prompt, 2 minutes to review the output. That replaces an hour or more of manual research.</p>
 
-    <h2>Agent 2: Ghost — Content &amp; Communications</h2>
-    <p>Ghost manages your written output — LinkedIn posts, outreach emails, proposals, and any content that needs to sound like you. This agent knows your voice, your pitch, and your values. It researches topics relevant to your market, generates outlines, drafts articles, and produces 1-2 pieces of content per week. Ghost doesn’t replace you for important conversations — it handles the repetitive writing so you can focus on closing deals and building relationships. We’ll integrate this with Gmail, your CRM, and your content workflow.</p>
+                <h2>Pairing Recon with Perplexity</h2>
+                <p>Recon works with the information in its context and training data. For real-time, sourced research, pair it with Perplexity. Use Perplexity to pull current data with citations (funding rounds, news, market stats). Paste Perplexity's output into Recon with: "Incorporate this into a Company Brief for this company." Recon structures and analyzes it within your framework. This gives you the best of both: real-time data from Perplexity, structured analysis from Recon.</p>
 
-    <h2>Agent 3: Ops — Operations &amp; Admin</h2>
-    <p>Ops automates your administrative work — processing meeting notes into action items, scheduling, task prioritization, expense tracking, and report generation. It keeps your business running smoothly by enforcing your systems and catching things that fall through the cracks. Over time, Ops becomes the backbone of your daily workflow, handling the unglamorous parts of running a business so you can focus on growth and strategy.</p>
+                <h2>Building Your Knowledge Base</h2>
+                <p>Every brief Recon produces should be saved. Next time you meet with the same person or company, you start from the last brief instead of zero. Over time, you build a proprietary intelligence database. Your agents get smarter as they reference previous research. Save briefs in your Obsidian vault with a simple naming convention: People as Name-Brief.md, Companies as Company-Brief.md, Markets as Market-Brief.md.</p>
 
-    <h2>Agent 4: Closer — Sales &amp; Outreach</h2>
-    <p>Closer handles your sales pipeline — prospecting, qualification, cold outreach sequences, and follow-up cadences. It drafts personalized outreach, manages multi-touch sequences, and flags when a prospect is ready for a real conversation. Closer doesn’t replace the human relationship — it handles the volume so you can focus on the conversations that matter. We’ll integrate this with your CRM and email to create a seamless sales workflow.</p>
+            </div>
 
-    <h2>Agent 5: Sentinel — Quality &amp; Review</h2>
-    <p>Sentinel reviews everything before it goes out — emails, content, proposals, reports. It checks for tone, accuracy, brand consistency, and errors. Think of Sentinel as your last line of defense. Every piece of work that leaves your desk passes through Sentinel first. This agent handles the quality control that most solopreneurs skip because they’re too busy. We’ll show you how to build Sentinel with clear review criteria and output standards.</p>
-  </div>
+            <div id="locked-overlay" style="display:none" class="locked-overlay">
+                <div class="lock-icon">🔒</div>
+                <h2>This module requires the Complete Course</h2>
+                <p>Build Recon — your research and intelligence agent — with four ready-to-use brief templates for people, companies, markets, and competitors. Unlock the full course to access the complete research automation system.</p>
+                <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER); window.location.href='https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400';">Unlock the Full Course</button>
+            </div>
 
-  <div id="locked-overlay" style="display:none" class="locked-overlay">
-    <div class="lock-icon">🔒</div>
-    <h2>This module requires the Complete Course</h2>
-    <p>Build the five agents that will multiply your productivity and let you scale your business solo. Unlock the full course to access complete implementations and customization guides.</p>
-    <button class="btn-upgrade" onclick="trackUpgradeClick('module_page', MODULE_NUMBER); window.location.href='https://buy.stripe.com/6oU7sN9TpgdC6lg8Tt5c400';">Unlock the Full Course</button>
-  </div>
+            <div id="module-nav" class="module-nav" style="display:none">
+                <a href="/modules/04.html">← Module 04: Building Your Agent Team</a>
+                <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 06 →</button>
+            </div>
+        </main>
+    </div>
 
-  <div id="module-nav" class="module-nav" style="display:none">
-    <a href="/modules/04.html">← Module 04: Building Your Agent Toolkit</a>
-    <button id="complete-btn" class="btn-primary" style="padding:12px 32px;font-size:11px">Continue to Module 06 →</button>
-  </div>
-</main>
-
-</div>
-
-<script src="/js/config.js"></script>
-<script src="/js/auth.js"></script>
-<script>
-const MODULE_NUMBER = 5;
-(async () => {
-  const user = await requireAuth();
-  if (!user) return;
-
-  const profile = await getProfile(user.id);
-  const tier = profile?.account_tier || 'free';
-  const accessible = canAccessModule(MODULE_NUMBER, tier);
-
-  if (accessible) {
-    document.getElementById('module-content').style.display = '';
-    document.getElementById('module-nav').style.display = '';
-    document.getElementById('locked-overlay').style.display = 'none';
-
-    await markModuleStarted(user.id, MODULE_NUMBER);
-  } else {
-    document.getElementById('module-content').style.display = 'none';
-    document.getElementById('module-nav').style.display = 'none';
-    document.getElementById('locked-overlay').style.display = '';
-  }
-
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('page-content').style.display = '';
-
-  const completeBtn = document.getElementById('complete-btn');
-  if (completeBtn && accessible) {
-    completeBtn.addEventListener('click', async () => {
-      await markModuleCompleted(user.id, MODULE_NUMBER);
-      showToast('Module completed!');
-      window.location.href = '/modules/06.html';
-    });
-  }
-})();
-</script>
-
+    <script src="/js/config.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+    const MODULE_NUMBER = 5;
+    (async () => {
+        const user = await requireAuth();
+        if (!user) return;
+        const profile = await getProfile(user.id);
+        const tier = profile?.account_tier || 'free';
+        const accessible = canAccessModule(MODULE_NUMBER, tier);
+        if (accessible) {
+            document.getElementById('module-content').style.display = '';
+            document.getElementById('module-nav').style.display = '';
+            document.getElementById('locked-overlay').style.display = 'none';
+            await markModuleStarted(user.id, MODULE_NUMBER);
+        } else {
+            document.getElementById('module-content').style.display = 'none';
+            document.getElementById('module-nav').style.display = 'none';
+            document.getElementById('locked-overlay').style.display = '';
+        }
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('page-content').style.display = '';
+        const completeBtn = document.getElementById('complete-btn');
+        if (completeBtn && accessible) {
+            completeBtn.addEventListener('click', async () => {
+                await markModuleCompleted(user.id, MODULE_NUMBER);
+                showToast('Module completed!');
+                window.location.href = '/modules/06.html';
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

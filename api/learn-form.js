@@ -30,6 +30,8 @@
 const HUBSPOT_BASE = "https://api.hubapi.com";
 const ZEPTOMAIL_URL = "https://api.zeptomail.com/v1.1/email";
 const SENDER = { address: "nathan@legionclawschool.com", name: "Nathan Pancake" };
+// Reply-To: applicant's "reply" goes to Nathan's monitored inbox, not the sender domain.
+const REPLY_TO = [{ address: "nathanpancake@legionreit.com", name: "Nathan Pancake" }];
 
 // ---------- main handler ----------
 module.exports = async function handler(req, res) {
@@ -299,6 +301,7 @@ async function zeptoSend({ to, subject, htmlbody }) {
     body: JSON.stringify({
       from: SENDER,
       to: [{ email_address: to }],
+      reply_to: REPLY_TO,
       subject,
       htmlbody
     })
@@ -369,11 +372,11 @@ function renderLegionLaunchApplicantDay0(firstName) {
 <ol>
   <li><strong>Within 72 hours</strong>, I personally read every application that comes in for the June pilot. We're capping the cohort at 15, so this matters.</li>
   <li>If your application is a fit, I'll email you to schedule a 30-minute fit call. That call is for both of us — I want to know we can help you, and you want to know exactly what you're signing up for.</li>
-  <li>After the fit call, you'll get an offer letter and the participant agreement (3&ndash;5% rev-share terms, IP, confidentiality, reporting cadence — all of it spelled out).</li>
+  <li>After the fit call, you'll get an offer letter and the participant agreement (3% or 5% rev-share terms, IP, confidentiality, reporting cadence — all of it spelled out).</li>
 </ol>
 <p>While you wait, I want to share something with you. Most founders applying to programs like this are stuck on the same wall:</p>
 <blockquote><p>"I know I should be using AI in my business, but I keep building one chatbot at a time and it never adds up to anything."</p></blockquote>
 <p>If that's you, the next email (in two days) is the one to read. It walks through the difference between "using AI in your business" and <strong>building an AI-native business</strong> — which is the entire point of Legion Launch.</p>
 <p>More from me in two days.</p>
-<p>— Nathan<br>Co-Founder &amp; CEO, Legion Securities<br><a href="mailto:nathan@legionclawschool.com">nathan@legionclawschool.com</a></p>`;
+<p>— Nathan<br>Co-Founder &amp; CEO, Legion Securities<br><a href="mailto:nathanpancake@legionreit.com">nathanpancake@legionreit.com</a></p>`;
 }

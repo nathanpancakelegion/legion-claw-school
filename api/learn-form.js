@@ -343,7 +343,7 @@ function renderLegionLaunchWaitlist(firstName) {
 <p>Quick context on what you're waiting for, because "founder program" is a phrase that's been loved to death.</p>
 <p>Legion Launch is the internal program Legion Securities runs to build new businesses — the same process we used to stand up Legion itself. It is not a course about entrepreneurship in the abstract. It is the exact playbook we follow when we take an idea from "this should exist" to "this is incorporated, funded, and shipping."</p>
 <p>The virtual version launches in <strong>Q2 2026</strong>. When it does, it'll cover the Founder Fit test, incorporation and legal structure, the first 30 days of operations, raising your first capital, and the first five hires (including the AI ones).</p>
-<p>Legion Launch cohorts are capped. Waitlist members get first access, the best pricing, and direct input on the curriculum before it locks.</p>
+<p>Waitlist members get first access, the best pricing, and direct input on the curriculum before it locks.</p>
 <p><strong>One thing you can do right now while you wait.</strong></p>
 <p>The founders we see winning in Legion Launch all share one advantage: they've already built an AI workforce inside their business before the program starts. That's exactly what the first Legion Claw School course teaches.</p>
 <p><strong><a href="https://www.legionclawschool.com/build-your-ai-workforce">→ Start with Build Your AI Workforce — $147</a></strong></p>
@@ -370,13 +370,13 @@ function renderLegionLaunchApplicantDay0(firstName) {
 <p>Your application landed. Thanks for raising your hand.</p>
 <p>Here's what happens next:</p>
 <ol>
-  <li><strong>Within 72 hours</strong>, I personally read every application that comes in for the June pilot. We're capping the cohort at 15, so this matters.</li>
+  <li><strong>Within 72 hours</strong>, I personally read every application that comes in for the June pilot.</li>
   <li>If your application is a fit, I'll email you to schedule a 30-minute fit call. That call is for both of us — I want to know we can help you, and you want to know exactly what you're signing up for.</li>
   <li>After the fit call, you'll get an offer letter and the participant agreement (3% or 5% rev-share terms, IP, confidentiality, reporting cadence — all of it spelled out).</li>
 </ol>
 <p>While you wait, I want to share something with you. Most founders applying to programs like this are stuck on the same wall:</p>
 <blockquote><p>"I know I should be using AI in my business, but I keep building one chatbot at a time and it never adds up to anything."</p></blockquote>
-<p>If that's you, the next email (in two days) is the one to read. It walks through the difference between "using AI in your business" and <strong>building an AI-native business</strong> — which is the entire point of Legion Launch.</p>
-<p>More from me in two days.</p>
+<p>The next email (in a couple of days) walks through the difference between "using AI in your business" and <strong>building an AI-native business</strong> — which is the entire point of Legion Launch.</p>
+<p>More from me in a couple of days.</p>
 <p>— Nathan<br>Co-Founder &amp; CEO, Legion Securities<br><a href="mailto:nathanpancake@legionreit.com">nathanpancake@legionreit.com</a></p>`;
 }

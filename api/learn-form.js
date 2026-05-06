@@ -84,13 +84,16 @@ module.exports = async function handler(req, res) {
 // ---------- AISK lead-magnet branch (existing) ----------
 async function handleAisk(req, res, body, email, firstName) {
   const nowMs = Date.now();
+  // NOTE: aisk_last_email_sent is intentionally NOT set here. We only bump it
+  // AFTER zeptoSend succeeds, so a failed send leaves the counter at 0 and the
+  // next intake POST will retry rather than skip on idempotency. (Bug fix
+  // 2026-05-05 — see Session-Log.md "ll_last_email_sent=1 even on send fail".)
   const upsertProps = {
     email,
     firstname: firstName,
     lifecyclestage: "lead",
     lead_source: "lead_magnet_aisk",
-    aisk_downloaded_at: String(nowMs),
-    aisk_last_email_sent: "1"
+    aisk_downloaded_at: String(nowMs)
   };
   const { hubspotId, alreadySent } = await hubspotUpsertWithIdempotency({
     email, props: upsertProps,
@@ -107,18 +110,22 @@ async function handleAisk(req, res, body, email, firstName) {
     htmlbody: html
   });
 
+  // Bump counter only after successful send.
+  await hubspotPatchProps(hubspotId, { aisk_last_email_sent: "1" });
+
   return res.status(200).json({ status: "ok", action: "aisk_day0", hubspot_id: hubspotId, zeptomail_message_id: send.message_id });
 }
 
 // ---------- Generic waitlist branch (existing — handles legion_launch + cre_syndication) ----------
 async function handleWaitlist(req, res, body, email, firstName, kind) {
   const leadSource = kind === "legion_launch" ? "waitlist_legion_launch" : "waitlist_cre_syndication";
+  // NOTE: waitlist_confirmation_sent flag intentionally NOT set here — only after
+  // successful zeptoSend (see counter-after-send fix 2026-05-05).
   const upsertProps = {
     email,
     firstname: firstName,
     lifecyclestage: "lead",
-    lead_source: leadSource,
-    waitlist_confirmation_sent: "true"
+    lead_source: leadSource
   };
   const { hubspotId, alreadySent } = await hubspotUpsertWithIdempotency({
     email, props: upsertProps,
@@ -136,6 +143,9 @@ async function handleWaitlist(req, res, body, email, firstName, kind) {
 
   const send = await zeptoSend({ to: { address: email, name: firstName }, subject, htmlbody: html });
 
+  // Set confirmation flag only after successful send.
+  await hubspotPatchProps(hubspotId, { waitlist_confirmation_sent: "true" });
+
   return res.status(200).json({
     status: "ok",
     action: isLL ? "legion_launch_waitlist" : "cre_syndication_waitlist",
@@ -150,6 +160,10 @@ async function handleLegionLaunchApplicant(req, res, body, email, firstName) {
 
   // Capture all applicant fields onto the HubSpot contact record so
   // Nathan can review applications inside HubSpot without leaving the CRM.
+  // NOTE: ll_last_email_sent intentionally NOT set here — only after a
+  // successful zeptoSend (see counter-after-send fix 2026-05-05). If
+  // ZeptoMail throws, the counter stays at 0 so the next intake POST
+  // retries the Day-0 confirm rather than skipping it.
   const upsertProps = {
     email,
     firstname: firstName,
@@ -158,7 +172,6 @@ async function handleLegionLaunchApplicant(req, res, body, email, firstName) {
     lifecyclestage: "lead",
     lead_source: "legion_launch_applicant_june_2026",
     ll_application_received_at: String(nowMs),
-    ll_last_email_sent: "1",
     ll_status: "applied",
     ll_cohort: (body.ll_cohort || "june_2026"),
     ll_location: (body.location || "").trim(),
@@ -185,6 +198,9 @@ async function handleLegionLaunchApplicant(req, res, body, email, firstName) {
     subject: "Got it — your Legion Launch application is in",
     htmlbody: html
   });
+
+  // Bump counter only after successful send.
+  await hubspotPatchProps(hubspotId, { ll_last_email_sent: "1" });
 
   return res.status(200).json({
     status: "ok",
@@ -254,6 +270,21 @@ function hubspotHeaders() {
     "Authorization": `Bearer ${process.env.HUBSPOT_TOKEN}`,
     "Content-Type": "application/json"
   };
+}
+
+// Small helper used post-send to bump per-branch counters/flags only after
+// the email actually went out. Throws on non-2xx so the caller surfaces it.
+async function hubspotPatchProps(hubspotId, props) {
+  const res = await fetch(`${HUBSPOT_BASE}/crm/v3/objects/contacts/${hubspotId}`, {
+    method: "PATCH",
+    headers: hubspotHeaders(),
+    body: JSON.stringify({ properties: props })
+  });
+  if (!res.ok) {
+    const errText = await res.text();
+    throw new Error("hubspot_patch_props_failed:" + res.status + ":" + errText.slice(0, 200));
+  }
+  return res.json();
 }
 
 // ---------- ZeptoMail helper ----------
@@ -338,7 +369,7 @@ function renderLegionLaunchApplicantDay0(firstName) {
 <ol>
   <li><strong>Within 72 hours</strong>, I personally read every application that comes in for the June pilot. We're capping the cohort at 15, so this matters.</li>
   <li>If your application is a fit, I'll email you to schedule a 30-minute fit call. That call is for both of us — I want to know we can help you, and you want to know exactly what you're signing up for.</li>
-  <li>After the fit call, you'll get an offer letter and the participant agreement (5% rev-share terms, IP, confidentiality, reporting cadence — all of it spelled out).</li>
+  <li>After the fit call, you'll get an offer letter and the participant agreement (3&ndash;5% rev-share terms, IP, confidentiality, reporting cadence — all of it spelled out).</li>
 </ol>
 <p>While you wait, I want to share something with you. Most founders applying to programs like this are stuck on the same wall:</p>
 <blockquote><p>"I know I should be using AI in my business, but I keep building one chatbot at a time and it never adds up to anything."</p></blockquote>

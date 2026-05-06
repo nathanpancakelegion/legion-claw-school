@@ -30,8 +30,9 @@
 const HUBSPOT_BASE = "https://api.hubapi.com";
 const ZEPTOMAIL_URL = "https://api.zeptomail.com/v1.1/email";
 const SENDER = { address: "nathan@legionclawschool.com", name: "Nathan Pancake" };
-// Reply-To: applicant's "reply" goes to Nathan's monitored inbox, not the sender domain.
-const REPLY_TO = [{ address: "nathanpancake@legionreit.com", name: "Nathan Pancake" }];
+// No Reply-To override — keep one consistent identity for the applicant.
+// Mail forwarding from nathan@legionclawschool.com → nathanpancake@legionreit.com
+// is set up at the mail host so Nathan still gets a centralized inbox.
 
 // ---------- main handler ----------
 module.exports = async function handler(req, res) {
@@ -301,7 +302,6 @@ async function zeptoSend({ to, subject, htmlbody }) {
     body: JSON.stringify({
       from: SENDER,
       to: [{ email_address: to }],
-      reply_to: REPLY_TO,
       subject,
       htmlbody
     })
@@ -378,5 +378,5 @@ function renderLegionLaunchApplicantDay0(firstName) {
 <blockquote><p>"I know I should be using AI in my business, but I keep building one chatbot at a time and it never adds up to anything."</p></blockquote>
 <p>The next email (in a couple of days) walks through the difference between "using AI in your business" and <strong>building an AI-native business</strong> — which is the entire point of Legion Launch.</p>
 <p>More from me in a couple of days.</p>
-<p>— Nathan<br>Co-Founder &amp; CEO, Legion Securities<br><a href="mailto:nathanpancake@legionreit.com">nathanpancake@legionreit.com</a></p>`;
+<p>— Nathan<br>Co-Founder &amp; CEO, Legion Securities<br><a href="mailto:nathan@legionclawschool.com">nathan@legionclawschool.com</a></p>`;
 }

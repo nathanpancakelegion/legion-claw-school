@@ -35,12 +35,15 @@ const POSTHOG_KEY = 'phc_rzW3WzFnaSpZlzjOQ7hzeLSd5iIyzQaKW5tJGke0Y7p';
 // Initialize PostHog only if API key is configured
 if (POSTHOG_KEY && POSTHOG_KEY !== 'YOUR_POSTHOG_KEY') {
   posthog.init(POSTHOG_KEY, {
+    persistence: "localStorage+cookie",
     api_host: 'https://us.i.posthog.com',
     person_profiles: 'identified_only',
     capture_pageview: true,
     capture_pageleave: true,
     autocapture: true,
     session_recording: {
+      maskAllInputs: true,
+      maskTextSelector: "[data-ph-mask]",
       recordCrossOriginIframes: true
     }
   });

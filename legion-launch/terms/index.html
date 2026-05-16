@@ -345,5 +345,8 @@ footer{border-top:1px solid rgba(255,255,255,.06);padding:36px 52px;display:flex
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const target=document.querySelector(a.getAttribute('href'));if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }});});
 </script>
 
+  <!-- PostHog instrumentation — wired 2026-05-16 -->
+  <script src="/config.js"></script>
+  <script src="/legion-launch/ll-analytics.js"></script>
 </body>
 </html>
